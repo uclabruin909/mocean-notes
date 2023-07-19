@@ -9,6 +9,8 @@ import {
   CHeaderToggler,
   CNavLink,
   CNavItem,
+  CProgress,
+  CProgressBar,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons';
@@ -37,6 +39,13 @@ const NotesHeader = () => {
           </CNavItem>
           <CNavItem>
             <CNavLink href="#">Settings</CNavLink>
+          </CNavItem>
+        </CHeaderNav>
+        <CHeaderNav style={{ width: '20%', marginRight: '20px' }}>
+          <CNavItem className="flex-grow-1">
+            <CProgress color="success" value={25}>
+              <CProgressBar>25%</CProgressBar>
+            </CProgress>
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav>

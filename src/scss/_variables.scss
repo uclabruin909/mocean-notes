@@ -16,7 +16,7 @@
 // $gray-700:  #768192 !default;
 // $gray-800:  #636f83 !default;
 // $gray-900:  #4f5d73 !default;
-// $black:     #000015 !default;
+$black:     #000015 !default;
 // scss-docs-end gray-color-variables
 
 // fusv-disable
@@ -837,7 +837,7 @@
 // $form-check-input-active-filter:          brightness(90%) !default;
 
 // $form-check-input-bg:                     $input-bg !default;
-// $form-check-input-border:                 1px solid rgba($black, .25) !default;
+$form-check-input-border:                 1px solid rgba($black, .75) !default;
 // $form-check-input-border-radius:          .25em !default;
 // $form-check-radio-border-radius:          50% !default;
 // $form-check-input-focus-border:           $input-focus-border-color !default;

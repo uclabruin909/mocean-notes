@@ -8,31 +8,180 @@ import {
   CCol,
   CCollapse,
   CRow,
-  CProgress,
-  CProgressBar,
+  CListGroup,
+  CListGroupItem,
+  CFormCheck,
 } from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import { cilCheckCircle, cilChevronBottom, cilChevronTop } from '@coreui/icons';
 import { DocsExample } from 'src/components';
 
 import { NotesHeader, NotesSidebar } from './components/index';
+import './styles.scss';
 
 const Notes = () => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [visibleHorizontal, setVisibleHorizontal] = useState(false);
   const [visibleA, setVisibleA] = useState(false);
   const [visibleB, setVisibleB] = useState(false);
 
   return (
     <React.Fragment>
+      {/* Restrictions */}
       <CRow>
         <CCol xs={12}>
           <CCard className="mb-4">
             <CCardHeader className="d-flex justify-content-between align-items-center">
-              <strong>Body Select</strong>
+              <div className="d-flex justify-content-between align-items-center gap-2">
+                <span>
+                  <CIcon icon={cilCheckCircle} height={14} customClassName="note-card-icon"></CIcon>
+                </span>
+
+                <strong>Restriction</strong>
+              </div>
+
+              <CButton onClick={() => setVisible(!visible)} variant="ghost">
+                <CIcon icon={cilChevronBottom} height={24}></CIcon>
+              </CButton>
+            </CCardHeader>
+            <CCardBody>
+              <CCollapse visible={visible}>
+                <CCard className="mt-1">
+                  <CCardBody className="d-flex align-items-center gap-2">
+                    <CListGroup className="flex-grow-1">
+                      <CListGroupItem active>Joint Action</CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          disabled
+                          id="flexCheckDefault"
+                          value="disabled"
+                          label="disabled"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                    </CListGroup>
+
+                    <CListGroup className="flex-grow-1">
+                      <CListGroupItem active>Joint Action</CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                    </CListGroup>
+                    <CListGroup className="flex-grow-1">
+                      <CListGroupItem active>Joint Action</CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                    </CListGroup>
+                  </CCardBody>
+                </CCard>
+              </CCollapse>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
+      {/* Manual: Treatment and purpose.  Pick 1 from each category (joint, muscle, nerve*/}
+      <CRow>
+        <CCol xs={12}>
+          <CCard className="mb-4">
+            <CCardHeader className="d-flex justify-content-between align-items-center">
+              <strong>Manual</strong>
               <CButton onClick={() => setVisible(!visible)}>Close</CButton>
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={visible}>
-                <CCard className="mt-3">
+                <CCard className="mt-1">
                   <CCardBody>
                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
                     richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
@@ -43,83 +192,69 @@ const Notes = () => {
             </CCardBody>
           </CCard>
         </CCol>
+      </CRow>
+      {/* Therex Purpose: Pick 2 or 3*/}
+      <CRow>
         <CCol xs={12}>
           <CCard className="mb-4">
-            <CCardHeader>
-              <strong>React Collapse</strong> <small> Horizontal</small>
+            <CCardHeader className="d-flex justify-content-between align-items-center">
+              <strong>Therex Purpose</strong>
+              <CButton onClick={() => setVisible(!visible)}>Close</CButton>
             </CCardHeader>
             <CCardBody>
-              <p className="text-medium-emphasis small">
-                You can use a link or a button component.
-              </p>
-              <DocsExample href="components/collapse#horizontal">
-                <CButton
-                  className="mb-3"
-                  onClick={() => setVisibleHorizontal(!visibleHorizontal)}
-                  aria-expanded={visibleHorizontal}
-                  aria-controls="collapseWidthExample"
-                >
-                  Button
-                </CButton>
-                <div style={{ minHeight: '120px' }}>
-                  <CCollapse id="collapseWidthExample" horizontal visible={visibleHorizontal}>
-                    <CCard style={{ width: '300px' }}>
-                      <CCardBody>
-                        This is some placeholder content for a horizontal collapse. It&#39;s hidden
-                        by default and shown when triggered.
-                      </CCardBody>
-                    </CCard>
-                  </CCollapse>
-                </div>
-              </DocsExample>
+              <CCollapse visible={visible}>
+                <CCard className="mt-1">
+                  <CCardBody>
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
+                    anderson cred nesciunt sapiente ea proident.
+                  </CCardBody>
+                </CCard>
+              </CCollapse>
             </CCardBody>
           </CCard>
         </CCol>
+      </CRow>
+      {/* Movement: Quality of Movement, types of Movement quality and Movement task (pick 2 or 3 tasks) */}
+      <CRow>
         <CCol xs={12}>
           <CCard className="mb-4">
-            <CCardHeader>
-              <strong>React Collapse</strong> <small> multi target</small>
+            <CCardHeader className="d-flex justify-content-between align-items-center">
+              <strong>Movment</strong>
+              <CButton onClick={() => setVisible(!visible)}>Close</CButton>
             </CCardHeader>
             <CCardBody>
-              <p className="text-medium-emphasis small">
-                A <code>&lt;CButton&gt;</code> can show and hide multiple elements.
-              </p>
-              <DocsExample href="components/collapse#multiple-targets">
-                <CButton onClick={() => setVisibleA(!visibleA)}>Toggle first element</CButton>
-                <CButton onClick={() => setVisibleB(!visibleB)}>Toggle second element</CButton>
-                <CButton
-                  onClick={() => {
-                    setVisibleA(!visibleA);
-                    setVisibleB(!visibleB);
-                  }}
-                >
-                  Toggle both elements
-                </CButton>
-                <CRow>
-                  <CCol xs={6}>
-                    <CCollapse visible={visibleA}>
-                      <CCard className="mt-3">
-                        <CCardBody>
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                          richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
-                          anderson cred nesciunt sapiente ea proident.
-                        </CCardBody>
-                      </CCard>
-                    </CCollapse>
-                  </CCol>
-                  <CCol xs={6}>
-                    <CCollapse visible={visibleB}>
-                      <CCard className="mt-3">
-                        <CCardBody>
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                          richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
-                          anderson cred nesciunt sapiente ea proident.
-                        </CCardBody>
-                      </CCard>
-                    </CCollapse>
-                  </CCol>
-                </CRow>
-              </DocsExample>
+              <CCollapse visible={visible}>
+                <CCard className="mt-1">
+                  <CCardBody>
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
+                    anderson cred nesciunt sapiente ea proident.
+                  </CCardBody>
+                </CCard>
+              </CCollapse>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
+      {/* Cues and Results: Type of cue used by Provider and the Results */}
+      <CRow>
+        <CCol xs={12}>
+          <CCard className="mb-4">
+            <CCardHeader className="d-flex justify-content-between align-items-center">
+              <strong>Cues & Results</strong>
+              <CButton onClick={() => setVisible(!visible)}>Close</CButton>
+            </CCardHeader>
+            <CCardBody>
+              <CCollapse visible={visible}>
+                <CCard className="mt-1">
+                  <CCardBody>
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
+                    anderson cred nesciunt sapiente ea proident.
+                  </CCardBody>
+                </CCard>
+              </CCollapse>
             </CCardBody>
           </CCard>
         </CCol>
