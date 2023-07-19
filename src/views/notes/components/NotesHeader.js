@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   CContainer,
   CHeader,
-  CHeaderBrand,
+  CAlert,
+  CAlertLink,
   CHeaderDivider,
   CHeaderNav,
   CHeaderToggler,
@@ -11,62 +13,52 @@ import {
   CNavItem,
   CProgress,
   CProgressBar,
+  CButton,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons';
+import { cilBell, cilEnvelopeOpen, cilList, cilBolt, cilMenu, cilLoop } from '@coreui/icons';
 
 import { NotesSecondaryHeader, NotesHeaderDropdown } from './index';
 import { logo } from 'src/assets/brand/logo';
 
 const NotesHeader = () => {
+  const dispatch = useDispatch();
+  const sidebarShow = useSelector((state) => state.sidebarShow);
+
   return (
     <CHeader position="sticky" className="mb-4">
       <CContainer fluid>
-        <CHeaderToggler className="ps-1">
+        <CHeaderToggler
+          className="ps-1"
+          onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
+        >
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
-        <CHeaderBrand className="mx-auto d-md-none" to="/">
-          <CIcon icon={logo} height={48} alt="Logo" />
-        </CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink}>
-              Dashboard
-            </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Users</CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
+            <CNavLink style={{ fontWeight: '700' }}>MOCEAN Daily Notes App</CNavLink>
           </CNavItem>
         </CHeaderNav>
-        <CHeaderNav style={{ width: '20%', marginRight: '20px' }}>
+        <CHeaderNav style={{ width: '260px', marginRight: '20px' }}>
           <CNavItem className="flex-grow-1">
-            <CProgress color="success" value={25}>
-              <CProgressBar>25%</CProgressBar>
+            <CProgress color="success" value={90} variant="striped" animated>
+              <CProgressBar>90%</CProgressBar>
             </CProgress>
           </CNavItem>
         </CHeaderNav>
-        <CHeaderNav>
+        <CHeaderNav className="gap-2">
           <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilBell} size="lg" />
-            </CNavLink>
+            <CButton color="secondary" className="d-flex align-items-center gap-2">
+              <strong>Reset</strong>
+              <CIcon icon={cilLoop} size="lg" />
+            </CButton>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilList} size="lg" />
-            </CNavLink>
+            <CButton color="primary" className="d-flex align-items-center gap-2">
+              <strong>Generate</strong>
+              <CIcon icon={cilBolt} size="lg" />
+            </CButton>
           </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilEnvelopeOpen} size="lg" />
-            </CNavLink>
-          </CNavItem>
-        </CHeaderNav>
-        <CHeaderNav className="ms-3">
-          <NotesHeaderDropdown />
         </CHeaderNav>
       </CContainer>
       <CHeaderDivider />

@@ -47,7 +47,10 @@ const Notes = () => {
             <CCardBody>
               <CCollapse visible={visible}>
                 <CCard className="mt-1">
-                  <CCardBody className="d-flex align-items-center gap-2">
+                  <CCardBody
+                    className="d-md-flex align-items-center gap-2"
+                    style={{ flexWrap: 'wrap' }}
+                  >
                     <CListGroup className="flex-grow-1">
                       <CListGroupItem active>Joint Action</CListGroupItem>
                       <CListGroupItem>
@@ -176,16 +179,217 @@ const Notes = () => {
         <CCol xs={12}>
           <CCard className="mb-4">
             <CCardHeader className="d-flex justify-content-between align-items-center">
-              <strong>Manual</strong>
-              <CButton onClick={() => setVisible(!visible)}>Close</CButton>
+              <div className="d-flex justify-content-between align-items-center gap-2">
+                <span>
+                  <CIcon icon={cilCheckCircle} height={14} customClassName="note-card-icon"></CIcon>
+                </span>
+
+                <strong>Manual</strong>
+              </div>
+
+              <CButton onClick={() => setVisible(!visible)} variant="ghost">
+                <CIcon icon={cilChevronBottom} height={24}></CIcon>
+              </CButton>
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={visible}>
                 <CCard className="mt-1">
-                  <CCardBody>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
-                    anderson cred nesciunt sapiente ea proident.
+                  <CCardBody
+                    className="d-md-flex align-items-center gap-2"
+                    style={{ flexWrap: 'wrap' }}
+                  >
+                    <CListGroup className="flex-grow-1">
+                      <CListGroupItem active>Joint Action</CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          disabled
+                          id="flexCheckDefault"
+                          value="disabled"
+                          label="disabled"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                    </CListGroup>
+
+                    <CListGroup className="flex-grow-1">
+                      <CListGroupItem active>Joint Action</CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                    </CListGroup>
+                    <CListGroup className="flex-grow-1">
+                      <CListGroupItem active>Joint Action</CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                    </CListGroup>
+                    <CListGroup className="flex-grow-1">
+                      <CListGroupItem active>Joint Action</CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                    </CListGroup>
+                    <CListGroup className="flex-grow-1">
+                      <CListGroupItem active>Joint Action</CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                      <CListGroupItem>
+                        <CFormCheck
+                          id="flexCheckDefault"
+                          value="hyper-mobility"
+                          label="hyper-mobility"
+                        />
+                      </CListGroupItem>
+                    </CListGroup>
                   </CCardBody>
                 </CCard>
               </CCollapse>
@@ -194,71 +398,10 @@ const Notes = () => {
         </CCol>
       </CRow>
       {/* Therex Purpose: Pick 2 or 3*/}
-      <CRow>
-        <CCol xs={12}>
-          <CCard className="mb-4">
-            <CCardHeader className="d-flex justify-content-between align-items-center">
-              <strong>Therex Purpose</strong>
-              <CButton onClick={() => setVisible(!visible)}>Close</CButton>
-            </CCardHeader>
-            <CCardBody>
-              <CCollapse visible={visible}>
-                <CCard className="mt-1">
-                  <CCardBody>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
-                    anderson cred nesciunt sapiente ea proident.
-                  </CCardBody>
-                </CCard>
-              </CCollapse>
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
+
       {/* Movement: Quality of Movement, types of Movement quality and Movement task (pick 2 or 3 tasks) */}
-      <CRow>
-        <CCol xs={12}>
-          <CCard className="mb-4">
-            <CCardHeader className="d-flex justify-content-between align-items-center">
-              <strong>Movment</strong>
-              <CButton onClick={() => setVisible(!visible)}>Close</CButton>
-            </CCardHeader>
-            <CCardBody>
-              <CCollapse visible={visible}>
-                <CCard className="mt-1">
-                  <CCardBody>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
-                    anderson cred nesciunt sapiente ea proident.
-                  </CCardBody>
-                </CCard>
-              </CCollapse>
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
+
       {/* Cues and Results: Type of cue used by Provider and the Results */}
-      <CRow>
-        <CCol xs={12}>
-          <CCard className="mb-4">
-            <CCardHeader className="d-flex justify-content-between align-items-center">
-              <strong>Cues & Results</strong>
-              <CButton onClick={() => setVisible(!visible)}>Close</CButton>
-            </CCardHeader>
-            <CCardBody>
-              <CCollapse visible={visible}>
-                <CCard className="mt-1">
-                  <CCardBody>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
-                    anderson cred nesciunt sapiente ea proident.
-                  </CCardBody>
-                </CCard>
-              </CCollapse>
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
     </React.Fragment>
   );
 };
