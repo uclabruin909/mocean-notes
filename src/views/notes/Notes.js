@@ -14,7 +14,7 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilCheckCircle, cilChevronBottom, cilChevronTop } from '@coreui/icons';
-import { DocsExample } from 'src/components';
+import NotesService from '../../services/notesService';
 
 import { NotesHeader, NotesSidebar } from './components/index';
 import './styles.scss';
@@ -407,11 +407,8 @@ const Notes = () => {
 };
 
 const NotesView = () => {
-  const [autoGenerateIsEnabled, updateAutoGenerate] = useState(false);
-
-  const [bodyPartBase, updaateBodyPartBase] = useState(undefined);
-  const [bodyPartCategory, updaateBodyPartCategory] = useState(undefined);
-  const [bodyPartSpecific, updaateBodySpecific] = useState(undefined);
+  const [bodyPartCategory, updateBodyPartCategory] = useState(undefined);
+  const [bodyPartSpecific, updateBodySpecific] = useState(undefined);
 
   return (
     <div>
@@ -420,7 +417,7 @@ const NotesView = () => {
         <NotesHeader />
         <div className="body flex-grow-1 px-3">
           <CContainer fluid>
-            <Notes />
+            <Notes bodyParts />
           </CContainer>
         </div>
       </div>

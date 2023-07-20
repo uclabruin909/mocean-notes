@@ -23,6 +23,7 @@ import { logo } from 'src/assets/brand/logo';
 
 const NotesHeader = () => {
   const dispatch = useDispatch();
+
   const sidebarShow = useSelector((state) => state.sidebarShow);
 
   return (

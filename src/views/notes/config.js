@@ -492,14 +492,14 @@ const CuesConfig = [
   'sensory cues',
 ];
 
-export const NotesConfig = {
+const NotesConfig = {
   bodyPart: BodyPartConfig,
   restriction: RestrictionConfig,
   manual: MaualConfig,
   therex: TherexConfig,
   movement: MovementConfigs,
   result: ResultsConfig,
-  cues: CuesConfig
+  cues: CuesConfig,
 };
 
-
+export default NotesConfig;
