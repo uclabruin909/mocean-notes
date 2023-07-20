@@ -21,6 +21,7 @@ import { NotesHeader, NotesSidebar } from './components/index';
 import './styles.scss';
 
 const restrictionsConfig = NotesService.getRestrictions();
+const restrictionCategories = NotesService.getRestrictionCategories();
 
 const renderRestrictionsByKey = (restrictionsObject, categoryKey, selectedCategory) => {
   const restrictions = restrictionsObject[categoryKey];
@@ -77,128 +78,16 @@ const Notes = () => {
             <CCardBody>
               <CCollapse visible={visible}>
                 <CCard className="mt-1">
-                  <CCardBody
-                    className="d-md-flex align-items-center gap-2"
-                    style={{ flexWrap: 'wrap' }}
-                  >
-                    {renderRestrictionsByKey(restrictionsConfig, 'muscle', 'joint')}
-                    <CListGroup className="flex-grow-1">
-                      <CListGroupItem active>Joint Action</CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          disabled
-                          id="flexCheckDefault"
-                          value="disabled"
-                          label="disabled"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                    </CListGroup>
+                  <CCardBody className="d-md-flex gap-2" style={{ flexWrap: 'wrap' }}>
+                    {/* RENDERING RESTRICTIONS CARDS */}
 
-                    <CListGroup className="flex-grow-1">
-                      <CListGroupItem active>Joint Action</CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                    </CListGroup>
-
-                    <CListGroup className="flex-grow-1">
-                      <CListGroupItem active>Joint Action</CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                    </CListGroup>
+                    {restrictionCategories.map((category) => {
+                      return renderRestrictionsByKey(
+                        restrictionsConfig,
+                        category,
+                        selectedBodyCategory,
+                      );
+                    })}
                   </CCardBody>
                 </CCard>
               </CCollapse>

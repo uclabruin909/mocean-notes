@@ -225,7 +225,7 @@ const RestrictionsConfig = {
   ligament_tendon: ['sprain', 'effusion', 'inflammation', 'instability'],
 };
 
-const MaualConfig = {
+const ManualConfig = {
   joint: [
     { name: 'Joint Mob I&II', text: 'to decrease pain and reduce muscle guarding' },
     {
@@ -495,7 +495,7 @@ const CuesConfig = [
 const NotesConfig = {
   bodyPart: BodyPartConfig,
   restrictions: RestrictionsConfig,
-  manual: MaualConfig,
+  manual: ManualConfig,
   therex: TherexConfig,
   movement: MovementConfigs,
   result: ResultsConfig,

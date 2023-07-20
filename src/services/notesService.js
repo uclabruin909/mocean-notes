@@ -28,7 +28,7 @@ class NotesService {
     return this._configs.restrictions;
   }
 
-  getRestrictionKeys() {
+  getRestrictionCategories() {
     return Object.keys(this.getRestrictions());
   }
 }
