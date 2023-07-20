@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   CContainer,
   CButton,
@@ -19,11 +20,40 @@ import NotesService from '../../services/notesService';
 import { NotesHeader, NotesSidebar } from './components/index';
 import './styles.scss';
 
+const restrictionsConfig = NotesService.getRestrictions();
+
+const renderRestrictionsByKey = (restrictionsObject, categoryKey, selectedCategory) => {
+  const restrictions = restrictionsObject[categoryKey];
+  const disabled = categoryKey !== selectedCategory;
+
+  return (
+    <CListGroup className="flex-grow-1">
+      <CListGroupItem active>{categoryKey}</CListGroupItem>
+      {restrictions.map((restrictionItem, index) => {
+        return (
+          <CListGroupItem key={index}>
+            <CFormCheck
+              disabled={!!disabled}
+              key={restrictionItem}
+              id={restrictionItem}
+              value={restrictionItem}
+              label={restrictionItem}
+            />
+          </CListGroupItem>
+        );
+      })}
+    </CListGroup>
+  );
+};
+
 const Notes = () => {
   const [visible, setVisible] = useState(true);
   const [visibleHorizontal, setVisibleHorizontal] = useState(false);
   const [visibleA, setVisibleA] = useState(false);
   const [visibleB, setVisibleB] = useState(false);
+
+  const selectedBodyPart = useSelector((state) => state.selectedBodyPart);
+  const selectedBodyCategory = useSelector((state) => state.selectedBodyCategory);
 
   return (
     <React.Fragment>
@@ -51,6 +81,7 @@ const Notes = () => {
                     className="d-md-flex align-items-center gap-2"
                     style={{ flexWrap: 'wrap' }}
                   >
+                    {renderRestrictionsByKey(restrictionsConfig, 'muscle', 'joint')}
                     <CListGroup className="flex-grow-1">
                       <CListGroupItem active>Joint Action</CListGroupItem>
                       <CListGroupItem>
@@ -129,6 +160,7 @@ const Notes = () => {
                         />
                       </CListGroupItem>
                     </CListGroup>
+
                     <CListGroup className="flex-grow-1">
                       <CListGroupItem active>Joint Action</CListGroupItem>
                       <CListGroupItem>

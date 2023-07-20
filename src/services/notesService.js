@@ -23,6 +23,14 @@ class NotesService {
 
     return bodyPartConfig[bodyPartName][bodyPartCategory] || [];
   }
+
+  getRestrictions() {
+    return this._configs.restrictions;
+  }
+
+  getRestrictionKeys() {
+    return Object.keys(this.getRestrictions());
+  }
 }
 
 export default new NotesService(notesConfig);

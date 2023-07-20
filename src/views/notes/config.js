@@ -195,7 +195,7 @@ const BodyPartConfig = {
   },
 };
 
-const RestrictionConfig = {
+const RestrictionsConfig = {
   joint: [
     'hyper-mobility',
     'hypo-mobility',
@@ -494,7 +494,7 @@ const CuesConfig = [
 
 const NotesConfig = {
   bodyPart: BodyPartConfig,
-  restriction: RestrictionConfig,
+  restrictions: RestrictionsConfig,
   manual: MaualConfig,
   therex: TherexConfig,
   movement: MovementConfigs,
