@@ -11,8 +11,8 @@ const getPercentageComplete = (state) => {
     }
   });
 
-  if (!!countDone) return 0;
-  return (countDone / propsToCheck.length) * 100;
+  if (countDone === 0) return 0;
+  return Math.floor((countDone / propsToCheck.length) * 100);
 };
 
 const initialState = {
