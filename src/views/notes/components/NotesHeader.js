@@ -25,6 +25,7 @@ const NotesHeader = () => {
   const dispatch = useDispatch();
 
   const sidebarShow = useSelector((state) => state.sidebarShow);
+  const completionPercentage = useSelector((state) => state.completionPercentage);
 
   return (
     <CHeader position="sticky" className="mb-4">
@@ -42,8 +43,8 @@ const NotesHeader = () => {
         </CHeaderNav>
         <CHeaderNav style={{ width: '260px', marginRight: '20px' }}>
           <CNavItem className="flex-grow-1">
-            <CProgress color="success" value={90} variant="striped" animated>
-              <CProgressBar>90%</CProgressBar>
+            <CProgress color="success" value={completionPercentage} variant="striped" animated>
+              <CProgressBar>{`${completionPercentage}%`}</CProgressBar>
             </CProgress>
           </CNavItem>
         </CHeaderNav>

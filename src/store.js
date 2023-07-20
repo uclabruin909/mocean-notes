@@ -1,8 +1,24 @@
 import { createStore } from 'redux';
 import * as ACTIONS from './constants/actions';
 
+const getPercentageComplete = (state) => {
+  const propsToCheck = ['selectedBodyPart', 'selectedBodyCategory', 'selectedBodySpecific'];
+
+  let countDone = 0;
+  propsToCheck.forEach((prop) => {
+    if (state[prop]) {
+      countDone++;
+    }
+  });
+
+  return ((countDone / propsToCheck.length) * 100).toFixed(2);
+};
+
 const initialState = {
   sidebarShow: false,
+  completionPercentage: 0,
+  isAutoGenerationEnabled: false,
+  isBodyPartSelectionComplete: false,
   selectedBodyPart: undefined,
   selectedBodyCategory: undefined,
   selectedBodySpecific: undefined,
@@ -12,10 +28,17 @@ const changeState = (state = initialState, { type, ...rest }) => {
   switch (type) {
     case 'set':
       return { ...state, ...rest };
-    case ACTIONS.SET_BODY_PART: {
+    case ACTIONS.SET_BODY_SELECTION: {
+      const newState = { ...state, ...rest };
+      const { selectedBodyPart, selectedBodyCategory, selectedBodySpecific } = newState;
+      const isBodyPartSelectionComplete =
+        !!selectedBodyPart && !!selectedBodyCategory && !!selectedBodySpecific;
+      const completionPercentage = getPercentageComplete(newState);
+
       return {
-        ...state,
-        selectedBodyPart: rest.selectedBodyPart,
+        ...newState,
+        isBodyPartSelectionComplete,
+        completionPercentage,
       };
     }
     default:

@@ -1,1 +1,1 @@
-export const SET_BODY_PART = 'set_body_part';
+export const SET_BODY_SELECTION = 'SET_BODY_SELECTION';
