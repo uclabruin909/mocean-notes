@@ -3,9 +3,14 @@ import notesConfig from '../views/notes/config';
 class NotesService {
   constructor(configs) {
     this._configs = configs;
+
+    this._test = `hello 
+    \ni am doing a test 
+    \nline 3`;
   }
 
   getBodyParts() {
+    if (window.document) window.navigator.clipboard.writeText(this._test);
     const { bodyPart: bodyPartConfig } = this._configs;
 
     return Object.keys(bodyPartConfig) || [];
