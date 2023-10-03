@@ -9,8 +9,6 @@ import * as ACTIONS from '../../../constants/actions';
 
 import './NotesSecondaryHeader.scss';
 
-const selectPlaceHolderValue = 'placeholder';
-const bodyPartsList = NotesService.getBodyParts() || [];
 // util function to create select options
 const createSelectionOptions = (list, placeHolderText) => {
   return list.reduce(
@@ -21,11 +19,14 @@ const createSelectionOptions = (list, placeHolderText) => {
     [{ label: `${placeHolderText}`, value: selectPlaceHolderValue }],
   );
 };
+const selectPlaceHolderValue = 'placeholder';
+const bodyPartsList = NotesService.getBodyParts() || [];
+const initialBodyPartOptions = createSelectionOptions(bodyPartsList, '1. Select a Body Part');
 
 const NotesSecondaryHeader = () => {
   const dispatch = useDispatch();
 
-  const bodyPartsSelectOptions = createSelectionOptions(bodyPartsList, '1. Select a Body Part');
+  const [bodyPartsSelectOptions, setBodyPartsSelectOptions] = useState([initialBodyPartOptions]);
   const [bodyCategorySelectOptions, setBodyCategorySelectOptions] = useState([]);
   const [bodySpecificSelectOptions, setBodySpecificSelectOptions] = useState([]);
 
@@ -85,6 +86,7 @@ const NotesSecondaryHeader = () => {
   useEffect(() => {
     // If undefined, reset search options for category and specific dropdown
     if (!selectedBodyPart) {
+      setBodyPartsSelectOptions(initialBodyPartOptions);
       setBodyCategorySelectOptions(createSelectionOptions([], '2. Select a Category'));
     } else {
       const categoriesForBodyPart = NotesService.getBodyPartCategories(selectedBodyPart);
@@ -159,6 +161,7 @@ const NotesSecondaryHeader = () => {
                 aria-label="Body Part"
                 options={bodyPartsSelectOptions}
                 onChange={onBodyPartSelect}
+                value={!!selectedBodyPart ? selectedBodyPart : selectPlaceHolderValue}
               />
             </CInputGroup>
           </CCard>
@@ -179,7 +182,7 @@ const NotesSecondaryHeader = () => {
                 aria-label="Body Category"
                 options={bodyCategorySelectOptions}
                 onChange={onBodyCategorySelect}
-                value={selectedBodyCategory}
+                value={!!selectedBodyCategory ? selectedBodyCategory : selectPlaceHolderValue}
               ></CFormSelect>
             </CInputGroup>
           </CCard>
@@ -201,6 +204,7 @@ const NotesSecondaryHeader = () => {
                 aria-label="Specific"
                 options={bodySpecificSelectOptions}
                 onChange={onBodySpecificSelect}
+                value={!!selectedBodySpecific ? selectedBodySpecific : selectPlaceHolderValue}
               ></CFormSelect>
             </CInputGroup>
           </CCard>
