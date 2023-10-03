@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  CRow,
-  CCol,
-  CCard,
-  CFormCheck,
-  CTooltip,
-  CFormSelect,
-  CFormSwitch,
-  CBadge,
-} from '@coreui/react';
-import CIcon from '@coreui/icons-react';
+import { CRow, CCol, CCard, CFormSelect, CInputGroup, CInputGroupText } from '@coreui/react';
 import { cilCheckCircle } from '@coreui/icons';
 
 import NotesService from '../../../services/notesService';
 import * as ACTIONS from '../../../constants/actions';
+
+import './NotesSecondaryHeader.scss';
 
 const selectPlaceHolderValue = 'placeholder';
 const bodyPartsList = NotesService.getBodyParts() || [];
@@ -33,7 +25,7 @@ const createSelectionOptions = (list, placeHolderText) => {
 const NotesSecondaryHeader = () => {
   const dispatch = useDispatch();
 
-  const bodyPartsSelectOptions = createSelectionOptions(bodyPartsList, 'Select a Body Part');
+  const bodyPartsSelectOptions = createSelectionOptions(bodyPartsList, '1. Select a Body Part');
   const [bodyCategorySelectOptions, setBodyCategorySelectOptions] = useState([]);
   const [bodySpecificSelectOptions, setBodySpecificSelectOptions] = useState([]);
 
@@ -51,7 +43,12 @@ const NotesSecondaryHeader = () => {
     const selectValue = value !== selectPlaceHolderValue ? value : undefined;
 
     if (selectValue !== selectedBodyPart) {
-      dispatch({ type: ACTIONS.SET_BODY_SELECTION, selectedBodyPart: selectValue });
+      dispatch({
+        type: ACTIONS.SET_BODY_SELECTION,
+        selectedBodyPart: selectValue,
+        selectedBodyCategory: undefined,
+        selectedBodySpecific: undefined,
+      });
     }
   };
 
@@ -61,7 +58,11 @@ const NotesSecondaryHeader = () => {
     const selectValue = value !== selectPlaceHolderValue ? value : undefined;
 
     if (selectValue !== selectedBodyCategory) {
-      dispatch({ type: ACTIONS.SET_BODY_SELECTION, selectedBodyCategory: selectValue });
+      dispatch({
+        type: ACTIONS.SET_BODY_SELECTION,
+        selectedBodyCategory: selectValue,
+        selectedBodySpecific: undefined,
+      });
     }
   };
 
@@ -84,18 +85,13 @@ const NotesSecondaryHeader = () => {
   useEffect(() => {
     // If undefined, reset search options for category and specific dropdown
     if (!selectedBodyPart) {
-      setBodyCategorySelectOptions([]);
-      dispatch({
-        type: ACTIONS.SET_BODY_SELECTION,
-        selectedBodyCategory: undefined,
-        selectedBodySpecific: undefined,
-      });
+      setBodyCategorySelectOptions(createSelectionOptions([], '2. Select a Category'));
     } else {
       const categoriesForBodyPart = NotesService.getBodyPartCategories(selectedBodyPart);
 
       const bodyCategorySelectOptions = createSelectionOptions(
         categoriesForBodyPart,
-        'Select a Category',
+        '2. Select a Category',
       );
 
       setBodyCategorySelectOptions(bodyCategorySelectOptions);
@@ -106,7 +102,7 @@ const NotesSecondaryHeader = () => {
   useEffect(() => {
     // If undefined, reset search options for category and specific dropdown
     if (!selectedBodyCategory) {
-      setBodySpecificSelectOptions([]);
+      setBodySpecificSelectOptions(createSelectionOptions([], '3. Select specific'));
     }
 
     if (selectedBodyPart && selectedBodyCategory) {
@@ -116,20 +112,25 @@ const NotesSecondaryHeader = () => {
       );
       const bodySpecificSelectOptions = createSelectionOptions(
         specificsForBodyPart,
-        'Select specific',
+        '3. Select specific',
       );
 
       setBodySpecificSelectOptions(bodySpecificSelectOptions);
     }
-  }, [selectedBodyCategory]);
+  }, [selectedBodyCategory, selectedBodyPart]);
 
   console.log('selectedBodyPart:', selectedBodyPart);
   console.log('selectedBodyCategory:', selectedBodyCategory);
   console.log('selectedBodySpecific:', selectedBodySpecific);
   console.log('isBodyPartSelectionComplete:', isBodyPartSelectionComplete);
 
+  // Render helper methods
+  const getSelectClassName = (isEnabled = false) => {
+    return `select-dropdown ${isEnabled ? 'enabled' : ''}`;
+  };
+
   return (
-    <div className="flex-grow-1">
+    <div className="notes-secondary-header flex-grow-1">
       <CRow className="justify-content-between align-items-center d-sm-flex">
         <CCol sm={4} className="d-sm-flex align-items-center gap-2">
           {/* <span>
@@ -140,46 +141,71 @@ const NotesSecondaryHeader = () => {
               height={14}
             ></CIcon>
           </span> */}
-          <CBadge color={isBodyPartSelectionComplete ? 'success' : 'light'} shape="rounded-pill">
+          {/* <CBadge color={isBodyPartSelectionComplete ? 'success' : 'light'} shape="rounded-pill">
             OK
-          </CBadge>
+          </CBadge> */}
+
           {/* BodyParts Select Dropdown */}
           <CCard className="flex-grow-1">
-            <CFormSelect
-              size="md"
-              className=""
-              aria-label="Body Part"
-              options={bodyPartsSelectOptions}
-              onChange={onBodyPartSelect}
-            ></CFormSelect>
+            <CInputGroup className={getSelectClassName(true)}>
+              {!!selectedBodyPart && (
+                <CInputGroupText component="label" htmlFor="body-part-select">
+                  Body Part:
+                </CInputGroupText>
+              )}
+              <CFormSelect
+                id="body-part-select"
+                size="md"
+                aria-label="Body Part"
+                options={bodyPartsSelectOptions}
+                onChange={onBodyPartSelect}
+              />
+            </CInputGroup>
           </CCard>
         </CCol>
-        <CCol sm={3}>
+        <CCol sm={4}>
           {/* Body Category Select Dropdown */}
           <CCard>
-            <CFormSelect
-              disabled={!selectedBodyPart}
-              size="md"
-              className=""
-              aria-label="Body Category"
-              options={bodyCategorySelectOptions}
-              onChange={onBodyCategorySelect}
-            ></CFormSelect>
+            <CInputGroup className={getSelectClassName(!!selectedBodyPart)}>
+              {!!selectedBodyCategory && (
+                <CInputGroupText component="label" htmlFor="body-category-select">
+                  Category:
+                </CInputGroupText>
+              )}
+              <CFormSelect
+                id="body-category-select"
+                disabled={!selectedBodyPart}
+                size="md"
+                aria-label="Body Category"
+                options={bodyCategorySelectOptions}
+                onChange={onBodyCategorySelect}
+                value={selectedBodyCategory}
+              ></CFormSelect>
+            </CInputGroup>
           </CCard>
         </CCol>
-        <CCol sm={3}>
+        <CCol sm={4}>
+          {/* Body Specific Select Dropdown */}
           <CCard>
-            <CFormSelect
-              disabled={!selectedBodyCategory}
-              size="md"
-              className=""
-              aria-label="Specific"
-              options={bodySpecificSelectOptions}
-              onChange={onBodySpecificSelect}
-            ></CFormSelect>
+            <CInputGroup className={getSelectClassName(!!selectedBodyCategory)}>
+              {!!selectedBodySpecific && (
+                <CInputGroupText component="label" htmlFor="body-specific-select">
+                  Specific:
+                </CInputGroupText>
+              )}
+              <CFormSelect
+                id="body-specific-select"
+                disabled={!selectedBodyCategory}
+                size="md"
+                className=""
+                aria-label="Specific"
+                options={bodySpecificSelectOptions}
+                onChange={onBodySpecificSelect}
+              ></CFormSelect>
+            </CInputGroup>
           </CCard>
         </CCol>
-        <CCol sm={2} className="align-items-center" style={{ textAlign: 'center' }}>
+        {/* <CCol sm={2} className="align-items-center" style={{ textAlign: 'center' }}>
           <strong style={{ marginRight: '8px' }}>Auto Generate</strong>
           <CTooltip
             content="After body part is selected, you can enable the note to be auto-generated."
@@ -191,7 +217,7 @@ const NotesSecondaryHeader = () => {
               defaultChecked={isAutoGenerationEnabled}
             />
           </CTooltip>
-        </CCol>
+        </CCol> */}
       </CRow>
     </div>
   );
