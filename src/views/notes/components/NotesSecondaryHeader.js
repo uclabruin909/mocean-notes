@@ -127,8 +127,8 @@ const NotesSecondaryHeader = () => {
   console.log('isBodyPartSelectionComplete:', isBodyPartSelectionComplete);
 
   // Render helper methods
-  const getSelectClassName = (isEnabled = false) => {
-    return `select-dropdown ${isEnabled ? 'enabled' : ''}`;
+  const getSelectClassName = (active = false) => {
+    return `body-select-dropdown ${active ? 'active' : ''}`;
   };
 
   return (
@@ -149,7 +149,7 @@ const NotesSecondaryHeader = () => {
 
           {/* BodyParts Select Dropdown */}
           <CCard className="flex-grow-1">
-            <CInputGroup className={getSelectClassName(true)}>
+            <CInputGroup>
               {!!selectedBodyPart && (
                 <CInputGroupText component="label" htmlFor="body-part-select">
                   Body Part:
@@ -159,6 +159,7 @@ const NotesSecondaryHeader = () => {
                 id="body-part-select"
                 size="md"
                 aria-label="Body Part"
+                className={getSelectClassName(!selectedBodyPart)}
                 options={bodyPartsSelectOptions}
                 onChange={onBodyPartSelect}
                 value={!!selectedBodyPart ? selectedBodyPart : selectPlaceHolderValue}
@@ -169,7 +170,7 @@ const NotesSecondaryHeader = () => {
         <CCol sm={4}>
           {/* Body Category Select Dropdown */}
           <CCard>
-            <CInputGroup className={getSelectClassName(!!selectedBodyPart)}>
+            <CInputGroup>
               {!!selectedBodyCategory && (
                 <CInputGroupText component="label" htmlFor="body-category-select">
                   Category:
@@ -180,6 +181,7 @@ const NotesSecondaryHeader = () => {
                 disabled={!selectedBodyPart}
                 size="md"
                 aria-label="Body Category"
+                className={getSelectClassName(!selectedBodyPart && selectedBodyCategory)}
                 options={bodyCategorySelectOptions}
                 onChange={onBodyCategorySelect}
                 value={!!selectedBodyCategory ? selectedBodyCategory : selectPlaceHolderValue}
@@ -190,7 +192,7 @@ const NotesSecondaryHeader = () => {
         <CCol sm={4}>
           {/* Body Specific Select Dropdown */}
           <CCard>
-            <CInputGroup className={getSelectClassName(!!selectedBodyCategory)}>
+            <CInputGroup>
               {!!selectedBodySpecific && (
                 <CInputGroupText component="label" htmlFor="body-specific-select">
                   Specific:
@@ -200,7 +202,7 @@ const NotesSecondaryHeader = () => {
                 id="body-specific-select"
                 disabled={!selectedBodyCategory}
                 size="md"
-                className=""
+                className={getSelectClassName(!selectedBodyCategory && selectedBodySpecific)}
                 aria-label="Specific"
                 options={bodySpecificSelectOptions}
                 onChange={onBodySpecificSelect}

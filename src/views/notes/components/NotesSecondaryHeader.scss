@@ -1,14 +1,16 @@
 .notes-secondary-header {
-    .select-dropdown {
-        select {
-            font-weight: 500;
-        }
 
-        label {
-            font-weight: bold;
-            &.completed {
-                // background: #2eb85c;
-            }
+    label {
+        font-weight: bold;
+    }    
+    
+    .body-select-dropdown {
+        font-weight: 700;
+
+        &.active {
+            border-color: #998fed;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(50, 31, 219, 0.25);
         }
     }
 }
