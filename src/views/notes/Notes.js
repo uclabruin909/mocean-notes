@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import {
   CContainer,
   CButton,
@@ -14,87 +13,18 @@ import {
   CFormCheck,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilCheckCircle, cilChevronBottom, cilChevronTop } from '@coreui/icons';
-import NotesService from '../../services/notesService';
+import { cilCheckCircle, cilChevronBottom } from '@coreui/icons';
 
 import { NotesHeader, NotesSidebar } from './components/index';
+import Restrictions from './components/sections/restrictions';
 import './styles.scss';
-
-const restrictionsConfig = NotesService.getRestrictions();
-const restrictionCategories = NotesService.getRestrictionCategories();
-
-const renderRestrictionsByKey = (restrictionsObject, categoryKey, selectedCategory) => {
-  const restrictions = restrictionsObject[categoryKey];
-  const disabled = categoryKey !== selectedCategory;
-
-  return (
-    <CListGroup className="flex-grow-1">
-      <CListGroupItem active>{categoryKey}</CListGroupItem>
-      {restrictions.map((restrictionItem, index) => {
-        return (
-          <CListGroupItem key={index}>
-            <CFormCheck
-              disabled={!!disabled}
-              key={restrictionItem}
-              id={restrictionItem}
-              value={restrictionItem}
-              label={restrictionItem}
-            />
-          </CListGroupItem>
-        );
-      })}
-    </CListGroup>
-  );
-};
 
 const Notes = () => {
   const [visible, setVisible] = useState(true);
-  const [visibleHorizontal, setVisibleHorizontal] = useState(false);
-  const [visibleA, setVisibleA] = useState(false);
-  const [visibleB, setVisibleB] = useState(false);
-
-  const selectedBodyPart = useSelector((state) => state.selectedBodyPart);
-  const selectedBodyCategory = useSelector((state) => state.selectedBodyCategory);
 
   return (
     <React.Fragment>
-      {/* Restrictions */}
-      <CRow>
-        <CCol xs={12}>
-          <CCard className="mb-4">
-            <CCardHeader className="d-flex justify-content-between align-items-center">
-              <div className="d-flex justify-content-between align-items-center gap-2">
-                <span>
-                  <CIcon icon={cilCheckCircle} height={14} customClassName="note-card-icon"></CIcon>
-                </span>
-
-                <strong>Restriction</strong>
-              </div>
-
-              <CButton onClick={() => setVisible(!visible)} variant="ghost">
-                <CIcon icon={cilChevronBottom} height={24}></CIcon>
-              </CButton>
-            </CCardHeader>
-            <CCardBody>
-              <CCollapse visible={visible}>
-                <CCard className="mt-1">
-                  <CCardBody className="d-md-flex gap-2" style={{ flexWrap: 'wrap' }}>
-                    {/* RENDERING RESTRICTIONS CARDS */}
-
-                    {restrictionCategories.map((category) => {
-                      return renderRestrictionsByKey(
-                        restrictionsConfig,
-                        category,
-                        selectedBodyCategory,
-                      );
-                    })}
-                  </CCardBody>
-                </CCard>
-              </CCollapse>
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
+      <Restrictions />
       {/* Manual: Treatment and purpose.  Pick 1 from each category (joint, muscle, nerve*/}
       <CRow>
         <CCol xs={12}>
@@ -328,9 +258,6 @@ const Notes = () => {
 };
 
 const NotesView = () => {
-  const [bodyPartCategory, updateBodyPartCategory] = useState(undefined);
-  const [bodyPartSpecific, updateBodySpecific] = useState(undefined);
-
   return (
     <div>
       <NotesSidebar />
