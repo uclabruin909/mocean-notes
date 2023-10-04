@@ -23,12 +23,15 @@ const initialState = {
   selectedBodyPart: undefined,
   selectedBodyCategory: undefined,
   selectedBodySpecific: undefined,
+  // restriction selection
+  selectedRestriction: [],
 };
 
 const changeState = (state = initialState, { type, ...rest }) => {
   switch (type) {
-    case 'set':
+    case 'set': {
       return { ...state, ...rest };
+    }
     case ACTIONS.SET_BODY_SELECTION: {
       const newState = { ...state, ...rest };
       const { selectedBodyPart, selectedBodyCategory, selectedBodySpecific } = newState;
@@ -41,6 +44,25 @@ const changeState = (state = initialState, { type, ...rest }) => {
         isBodyPartSelectionComplete,
         completionPercentage,
       };
+    }
+    case ACTIONS.RESET_BODY_SELECTION: {
+      const newState = {
+        ...state,
+        isBodyPartSelectionComplete: false,
+        selectedBodyPart: undefined,
+        selectedBodyCategory: undefined,
+        selectedBodySpecific: undefined,
+      };
+
+      return newState;
+    }
+    case ACTIONS.UPDATE_RESTRICTION_SELECTION: {
+      const newState = {
+        ...state,
+        selectedRestriction: rest.selectedRestriction || [],
+      };
+
+      return newState;
     }
     default:
       return state;

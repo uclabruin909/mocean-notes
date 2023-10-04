@@ -1,1 +1,6 @@
+// base body actions
 export const SET_BODY_SELECTION = 'SET_BODY_SELECTION';
+export const RESET_BODY_SELECTION = 'RESET_BODY_SELECTION';
+
+// restriction actions
+export const UPDATE_RESTRICTION_SELECTION = 'UPDATE_RESTRICTION_SELECTION';

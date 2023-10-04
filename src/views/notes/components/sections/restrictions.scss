@@ -1,7 +1,27 @@
+.section-card-header {
+  &:hover {
+    cursor: pointer;
+    background: beige;
+  }
+}
+
 .note-card-icon {
-  opacity: 0.4;
-  &.complete {
-    opacity: 1;
-    color: green;
+    font-weight: 900;
+    font-weight: 900;
+    opacity: 0.4;
+    &.completed {
+      opacity: 1;
+      color: green;
+    }
+}
+
+.restriction-item-container {
+  border-right: 1px solid #dbdfe6;
+  border-left: 1px solid #dbdfe6;
+  border-bottom: 1px solid #dbdfe6;
+
+  .restriction-item {
+    border-left-width: 0;
+    border-right-width: 0;
   }
 }

@@ -20,12 +20,17 @@ import { cilBell, cilEnvelopeOpen, cilList, cilBolt, cilMenu, cilLoop } from '@c
 
 import { NotesSecondaryHeader, NotesHeaderDropdown } from './index';
 import { logo } from 'src/assets/brand/logo';
+import * as ACTIONS from '../../../constants/actions';
 
 const NotesHeader = () => {
   const dispatch = useDispatch();
 
   const sidebarShow = useSelector((state) => state.sidebarShow);
   const completionPercentage = useSelector((state) => state.completionPercentage);
+
+  const resetBodySelection = () => {
+    dispatch({ type: ACTIONS.RESET_BODY_SELECTION });
+  };
 
   return (
     <CHeader position="sticky" className="mb-4">
@@ -50,7 +55,11 @@ const NotesHeader = () => {
         </CHeaderNav>
         <CHeaderNav className="gap-2">
           <CNavItem>
-            <CButton color="secondary" className="d-flex align-items-center gap-2">
+            <CButton
+              color="secondary"
+              className="d-flex align-items-center gap-2"
+              onClick={resetBodySelection}
+            >
               <strong>Reset</strong>
               <CIcon icon={cilLoop} size="lg" />
             </CButton>
