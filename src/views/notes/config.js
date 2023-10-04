@@ -492,6 +492,53 @@ const CuesConfig = [
   'sensory cues',
 ];
 
+const SelectionConfig = {
+  restrictions: {
+    maxSelection: 1,
+    minimumSelection: 1,
+  },
+  manual: {
+    isNested: true,
+    joint: {
+      maxSelection: 1,
+      minSelection: 1,
+    },
+    muscle: {
+      maxSelection: 1,
+      minSelection: 1,
+    },
+    nerve: {
+      maxSelection: 1,
+      minSelection: 1,
+    },
+  },
+  therex: {
+    maxSelection: 3,
+    minSelection: 2,
+  },
+  movement: {
+    isNested: true,
+    quality: {
+      maxSelection: 1,
+      minSelection: 1,
+    },
+    types: {
+      maxSelection: 1,
+      minSelection: 1,
+    },
+    tasks: {
+      maxSelection: 3,
+      minSelection: 2,
+    },
+  },
+  result: {
+    maxSelection: 1,
+  },
+  cues: {
+    minSelection: 1,
+  },
+};
+
 const NotesConfig = {
   bodyPart: BodyPartConfig,
   restrictions: RestrictionsConfig,
@@ -500,6 +547,7 @@ const NotesConfig = {
   movement: MovementConfigs,
   result: ResultsConfig,
   cues: CuesConfig,
+  selectionConfig: SelectionConfig,
 };
 
 export default NotesConfig;

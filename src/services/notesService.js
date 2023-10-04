@@ -1,12 +1,14 @@
 import notesConfig from '../views/notes/config';
 
-class NotesService {
+class NotesServiceClass {
   constructor(configs) {
     this._configs = configs;
+  }
 
-    this._test = `hello 
-    \ni am doing a test 
-    \nline 3`;
+  getSelectionConfig(bodyPartName) {
+    const { selectionConfig } = this._configs;
+
+    return selectionConfig[bodyPartName] || undefined;
   }
 
   getBodyParts() {
@@ -38,4 +40,5 @@ class NotesService {
   }
 }
 
-export default new NotesService(notesConfig);
+const NotesService = new NotesServiceClass(notesConfig);
+export default NotesService;
