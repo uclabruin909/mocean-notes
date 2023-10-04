@@ -25,6 +25,10 @@ const initialState = {
   selectedBodySpecific: undefined,
   // restriction selection
   selectedRestriction: [],
+  // manual selection
+  selectedManualJoint: [],
+  selectedManualMuscle: [],
+  selectedManualNerve: [],
 };
 
 const changeState = (state = initialState, { type, ...rest }) => {
@@ -32,6 +36,7 @@ const changeState = (state = initialState, { type, ...rest }) => {
     case 'set': {
       return { ...state, ...rest };
     }
+    // BASE BODY SELECTION ACTIONS
     case ACTIONS.SET_BODY_SELECTION: {
       const newState = { ...state, ...rest };
       const { selectedBodyPart, selectedBodyCategory, selectedBodySpecific } = newState;
@@ -56,6 +61,7 @@ const changeState = (state = initialState, { type, ...rest }) => {
 
       return newState;
     }
+    // RESTRICTION SELECTION ACTIONS
     case ACTIONS.UPDATE_RESTRICTION_SELECTION: {
       const newState = {
         ...state,
@@ -64,6 +70,19 @@ const changeState = (state = initialState, { type, ...rest }) => {
 
       return newState;
     }
+    // MANUAL TYPE SELECTION ACTIONS
+    case ACTIONS.UPDATE_MANUAL_TYPE_SELECTION: {
+      const { selectedManualJoint, selectedManualMuscle, selectedManualNerve } = rest;
+      const newState = {
+        ...state,
+        ...(!!selectedManualJoint ? { selectedManualJoint } : {}),
+        ...(!!selectedManualMuscle ? { selectedManualMuscle } : {}),
+        ...(!!selectedManualNerve ? { selectedManualNerve } : {}),
+      };
+
+      return newState;
+    }
+
     default:
       return state;
   }

@@ -5,6 +5,10 @@ class NotesServiceClass {
     this._configs = configs;
   }
 
+  getConfigByKey(configKey) {
+    return this._configs[configKey] || undefined;
+  }
+
   getSelectionConfig(selectionKey) {
     const { selectionConfig } = this._configs;
 
