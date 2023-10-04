@@ -20,7 +20,7 @@ import {
   getRestrictionsConfig,
   getRestrictionCategories,
   getRestrictionSelectionRange,
-  standardizeWord
+  standardizeWord,
 } from './utils';
 import './restrictions.scss';
 

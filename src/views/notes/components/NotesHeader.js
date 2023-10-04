@@ -1,11 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   CContainer,
   CHeader,
-  CAlert,
-  CAlertLink,
   CHeaderDivider,
   CHeaderNav,
   CHeaderToggler,
@@ -17,9 +14,9 @@ import {
   CImage,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilBell, cilEnvelopeOpen, cilList, cilBolt, cilMenu, cilLoop } from '@coreui/icons';
+import { cilMenu, cilLoop, cilNotes } from '@coreui/icons';
 
-import { NotesSecondaryHeader, NotesHeaderDropdown } from './index';
+import { NotesSecondaryHeader } from './index';
 import logoPath from 'src/assets/images/mocean_logo.png';
 import * as ACTIONS from '../../../constants/actions';
 import './NotesHeader.scss';
@@ -72,7 +69,7 @@ const NotesHeader = () => {
           <CNavItem>
             <CButton color="primary" className="d-flex align-items-center gap-2">
               <strong>Generate</strong>
-              <CIcon icon={cilBolt} size="lg" />
+              <CIcon icon={cilNotes} size="lg" />
             </CButton>
           </CNavItem>
         </CHeaderNav>

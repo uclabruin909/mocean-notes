@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { CContainer, CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-import { cilCheckCircle, cilChevronBottom } from '@coreui/icons';
 
 import { NotesHeader, NotesSidebar } from './components/index';
 import Restrictions from './components/sections/restrictions';
