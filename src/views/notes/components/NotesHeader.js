@@ -14,13 +14,15 @@ import {
   CProgress,
   CProgressBar,
   CButton,
+  CImage,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilBell, cilEnvelopeOpen, cilList, cilBolt, cilMenu, cilLoop } from '@coreui/icons';
 
 import { NotesSecondaryHeader, NotesHeaderDropdown } from './index';
-import { logo } from 'src/assets/brand/logo';
+import logoPath from 'src/assets/images/mocean_logo.png';
 import * as ACTIONS from '../../../constants/actions';
+import './NotesHeader.scss';
 
 const NotesHeader = () => {
   const dispatch = useDispatch();
@@ -41,9 +43,12 @@ const NotesHeader = () => {
         >
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
-        <CHeaderNav className="d-none d-md-flex me-auto">
+        <CHeaderNav className="header-brand-block d-none d-md-flex me-auto">
           <CNavItem>
-            <CNavLink style={{ fontWeight: '700' }}>MOCEAN Daily Notes App</CNavLink>
+            <CImage className="brand-image" align="center" src={logoPath} fluid width={140} />
+            <CNavLink className="brand-text" style={{ fontWeight: '700' }}>
+              Daily Notes App
+            </CNavLink>
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav style={{ width: '260px', marginRight: '20px' }}>

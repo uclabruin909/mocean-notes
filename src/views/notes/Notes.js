@@ -1,258 +1,82 @@
 import React, { useState } from 'react';
-import {
-  CContainer,
-  CButton,
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CCollapse,
-  CRow,
-  CListGroup,
-  CListGroupItem,
-  CFormCheck,
-} from '@coreui/react';
+import { CContainer, CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilCheckCircle, cilChevronBottom } from '@coreui/icons';
 
 import { NotesHeader, NotesSidebar } from './components/index';
 import Restrictions from './components/sections/restrictions';
+import ManualSection from './components/sections/manual';
 import './styles.scss';
 
 const Notes = () => {
-  const [visible, setVisible] = useState(true);
+  const [activeTabKey, setActiveTabKey] = useState(1);
 
   return (
     <React.Fragment>
-      <Restrictions />
-      {/* Manual: Treatment and purpose.  Pick 1 from each category (joint, muscle, nerve*/}
-      <CRow>
-        <CCol xs={12}>
-          <CCard className="mb-4">
-            <CCardHeader className="d-flex justify-content-between align-items-center">
-              <div className="d-flex justify-content-between align-items-center gap-2">
-                <span>
-                  <CIcon icon={cilCheckCircle} height={14} customClassName="note-card-icon"></CIcon>
-                </span>
-
-                <strong>Manual</strong>
-              </div>
-
-              <CButton onClick={() => setVisible(!visible)} variant="ghost">
-                <CIcon icon={cilChevronBottom} height={24}></CIcon>
-              </CButton>
-            </CCardHeader>
-            <CCardBody>
-              <CCollapse visible={visible}>
-                <CCard className="mt-1">
-                  <CCardBody
-                    className="d-md-flex align-items-center gap-2"
-                    style={{ flexWrap: 'wrap' }}
-                  >
-                    <CListGroup className="flex-grow-1">
-                      <CListGroupItem active>Joint Action</CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          disabled
-                          id="flexCheckDefault"
-                          value="disabled"
-                          label="disabled"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                    </CListGroup>
-
-                    <CListGroup className="flex-grow-1">
-                      <CListGroupItem active>Joint Action</CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                    </CListGroup>
-                    <CListGroup className="flex-grow-1">
-                      <CListGroupItem active>Joint Action</CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                    </CListGroup>
-                    <CListGroup className="flex-grow-1">
-                      <CListGroupItem active>Joint Action</CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                    </CListGroup>
-                    <CListGroup className="flex-grow-1">
-                      <CListGroupItem active>Joint Action</CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                      <CListGroupItem>
-                        <CFormCheck
-                          id="flexCheckDefault"
-                          value="hyper-mobility"
-                          label="hyper-mobility"
-                        />
-                      </CListGroupItem>
-                    </CListGroup>
-                  </CCardBody>
-                </CCard>
-              </CCollapse>
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
-      {/* Therex Purpose: Pick 2 or 3*/}
-
-      {/* Movement: Quality of Movement, types of Movement quality and Movement task (pick 2 or 3 tasks) */}
-
-      {/* Cues and Results: Type of cue used by Provider and the Results */}
+      <CNav variant="tabs" role="tablist">
+        <CNavItem role="presentation">
+          <CNavLink
+            active={activeTabKey === 1}
+            component="button"
+            role="tab"
+            aria-controls="restriction-tab-pane"
+            aria-selected={activeTabKey === 1}
+            onClick={() => setActiveTabKey(1)}
+          >
+            Restriction
+          </CNavLink>
+        </CNavItem>
+        <CNavItem role="presentation">
+          <CNavLink
+            active={activeTabKey === 2}
+            component="button"
+            role="tab"
+            aria-controls="manual-tab-pane"
+            aria-selected={activeTabKey === 2}
+            onClick={() => setActiveTabKey(2)}
+          >
+            Manual Actions
+          </CNavLink>
+        </CNavItem>
+        <CNavItem role="presentation">
+          <CNavLink
+            active={activeTabKey === 3}
+            component="button"
+            role="tab"
+            aria-controls="movement-tab-pane"
+            aria-selected={activeTabKey === 3}
+            onClick={() => setActiveTabKey(3)}
+          >
+            Movement
+          </CNavLink>
+        </CNavItem>
+        <CNavItem role="presentation">
+          <CNavLink
+            active={activeTabKey === 4}
+            component="button"
+            role="tab"
+            aria-controls="cues-therex-tab-pane"
+            aria-selected={activeTabKey === 4}
+            onClick={() => setActiveTabKey(4)}
+          >
+            Cues and Therex Purpose
+          </CNavLink>
+        </CNavItem>
+      </CNav>
+      <CTabContent>
+        {/* RESTRICTION SECTION */}
+        <CTabPane
+          role="tabpanel"
+          aria-labelledby="restriction-tab-pane"
+          visible={activeTabKey === 1}
+        >
+          <Restrictions />
+        </CTabPane>
+        {/* MANUAL SECTION */}
+        <CTabPane role="tabpanel" aria-labelledby="manual-tab-pane" visible={activeTabKey === 2}>
+          <ManualSection />
+        </CTabPane>
+      </CTabContent>
     </React.Fragment>
   );
 };

@@ -20,6 +20,7 @@ import {
   getRestrictionsConfig,
   getRestrictionCategories,
   getRestrictionSelectionRange,
+  standardizeWord
 } from './utils';
 import './restrictions.scss';
 
@@ -79,7 +80,7 @@ const Restrictions = () => {
 
     return (
       <CListGroup className="flex-grow-1 restriction-item-container">
-        <CListGroupItem active>{categoryKey}</CListGroupItem>
+        <CListGroupItem active>{standardizeWord(categoryKey)}</CListGroupItem>
         {restrictions.map((restrictionItem, index) => {
           const isSelected = selectedRestriction.includes(restrictionItem) && !isDifferentCategory;
           const isDisabled = isDifferentCategory || (atMaxSelection && !isSelected);
