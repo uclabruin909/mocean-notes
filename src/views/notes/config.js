@@ -495,7 +495,7 @@ const CuesConfig = [
 const SelectionConfig = {
   restrictions: {
     maxSelection: 1,
-    minimumSelection: 1,
+    minSelection: 1,
   },
   manual: {
     isNested: true,

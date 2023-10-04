@@ -15,11 +15,16 @@ import {
 import CIcon from '@coreui/icons-react';
 import { cilCheckCircle, cilChevronBottom } from '@coreui/icons';
 
-import NotesService from '../../../../services/notesService';
+import {
+  getRestrictionsConfig,
+  getRestrictionCategories,
+  getRestrictionSelectionRange,
+} from './utils';
 import './restrictions.scss';
 
-const restrictionsConfig = NotesService.getRestrictions();
-const restrictionCategories = NotesService.getRestrictionCategories();
+const { minSelection = 1, maxSelection = 1 } = getRestrictionSelectionRange();
+const restrictionsConfig = getRestrictionsConfig();
+const restrictionCategories = getRestrictionCategories();
 
 // helper render function to render restrictions for a particular category key i.e. joints
 const renderRestrictionsByKey = (restrictionsObject, categoryKey, selectedCategory) => {
@@ -51,6 +56,7 @@ const Restrictions = () => {
   const [visible, setVisible] = useState(true);
 
   const selectedBodyCategory = useSelector((state) => state.selectedBodyCategory);
+  const selectedRestriction = useSelector((state) => state.selectedRestriction);
 
   return (
     <React.Fragment>
@@ -62,7 +68,6 @@ const Restrictions = () => {
                 <span>
                   <CIcon icon={cilCheckCircle} height={14} customClassName="note-card-icon"></CIcon>
                 </span>
-
                 <strong>Restriction</strong>
               </div>
 

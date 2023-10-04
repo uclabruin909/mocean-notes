@@ -5,10 +5,10 @@ class NotesServiceClass {
     this._configs = configs;
   }
 
-  getSelectionConfig(bodyPartName) {
+  getSelectionConfig(selectionKey) {
     const { selectionConfig } = this._configs;
 
-    return selectionConfig[bodyPartName] || undefined;
+    return selectionConfig[selectionKey] || undefined;
   }
 
   getBodyParts() {
