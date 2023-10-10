@@ -76,7 +76,7 @@ const Notes = () => {
           </CNavLink>
         </CNavItem>
       </CNav>
-      <CTabContent>
+      <CTabContent className="notes-content-wrapper">
         {/* RESTRICTION SECTION */}
         <CTabPane
           role="tabpanel"

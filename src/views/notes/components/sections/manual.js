@@ -192,7 +192,7 @@ const ManualSection = () => {
 
   return (
     <React.Fragment>
-      <CRow>
+      <CRow className="root-section-row">
         <CCol xs={12}>
           <CCard className="mb-4">
             <CCardHeader

@@ -10,12 +10,54 @@
 .notes-section-nav {
   .section-nav-item {
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 500;
     margin-right: 0.2rem;
     
     .nav-link {
       border-color: rgb(219, 223, 230);
       padding: 0.7rem 1.3rem;
+      color: rgba(0, 0, 21, 1);
+      
+      &:hover {
+        background: beige;
+      }
+
+      &.active {
+        background: rgba(5, 184, 205, 1);
+        color: #ffffff;
+        font-weight: 700;
+      }
     }
+  }
+}
+
+// SECTION CSS RULES
+.restriction-item-container,
+.manual-item-container,
+.therex-item-container,
+.movement-item-container,
+.cues-item-container,
+.results-item-container {
+  
+  .list-group-item {
+    font-weight: 500;
+
+    &.active {
+      font-weight: 700;
+      background: rgba(63, 70, 84, 1);
+      border-color: rgb(219, 223, 230);
+    }
+  }
+
+  .form-check-input {
+    &:checked {
+      background-color: rgb(5, 184, 205);
+      border-color: rgb(219, 223, 230);
+    }
+  }
+
+  .form-check-input[disabled] ~ .form-check-label, 
+  .form-check-input:disabled ~ .form-check-label {
+    text-decoration: line-through;
   }
 }

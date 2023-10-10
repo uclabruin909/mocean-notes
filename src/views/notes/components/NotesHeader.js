@@ -69,7 +69,7 @@ const NotesHeader = () => {
         <CHeaderNav className="gap-2">
           <CNavItem>
             <CButton
-              color="secondary"
+              color="warning"
               className="d-flex align-items-center gap-2"
               onClick={resetBodySelection}
             >
