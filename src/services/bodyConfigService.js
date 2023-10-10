@@ -1,17 +1,8 @@
-import notesConfig from '../views/notes/config';
+import BodyConfig from 'src/configs/body-config';
 
-class NotesServiceClass {
+class BodyConfigServiceClass {
   constructor(configs) {
     this._configs = configs;
-  }
-
-  standardizeWord(string) {
-    return string
-      .split('_')
-      .map((word) => {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      })
-      .join(' ');
   }
 
   getConfigByKey(configKey) {
@@ -53,5 +44,5 @@ class NotesServiceClass {
   }
 }
 
-const NotesService = new NotesServiceClass(notesConfig);
-export default NotesService;
+const BodyConfigService = new BodyConfigServiceClass(BodyConfig);
+export default BodyConfigService;
