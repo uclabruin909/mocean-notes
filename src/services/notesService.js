@@ -15,13 +15,13 @@ class NotesServiceClass {
   }
 
   getConfigByKey(configKey) {
-    return this._configs[configKey] || undefined;
+    return this._configs[configKey] || {};
   }
 
   getSelectionConfig(selectionKey) {
     const { selectionConfig } = this._configs;
 
-    return selectionConfig[selectionKey] || undefined;
+    return selectionConfig[selectionKey] || {};
   }
 
   getBodyParts() {
