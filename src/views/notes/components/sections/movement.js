@@ -170,7 +170,7 @@ const MovementSection = () => {
     const atMaxSelection = selectedItems.length === maxSelection;
 
     return (
-      <CListGroup className="flex-grow-1 movement-item-container">
+      <CListGroup className="flex-grow-1 movement-item-container" key={movementKey}>
         <CListGroupItem active>{title}</CListGroupItem>
         {movementSelections.map((movementSelectionItem, index) => {
           const disablePainWhenRestrictedQuality =

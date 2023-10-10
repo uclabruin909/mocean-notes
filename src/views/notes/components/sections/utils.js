@@ -43,3 +43,14 @@ export const getSelectionRangeByMovementCategory = (movementCategory) => {
 
   return movementSelectionRangeConfig[movementCategory] || {};
 };
+
+// Therex purpose utils
+const THEREX_PURPOSE_CONFIG_KEY = 'therex';
+
+export const getTherexPuposeConfig = () => {
+  return getConfigByKey(THEREX_PURPOSE_CONFIG_KEY);
+};
+
+export const getTherexPuposeSelectionRange = () => {
+  return getSelectionRangeByKey(THEREX_PURPOSE_CONFIG_KEY);
+};

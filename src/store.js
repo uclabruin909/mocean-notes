@@ -33,6 +33,8 @@ const initialState = {
   selectedMovementQuality: [],
   selectedMovementType: [],
   selectedMovementTasks: [],
+  // therex purpose selections
+  selectedTherexPurposes: [],
 };
 
 const changeState = (state = initialState, { type, ...rest }) => {
@@ -56,11 +58,7 @@ const changeState = (state = initialState, { type, ...rest }) => {
     }
     case ACTIONS.RESET_BODY_SELECTION: {
       const newState = {
-        ...state,
-        isBodyPartSelectionComplete: false,
-        selectedBodyPart: undefined,
-        selectedBodyCategory: undefined,
-        selectedBodySpecific: undefined,
+        ...initialState,
       };
 
       return newState;
@@ -94,6 +92,16 @@ const changeState = (state = initialState, { type, ...rest }) => {
         ...(!!selectedMovementQuality ? { selectedMovementQuality } : {}),
         ...(!!selectedMovementType ? { selectedMovementType } : {}),
         ...(!!selectedMovementTasks ? { selectedMovementTasks } : {}),
+      };
+
+      return newState;
+    }
+    // THEREX PURPOSE SELECTION ACTIONS
+    case ACTIONS.UPDATE_THEREX_PURPOSE_SELECTION: {
+      const { selectedTherexPurposes } = rest;
+      const newState = {
+        ...state,
+        ...(!!selectedTherexPurposes ? { selectedTherexPurposes } : {}),
       };
 
       return newState;
