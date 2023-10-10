@@ -13,6 +13,15 @@ export const standardizeWord = (string) => {
     .join(' ');
 };
 
+// ['tom', 'dick', 'harry'] => "tom, dick and harry"
+export const joinWordsWithFinalChar = (wordList = [], finalJoinChar = ' and $1') => {
+  return wordList.join(', ').replace(/, ([^,]*)$/, finalJoinChar);
+};
+
+export const getRandomInteger = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 //Generic config utils
 export const getConfigByKey = (configKey) => {
   return BodyConfigService.getConfigByKey(configKey);

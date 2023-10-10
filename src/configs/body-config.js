@@ -273,31 +273,31 @@ const ManualJointConfig = [
   { name: 'Joint Mob I&II', text: 'to decrease pain and reduce muscle guarding' },
   {
     name: 'Joint Mob Grade III&IV',
-    text: 'to increase ROM without a joint impingement.',
+    text: 'to increase ROM without a joint impingement',
   },
   {
     name: 'Distraction Technique',
-    text: 'to reduce the tension and to facilitate mechanoreceptors to promote greater ROM.',
+    text: 'to reduce the tension and to facilitate mechanoreceptors to promote greater ROM',
   },
   {
     name: 'Mulligan Mobilization',
-    text: 'to improve joint ROM and joint stability.',
+    text: 'to improve joint ROM and joint stability',
   },
 ];
 
 const ManualMuscleConfig = [
-  { name: 'IASTM facial release', text: 'to release muscle tension & neurological tension.' },
+  { name: 'IASTM facial release', text: 'to release muscle tension & neurological tension' },
   {
     name: 'Soft tissue therapy',
     text: 'to release hypertonic muscle and decrease muscle guarding using IASTM and PEMF',
   },
   {
     name: 'Cupping mobilization (negative pressure decompression tx)',
-    text: 'to enhance circulation to decrease muscle tension.',
+    text: 'to enhance circulation to decrease muscle tension',
   },
   {
     name: 'Pulsed Electro Magnetic Field therapy',
-    text: 'to replorize muscle tissue to normalize soft tissue tension.',
+    text: 'to replorize muscle tissue to normalize soft tissue tension',
   },
   {
     name: 'Trigger Point release',
@@ -317,11 +317,11 @@ const ManualNerveConfig = [
   },
   {
     name: 'Facial release',
-    text: 'PT performed fascial release using Graston to release neurological muscle tension.',
+    text: 'PT performed fascial release using Graston to release neurological muscle tension',
   },
   {
     name: 'Air compression Therapy',
-    text: 'to enhance circulation and to enhance parasympatheic activity.',
+    text: 'to enhance circulation and to enhance parasympatheic activity',
   },
   {
     name: 'Strain and counter strain mobilization',
@@ -666,14 +666,14 @@ const MovementConfigs = {
 };
 
 const ResultsConfig = [
-  { name: 'ROM I', text: 'Pt demonstrated improved ROM.' },
-  { name: 'ROM II', text: 'Pt demonstrated decreased movement restriction.' },
-  { name: 'Pain I', text: 'Pt reported improved pain.' },
-  { name: 'Pain II', text: 'improved mobility with decreased pain.' },
+  { name: 'ROM I', text: 'Pt demonstrated improved ROM' },
+  { name: 'ROM II', text: 'Pt demonstrated decreased movement restriction' },
+  { name: 'Pain I', text: 'Pt reported improved pain' },
+  { name: 'Pain II', text: 'improved mobility with decreased pain' },
   { name: 'Strength', text: 'Pt demonstrated improved muscular strength and endurance' },
-  { name: 'Motor Control', text: 'Pt demonstrated improved motor control.' },
+  { name: 'Motor Control', text: 'Pt demonstrated improved motor control' },
   { name: 'Stability', text: 'Pt demonstrated improved joints stability and controled mobility' },
-  { name: 'Motor Planning', text: 'Pt demonstrated improved motor planning and excution.' },
+  { name: 'Motor Planning', text: 'Pt demonstrated improved motor planning and excution' },
   { name: 'Balance', text: 'Pt demonstrated enhanced balance and proprioceptive sense' },
 ];
 

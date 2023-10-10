@@ -16,6 +16,7 @@ import {
 import CIcon from '@coreui/icons-react';
 import { cilMenu, cilLoop, cilNotes } from '@coreui/icons';
 
+import NotesService from 'src/services/notesService';
 import { NotesSecondaryHeader } from './index';
 import logoPath from 'src/assets/images/mocean_logo.png';
 import * as ACTIONS from '../../../constants/actions';
@@ -29,6 +30,15 @@ const NotesHeader = () => {
 
   const resetBodySelection = () => {
     dispatch({ type: ACTIONS.RESET_BODY_SELECTION });
+  };
+
+  const testNotesService = () => {
+    NotesService.getBodyPartText();
+    NotesService.getManualText();
+    NotesService.getTherexPurposeText();
+    NotesService.getMovementText();
+    NotesService.getCuesText();
+    NotesService.getResultsText();
   };
 
   return (
@@ -67,7 +77,11 @@ const NotesHeader = () => {
             </CButton>
           </CNavItem>
           <CNavItem>
-            <CButton color="primary" className="d-flex align-items-center gap-2">
+            <CButton
+              onClick={testNotesService}
+              color="primary"
+              className="d-flex align-items-center gap-2"
+            >
               <strong>Generate</strong>
               <CIcon icon={cilNotes} size="lg" />
             </CButton>
