@@ -35,6 +35,10 @@ const initialState = {
   selectedMovementTasks: [],
   // therex purpose selections
   selectedTherexPurposes: [],
+  // cue selections
+  selectedCues: [],
+  // result selections
+  selectedResults: [],
 };
 
 const changeState = (state = initialState, { type, ...rest }) => {
@@ -102,6 +106,26 @@ const changeState = (state = initialState, { type, ...rest }) => {
       const newState = {
         ...state,
         ...(!!selectedTherexPurposes ? { selectedTherexPurposes } : {}),
+      };
+
+      return newState;
+    }
+    // CUES SELECTION ACTIONS
+    case ACTIONS.UPDATE_CUES_SELECTION: {
+      const { selectedCues } = rest;
+      const newState = {
+        ...state,
+        ...(!!selectedCues ? { selectedCues } : {}),
+      };
+
+      return newState;
+    }
+    // RESULTS SELECTION ACTIONS
+    case ACTIONS.UPDATE_RESULTS_SELECTION: {
+      const { selectedResults } = rest;
+      const newState = {
+        ...state,
+        ...(!!selectedResults ? { selectedResults } : {}),
       };
 
       return newState;

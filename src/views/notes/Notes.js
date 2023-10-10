@@ -6,6 +6,7 @@ import Restrictions from './components/sections/restrictions';
 import ManualSection from './components/sections/manual';
 import MovementSection from './components/sections/movement';
 import TherexPuposeSection from './components/sections/therexPurpose';
+import CueAndResultSection from './components/sections/cueAndResult';
 import './styles.scss';
 
 const Notes = () => {
@@ -62,6 +63,18 @@ const Notes = () => {
             Movement
           </CNavLink>
         </CNavItem>
+        <CNavItem role="presentation">
+          <CNavLink
+            active={activeTabKey === 5}
+            component="button"
+            role="tab"
+            aria-controls="cue-result-tab-pane"
+            aria-selected={activeTabKey === 5}
+            onClick={() => setActiveTabKey(5)}
+          >
+            Cue & Result
+          </CNavLink>
+        </CNavItem>
       </CNav>
       <CTabContent>
         {/* RESTRICTION SECTION */}
@@ -83,6 +96,14 @@ const Notes = () => {
         {/* MOVEMENT SECTION */}
         <CTabPane role="tabpanel" aria-labelledby="movement-tab-pane" visible={activeTabKey === 4}>
           <MovementSection />
+        </CTabPane>
+        {/* CUE & RESULT SECTION */}
+        <CTabPane
+          role="tabpanel"
+          aria-labelledby="cue-result-tab-pane"
+          visible={activeTabKey === 5}
+        >
+          <CueAndResultSection />
         </CTabPane>
       </CTabContent>
     </React.Fragment>

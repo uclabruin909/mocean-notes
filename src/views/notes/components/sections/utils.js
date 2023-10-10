@@ -54,3 +54,26 @@ export const getTherexPuposeConfig = () => {
 export const getTherexPuposeSelectionRange = () => {
   return getSelectionRangeByKey(THEREX_PURPOSE_CONFIG_KEY);
 };
+
+// Cues utils
+const CUES_CONFIG_KEY = 'cues';
+
+export const getCueOptions = () => {
+  return getConfigByKey(CUES_CONFIG_KEY);
+};
+
+export const getCueSelectionRange = () => {
+  return getSelectionRangeByKey(CUES_CONFIG_KEY);
+};
+
+// Results utils
+const RESULT_CONFIG_KEY = 'result';
+
+export const getResultOptions = () => {
+  const resultsItemList = getConfigByKey(RESULT_CONFIG_KEY) || [];
+  return resultsItemList.map((resultItem) => resultItem.name);
+};
+
+export const getResultSelectionRange = () => {
+  return getSelectionRangeByKey(RESULT_CONFIG_KEY);
+};
