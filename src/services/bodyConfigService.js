@@ -42,6 +42,39 @@ class BodyConfigServiceClass {
   getRestrictionCategories() {
     return Object.keys(this.getRestrictions());
   }
+
+  // manual related functions
+  getManualJointActionText(actionName) {
+    const configKey = 'manualJoint';
+    const manualActions = this.getConfigByKey(configKey);
+    const foundAction = manualActions.find((action) => action.name === actionName);
+
+    return foundAction ? foundAction['text'] : '';
+  }
+
+  getManualMuscleActionText(actionName) {
+    const configKey = 'manualMuscle';
+    const manualActions = this.getConfigByKey(configKey);
+    const foundAction = manualActions.find((action) => action.name === actionName);
+
+    return foundAction ? foundAction['text'] : '';
+  }
+
+  getManualNerveActionText(actionName) {
+    const configKey = 'manualNerve';
+    const manualActions = this.getConfigByKey(configKey);
+    const foundAction = manualActions.find((action) => action.name === actionName);
+
+    return foundAction ? foundAction['text'] : '';
+  }
+
+  getResultText(resultName) {
+    const configKey = 'result';
+    const resultsOptions = this.getConfigByKey(configKey);
+    const foundAction = resultsOptions.find((action) => action.name === resultName);
+
+    return foundAction ? foundAction['text'] : '';
+  }
 }
 
 const BodyConfigService = new BodyConfigServiceClass(BodyConfig);
