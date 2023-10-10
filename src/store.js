@@ -29,6 +29,10 @@ const initialState = {
   selectedManualJoint: [],
   selectedManualMuscle: [],
   selectedManualNerve: [],
+  // movement selection
+  selectedMovementQuality: [],
+  selectedMovementType: [],
+  selectedMovementTasks: [],
 };
 
 const changeState = (state = initialState, { type, ...rest }) => {
@@ -78,6 +82,18 @@ const changeState = (state = initialState, { type, ...rest }) => {
         ...(!!selectedManualJoint ? { selectedManualJoint } : {}),
         ...(!!selectedManualMuscle ? { selectedManualMuscle } : {}),
         ...(!!selectedManualNerve ? { selectedManualNerve } : {}),
+      };
+
+      return newState;
+    }
+    // MOVEMENT SELECTION ACTIONS
+    case ACTIONS.UPDATE_MOVEMENT_SELECTION: {
+      const { selectedMovementQuality, selectedMovementType, selectedMovementTasks } = rest;
+      const newState = {
+        ...state,
+        ...(!!selectedMovementQuality ? { selectedMovementQuality } : {}),
+        ...(!!selectedMovementType ? { selectedMovementType } : {}),
+        ...(!!selectedMovementTasks ? { selectedMovementTasks } : {}),
       };
 
       return newState;

@@ -531,7 +531,7 @@ const defaultMovementTypes = [
   'motor control',
   'proprioceptive sense and balance',
   'joint mobility & stability',
-  'pain level*',
+  'pain level', //except when 'restricted' movement quality is selected
   'muscle strength and endurance',
   'movement coordination',
   'muscle recruitment',

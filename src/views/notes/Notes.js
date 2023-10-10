@@ -4,6 +4,7 @@ import { CContainer, CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@co
 import { NotesHeader, NotesSidebar } from './components/index';
 import Restrictions from './components/sections/restrictions';
 import ManualSection from './components/sections/manual';
+import MovementSection from './components/sections/movement';
 import './styles.scss';
 
 const Notes = () => {
@@ -73,6 +74,10 @@ const Notes = () => {
         {/* MANUAL SECTION */}
         <CTabPane role="tabpanel" aria-labelledby="manual-tab-pane" visible={activeTabKey === 2}>
           <ManualSection />
+        </CTabPane>
+        {/* MOVEMENT SECTION */}
+        <CTabPane role="tabpanel" aria-labelledby="movement-tab-pane" visible={activeTabKey === 3}>
+          <MovementSection />
         </CTabPane>
       </CTabContent>
     </React.Fragment>

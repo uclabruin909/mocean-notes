@@ -29,3 +29,17 @@ export const getRestrictionSelectionRange = () => {
 
   return getSelectionRangeByKey(selectionConfigKey);
 };
+
+// Movement section utils
+const MOVEMENT_CONFIG_KEY = 'movement';
+
+export const getMovementConfig = () => {
+  return getConfigByKey(MOVEMENT_CONFIG_KEY);
+};
+
+// by 'quality', 'types', 'tasks'
+export const getSelectionRangeByMovementCategory = (movementCategory) => {
+  const movementSelectionRangeConfig = NotesService.getSelectionConfig(MOVEMENT_CONFIG_KEY);
+
+  return movementSelectionRangeConfig[movementCategory] || {};
+};
