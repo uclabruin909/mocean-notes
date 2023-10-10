@@ -5,3 +5,17 @@
     color: green;
   }
 }
+
+
+.notes-section-nav {
+  .section-nav-item {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-right: 0.2rem;
+    
+    .nav-link {
+      border-color: rgb(219, 223, 230);
+      padding: 0.7rem 1.3rem;
+    }
+  }
+}

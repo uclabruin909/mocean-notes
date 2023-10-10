@@ -14,8 +14,8 @@ const Notes = () => {
 
   return (
     <React.Fragment>
-      <CNav variant="tabs" role="tablist">
-        <CNavItem role="presentation">
+      <CNav variant="tabs" role="tablist" className="notes-section-nav">
+        <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
             active={activeTabKey === 1}
             component="button"
@@ -27,7 +27,7 @@ const Notes = () => {
             Restriction
           </CNavLink>
         </CNavItem>
-        <CNavItem role="presentation">
+        <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
             active={activeTabKey === 2}
             component="button"
@@ -39,7 +39,7 @@ const Notes = () => {
             Manual Actions
           </CNavLink>
         </CNavItem>
-        <CNavItem role="presentation">
+        <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
             active={activeTabKey === 3}
             component="button"
@@ -51,7 +51,7 @@ const Notes = () => {
             Therex Purpose
           </CNavLink>
         </CNavItem>
-        <CNavItem role="presentation">
+        <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
             active={activeTabKey === 4}
             component="button"
@@ -63,7 +63,7 @@ const Notes = () => {
             Movement
           </CNavLink>
         </CNavItem>
-        <CNavItem role="presentation">
+        <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
             active={activeTabKey === 5}
             component="button"
