@@ -225,65 +225,65 @@ const RestrictionsConfig = {
   ligament_tendon: ['sprain', 'effusion', 'inflammation', 'instability'],
 };
 
-const ManualConfig = {
-  joint: [
-    { name: 'Joint Mob I&II', text: 'to decrease pain and reduce muscle guarding' },
-    {
-      name: 'Joint Mob Grade III&IV',
-      text: 'to increase ROM without a joint impingement.',
-    },
-    {
-      name: 'Distraction Technique',
-      text: 'to reduce the tension and to facilitate mechanoreceptors to promote greater ROM.',
-    },
-    {
-      name: 'Mulligan Mobilization',
-      text: 'to improve joint ROM and joint stability.',
-    },
-  ],
-  muscle: [
-    { name: 'IASTM facial release', text: 'to release muscle tension & neurological tension.' },
-    {
-      name: 'Soft tissue therapy',
-      text: 'to release hypertonic muscle and decrease muscle guarding using IASTM and PEMF',
-    },
-    {
-      name: 'Cupping mobilization (negative pressure decompression tx)',
-      text: 'to enhance circulation to decrease muscle tension.',
-    },
-    {
-      name: 'Pulsed Electro Magnetic Field therapy',
-      text: 'to replorize muscle tissue to normalize soft tissue tension.',
-    },
-    {
-      name: 'Trigger Point release',
-      text: 'to decrease muscle tension and to increase the joint ROM and stability',
-    },
-    {
-      name: 'PAILs & RAILs',
-      text: 'to increase the load capacity to decrease neural tension',
-    },
-  ],
-  nerve: [
-    { name: 'Nerve Stimulation', text: 'to decrease muscle tone to increase joint ROM' },
-    {
-      name: 'Nerve Glide',
-      text: 'to decrease neural tension to normalize muscle tone & ROM',
-    },
-    {
-      name: 'Facial release',
-      text: 'PT performed fascial release using Graston to release neurological muscle tension.',
-    },
-    {
-      name: 'Air compression Therapy',
-      text: 'to enhance circulation and to enhance parasympatheic activity.',
-    },
-    {
-      name: 'Strain and counter strain mobilization',
-      text: 'to decrease the neural tension to normalize the muscle tone and ROM',
-    },
-  ],
-};
+const ManualJointConfig = [
+  { name: 'Joint Mob I&II', text: 'to decrease pain and reduce muscle guarding' },
+  {
+    name: 'Joint Mob Grade III&IV',
+    text: 'to increase ROM without a joint impingement.',
+  },
+  {
+    name: 'Distraction Technique',
+    text: 'to reduce the tension and to facilitate mechanoreceptors to promote greater ROM.',
+  },
+  {
+    name: 'Mulligan Mobilization',
+    text: 'to improve joint ROM and joint stability.',
+  },
+];
+
+const ManualMuscleConfig = [
+  { name: 'IASTM facial release', text: 'to release muscle tension & neurological tension.' },
+  {
+    name: 'Soft tissue therapy',
+    text: 'to release hypertonic muscle and decrease muscle guarding using IASTM and PEMF',
+  },
+  {
+    name: 'Cupping mobilization (negative pressure decompression tx)',
+    text: 'to enhance circulation to decrease muscle tension.',
+  },
+  {
+    name: 'Pulsed Electro Magnetic Field therapy',
+    text: 'to replorize muscle tissue to normalize soft tissue tension.',
+  },
+  {
+    name: 'Trigger Point release',
+    text: 'to decrease muscle tension and to increase the joint ROM and stability',
+  },
+  {
+    name: 'PAILs & RAILs',
+    text: 'to increase the load capacity to decrease neural tension',
+  },
+];
+
+const ManualNerveConfig = [
+  { name: 'Nerve Stimulation', text: 'to decrease muscle tone to increase joint ROM' },
+  {
+    name: 'Nerve Glide',
+    text: 'to decrease neural tension to normalize muscle tone & ROM',
+  },
+  {
+    name: 'Facial release',
+    text: 'PT performed fascial release using Graston to release neurological muscle tension.',
+  },
+  {
+    name: 'Air compression Therapy',
+    text: 'to enhance circulation and to enhance parasympatheic activity.',
+  },
+  {
+    name: 'Strain and counter strain mobilization',
+    text: 'to decrease the neural tension to normalize the muscle tone and ROM',
+  },
+];
 
 const TherexConfig = {
   TMJ: ['mandibular trusion', 'suboccipital muscle facilitation', 'OA & AA mobility and stability'],
@@ -497,20 +497,17 @@ const SelectionConfig = {
     maxSelection: 1,
     minSelection: 1,
   },
-  manual: {
-    isNested: true,
-    joint: {
-      maxSelection: 1,
-      minSelection: 1,
-    },
-    muscle: {
-      maxSelection: 1,
-      minSelection: 1,
-    },
-    nerve: {
-      maxSelection: 1,
-      minSelection: 1,
-    },
+  manualJoint: {
+    maxSelection: 1,
+    minSelection: 1,
+  },
+  manualMuscle: {
+    maxSelection: 1,
+    minSelection: 1,
+  },
+  manualNerve: {
+    maxSelection: 1,
+    minSelection: 1,
   },
   therex: {
     maxSelection: 3,
@@ -533,8 +530,10 @@ const SelectionConfig = {
   },
   result: {
     maxSelection: 1,
+    minSelection: 1,
   },
   cues: {
+    maxSelection: 1,
     minSelection: 1,
   },
 };
@@ -542,7 +541,9 @@ const SelectionConfig = {
 const NotesConfig = {
   bodyPart: BodyPartConfig,
   restrictions: RestrictionsConfig,
-  manual: ManualConfig,
+  manualJoint: ManualJointConfig,
+  manualNerve: ManualNerveConfig,
+  manualMuscle: ManualMuscleConfig,
   therex: TherexConfig,
   movement: MovementConfigs,
   result: ResultsConfig,
