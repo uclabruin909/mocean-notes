@@ -39,6 +39,7 @@ const NotesHeader = () => {
     NotesService.getMovementText();
     NotesService.getCuesText();
     NotesService.getResultsText();
+    console.log(NotesService.generateDailyNotesText());
   };
 
   return (

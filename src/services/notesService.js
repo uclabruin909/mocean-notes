@@ -6,15 +6,56 @@ import {
 } from 'src/views/notes/components/sections/utils';
 
 class NotesServiceClass {
+  constructor() {
+    this._previouslyConstructedNotes = null;
+  }
+
+  generateDailyNotesText() {
+    try {
+      const bodyPartText = this.getBodyPartText();
+      const manualActionText = this.getManualText();
+      const therexPurposeText = this.getTherexPurposeText();
+      const movementText = this.getMovementText();
+      const cuesText = this.getCuesText();
+      const resultsText = this.getResultsText();
+
+      const result = `
+      ${bodyPartText} 
+
+      ${manualActionText}
+
+      ${therexPurposeText}
+  
+      ${movementText}
+
+      ${cuesText}
+      
+      ${resultsText}        
+      `;
+
+      const formatedResult = result
+        .split('\n')
+        .map((line) => line.trim())
+        .join('\n');
+
+      this._previouslyConstructedNotes = formatedResult;
+
+      return this._previouslyConstructedNotes;
+    } catch (error) {
+      console.error('Error while constructing daily notes:', error);
+    }
+  }
+
   // 1st line: Body Part
   getBodyPartText() {
-    const { selectedRestriction } = StoreService.getSelectedRestriction();
+    const selectedRestriction = StoreService.getSelectedRestriction();
     const { selectedBodyPart, selectedBodyCategory, selectedBodySpecific } =
       StoreService.getSelectedBodyParts();
 
     const formattedRestriction = joinWordsWithFinalChar(selectedRestriction);
     const formattedBodyPart = selectedBodyPart.replace('_', ' ');
     const formattedBodyCategory = selectedBodyCategory.replace('_', ' ');
+    console.log('selectedRestriction', selectedRestriction);
 
     const bodyPart = `${selectedBodySpecific} (${formattedBodyPart} ${formattedBodyCategory})`;
     const text = `Patient present with ${bodyPart} ${formattedRestriction}.`;
