@@ -79,7 +79,7 @@ const Restrictions = () => {
     const atMaxSelection = selectedRestriction.length === maxSelection;
 
     return (
-      <CListGroup className="flex-grow-1 restriction-item-container">
+      <CListGroup className="flex-grow-1 restriction-item-container" key={categoryKey}>
         <CListGroupItem active>{standardizeWord(categoryKey)}</CListGroupItem>
         {restrictions.map((restrictionItem, index) => {
           const isSelected = selectedRestriction.includes(restrictionItem) && !isDifferentCategory;

@@ -1,0 +1,52 @@
+.section-card-header {
+  &:hover {
+    cursor: pointer;
+    background: beige;
+  }
+}
+
+.note-card-icon {
+    font-weight: 900;
+    font-weight: 900;
+    opacity: 0.4;
+    &.completed {
+      opacity: 1;
+      color: green;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+  .therex-item-container {
+    border-right: 1px solid #dbdfe6;
+    border-left: 1px solid #dbdfe6;
+    border-bottom: 1px solid #dbdfe6;
+  
+    .therex-action-item {
+      border-left-width: 0;
+      border-right-width: 0;
+    }
+  }
+  
+}
+
+@media only screen and (min-width: 768px) {
+  .therex-item-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 4%;  
+  
+  
+    .therex-action-item {
+      width: 48%;
+      border-right: 1px solid #dbdfe6;
+      border-left: 1px solid #dbdfe6;
+      border-top: 1px solid #dbdfe6;
+      border-bottom-width: 0px;
+      &:last-child {
+        border-bottom-width: 1px
+      }
+    }
+  }
+}
+
+

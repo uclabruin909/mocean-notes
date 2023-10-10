@@ -165,19 +165,19 @@ const ManualSection = () => {
     const atMaxSelection = selectedManualActions.length === maxSelection;
 
     return (
-      <CListGroup className="flex-grow-1 manual-item-container">
+      <CListGroup className="flex-grow-1 manual-item-container" key={manualType}>
         <CListGroupItem active>{title}</CListGroupItem>
         {manualActions.map((manualAction, index) => {
           const isSelected = selectedManualActions.includes(manualAction);
           const isDisabled = atMaxSelection && !isSelected;
 
           return (
-            <CListGroupItem key={index} className="manual-action-item">
+            <CListGroupItem key={`manualAction-${index}`} className="manual-action-item">
               <CFormCheck
                 data-manual-type={manualType}
                 disabled={!!isDisabled}
                 checked={isSelected}
-                key={manualAction}
+                key={`manualActionCheck-${index}`}
                 id={manualAction}
                 value={manualAction}
                 label={manualAction}
