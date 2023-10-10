@@ -1,27 +1,36 @@
-import NotesService from '../../../../services/notesService';
+import BodyConfigService from 'src/services/bodyConfigService';
 
-export const standardizeWord = (word) => {
-  return NotesService.standardizeWord(word);
+export const standardizeWord = (string) => {
+  if (!string) {
+    return '';
+  }
+
+  return string
+    .split('_')
+    .map((word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(' ');
 };
 
 //Generic config utils
 export const getConfigByKey = (configKey) => {
-  return NotesService.getConfigByKey(configKey);
+  return BodyConfigService.getConfigByKey(configKey);
 };
 
 export const getSelectionRangeByKey = (selectionConfigKey) => {
-  const { minSelection, maxSelection } = NotesService.getSelectionConfig(selectionConfigKey);
+  const { minSelection, maxSelection } = BodyConfigService.getSelectionConfig(selectionConfigKey);
 
   return { minSelection, maxSelection };
 };
 
 // Restrictions section utils
 export const getRestrictionsConfig = () => {
-  return NotesService.getRestrictions();
+  return BodyConfigService.getRestrictions();
 };
 
 export const getRestrictionCategories = () => {
-  return NotesService.getRestrictionCategories();
+  return BodyConfigService.getRestrictionCategories();
 };
 
 export const getRestrictionSelectionRange = () => {
@@ -39,7 +48,7 @@ export const getMovementConfig = () => {
 
 // by 'quality', 'types', 'tasks'
 export const getSelectionRangeByMovementCategory = (movementCategory) => {
-  const movementSelectionRangeConfig = NotesService.getSelectionConfig(MOVEMENT_CONFIG_KEY);
+  const movementSelectionRangeConfig = BodyConfigService.getSelectionConfig(MOVEMENT_CONFIG_KEY);
 
   return movementSelectionRangeConfig[movementCategory] || {};
 };

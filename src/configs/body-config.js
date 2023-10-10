@@ -731,7 +731,7 @@ const SelectionConfig = {
   },
 };
 
-const NotesConfig = {
+const BodyConfig = {
   bodyPart: BodyPartConfig,
   restrictions: RestrictionsConfig,
   manualJoint: ManualJointConfig,
@@ -744,4 +744,4 @@ const NotesConfig = {
   selectionConfig: SelectionConfig,
 };
 
-export default NotesConfig;
+export default BodyConfig;

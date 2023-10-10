@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CRow, CCol, CCard, CFormSelect, CInputGroup, CInputGroupText } from '@coreui/react';
 import { cilCheckCircle } from '@coreui/icons';
 
-import NotesService from '../../../services/notesService';
-import * as ACTIONS from '../../../constants/actions';
+import BodyConfigService from 'src/services/bodyConfigService';
+import * as ACTIONS from 'src/constants/actions';
 
 import './NotesSecondaryHeader.scss';
 
@@ -20,7 +20,7 @@ const createSelectionOptions = (list, placeHolderText) => {
   );
 };
 const selectPlaceHolderValue = 'placeholder';
-const bodyPartsList = NotesService.getBodyParts() || [];
+const bodyPartsList = BodyConfigService.getBodyParts() || [];
 const initialBodyPartOptions = createSelectionOptions(bodyPartsList, '1. Select a Body Part');
 
 const NotesSecondaryHeader = () => {
@@ -89,7 +89,7 @@ const NotesSecondaryHeader = () => {
       setBodyPartsSelectOptions(initialBodyPartOptions);
       setBodyCategorySelectOptions(createSelectionOptions([], '2. Select a Category'));
     } else {
-      const categoriesForBodyPart = NotesService.getBodyPartCategories(selectedBodyPart);
+      const categoriesForBodyPart = BodyConfigService.getBodyPartCategories(selectedBodyPart);
 
       const bodyCategorySelectOptions = createSelectionOptions(
         categoriesForBodyPart,
@@ -108,7 +108,7 @@ const NotesSecondaryHeader = () => {
     }
 
     if (selectedBodyPart && selectedBodyCategory) {
-      const specificsForBodyPart = NotesService.getBodyPartSpecifics(
+      const specificsForBodyPart = BodyConfigService.getBodyPartSpecifics(
         selectedBodyPart,
         selectedBodyCategory,
       );
