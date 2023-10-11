@@ -16,7 +16,6 @@ class BodyConfigServiceClass {
   }
 
   getBodyParts() {
-    if (window.document) window.navigator.clipboard.writeText(this._test);
     const { bodyPart: bodyPartConfig } = this._configs;
 
     return Object.keys(bodyPartConfig) || [];

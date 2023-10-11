@@ -32,6 +32,14 @@
   }
 }
 
+.notes-tab-nav {
+  justify-content: space-between;
+
+  .off-canvas-button {
+    margin-bottom: 12px;
+  }
+}
+
 // SECTION CSS RULES
 .restriction-item-container,
 .manual-item-container,
