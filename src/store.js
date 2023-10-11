@@ -15,6 +15,16 @@ const getPercentageComplete = (state) => {
   return Math.floor((countDone / propsToCheck.length) * 100);
 };
 
+const defaultModalState = {
+  isVisible: false,
+  title: '',
+  bodyText: '',
+  primaryBtnText: '',
+  primaryBtnCb: undefined,
+  secondaryBtnText: undefined,
+  secondaryBtnCb: undefined,
+};
+
 const initialState = {
   isOffCanvasVisible: false,
   lastGeneratedNoteTimestamp: undefined,
@@ -40,6 +50,9 @@ const initialState = {
   selectedCues: [],
   // result selections
   selectedResults: [],
+  modalState: {
+    ...defaultModalState,
+  },
 };
 
 const changeState = (state = initialState, { type, ...rest }) => {
@@ -52,6 +65,31 @@ const changeState = (state = initialState, { type, ...rest }) => {
       const newState = {
         ...state,
         ...(!!timestamp ? { lastGeneratedNoteTimestamp: timestamp } : {}),
+      };
+
+      return newState;
+    }
+    case ACTIONS.UPDATE_MODAL_STATE: {
+      const { modalState } = rest;
+      const newState = {
+        ...state,
+        modalState: {
+          // completely replace all prior configs
+          ...modalState,
+        },
+      };
+
+      return newState;
+    }
+    case ACTIONS.UPDATE_MODAL_VISIBILITY: {
+      const { visibility } = rest;
+      const { modalState: previousModalState } = state;
+      const newState = {
+        ...state,
+        modalState: {
+          ...previousModalState,
+          isVisible: visibility,
+        },
       };
 
       return newState;

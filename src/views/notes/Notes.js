@@ -3,6 +3,7 @@ import { CContainer, CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@co
 
 import { NotesHeader, NotesSidebar } from './components/index';
 import OffScreen from './components/OffScreen';
+import AppModal from './components/AppModal';
 import Restrictions from './components/sections/restrictions';
 import ManualSection from './components/sections/manual';
 import MovementSection from './components/sections/movement';
@@ -124,6 +125,7 @@ const NotesView = () => {
         </div>
       </div>
       <OffScreen />
+      <AppModal />
     </div>
   );
 };
