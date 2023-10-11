@@ -4,10 +4,19 @@ import {
   getRandomInteger,
   joinWordsWithFinalChar,
 } from 'src/views/notes/components/sections/utils';
+import { NOTES_HAVE_BEEN_GENERATED } from 'src/constants/actions';
 
 class NotesServiceClass {
   constructor() {
-    this._previouslyConstructedNotes = null;
+    this._previousConstructedNotes = '';
+  }
+
+  getMostRecentNotes() {
+    if (this._previousConstructedNotes) {
+      return this._previousConstructedNotes;
+    }
+
+    return '';
   }
 
   generateDailyNotesText() {
@@ -19,8 +28,7 @@ class NotesServiceClass {
       const cuesText = this.getCuesText();
       const resultsText = this.getResultsText();
 
-      const result = `
-      ${bodyPartText} 
+      const result = `${bodyPartText} 
 
       ${manualActionText}
 
@@ -38,9 +46,18 @@ class NotesServiceClass {
         .map((line) => line.trim())
         .join('\n');
 
-      this._previouslyConstructedNotes = formatedResult;
+      this._previousConstructedNotes = formatedResult;
 
-      return this._previouslyConstructedNotes;
+      StoreService.dispatchAction({
+        type: NOTES_HAVE_BEEN_GENERATED,
+        timestamp: Date.now(),
+      });
+
+      if (window.document) {
+        window.navigator.clipboard.writeText(this._previousConstructedNotes);
+      }
+
+      return this._previousConstructedNotes;
     } catch (error) {
       console.error('Error while constructing daily notes:', error);
     }

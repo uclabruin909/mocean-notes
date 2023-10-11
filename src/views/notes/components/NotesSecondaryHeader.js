@@ -35,7 +35,6 @@ const NotesSecondaryHeader = () => {
   const selectedBodyCategory = useSelector((state) => state.selectedBodyCategory);
   const selectedBodySpecific = useSelector((state) => state.selectedBodySpecific);
   const isBodyPartSelectionComplete = useSelector((state) => state.isBodyPartSelectionComplete);
-  const isAutoGenerationEnabled = useSelector((state) => state.isAutoGenerationEnabled);
 
   // Event Handlers
   const onBodyPartSelect = (evt) => {
@@ -75,11 +74,6 @@ const NotesSecondaryHeader = () => {
     if (selectValue !== selectedBodySpecific) {
       dispatch({ type: ACTIONS.SET_BODY_SELECTION, selectedBodySpecific: selectValue });
     }
-  };
-
-  const onAutoGenerateToggle = (evt) => {
-    const enableAutoGeneration = evt.target.value === 'on' ? true : false;
-    dispatch({ type: 'set', isAutoGenerationEnabled: enableAutoGeneration });
   };
 
   // if selectedBodyPart has been selected, update body cateogy selection options based on new body part.
@@ -211,19 +205,6 @@ const NotesSecondaryHeader = () => {
             </CInputGroup>
           </CCard>
         </CCol>
-        {/* <CCol sm={2} className="align-items-center" style={{ textAlign: 'center' }}>
-          <strong style={{ marginRight: '8px' }}>Auto Generate</strong>
-          <CTooltip
-            content="After body part is selected, you can enable the note to be auto-generated."
-            placement="left"
-          >
-            <CFormSwitch
-              id="formSwitchCheckChecked"
-              onChange={onAutoGenerateToggle}
-              defaultChecked={isAutoGenerationEnabled}
-            />
-          </CTooltip>
-        </CCol> */}
       </CRow>
     </div>
   );

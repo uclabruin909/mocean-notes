@@ -16,9 +16,10 @@ const getPercentageComplete = (state) => {
 };
 
 const initialState = {
+  isOffCanvasVisible: false,
+  lastGeneratedNoteTimestamp: undefined,
   sidebarShow: false,
   completionPercentage: 0,
-  isAutoGenerationEnabled: false,
   isBodyPartSelectionComplete: false,
   selectedBodyPart: undefined,
   selectedBodyCategory: undefined,
@@ -46,6 +47,33 @@ const changeState = (state = initialState, { type, ...rest }) => {
     case 'set': {
       return { ...state, ...rest };
     }
+    case ACTIONS.NOTES_HAVE_BEEN_GENERATED: {
+      const { timestamp } = rest;
+      const newState = {
+        ...state,
+        ...(!!timestamp ? { lastGeneratedNoteTimestamp: timestamp } : {}),
+      };
+
+      return newState;
+    }
+    case ACTIONS.UPDATE_OFFCANVAS_VISIBILITY: {
+      const { visibility } = rest;
+      const newState = {
+        ...state,
+        isOffCanvasVisible: visibility,
+      };
+
+      return newState;
+    }
+    case ACTIONS.TOGGLE_OFFCANVAS_VISIBILITY: {
+      const { isOffCanvasVisible } = state;
+      const newState = {
+        ...state,
+        isOffCanvasVisible: !isOffCanvasVisible,
+      };
+
+      return newState;
+    }
     // BASE BODY SELECTION ACTIONS
     case ACTIONS.SET_BODY_SELECTION: {
       const newState = { ...state, ...rest };
@@ -61,8 +89,14 @@ const changeState = (state = initialState, { type, ...rest }) => {
       };
     }
     case ACTIONS.RESET_BODY_SELECTION: {
+      const { isOffCanvasVisible, lastGeneratedNoteTimestamp, sidebarShow, completionPercentage } =
+        state;
       const newState = {
         ...initialState,
+        isOffCanvasVisible,
+        lastGeneratedNoteTimestamp,
+        sidebarShow,
+        completionPercentage,
       };
 
       return newState;

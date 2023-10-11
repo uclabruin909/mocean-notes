@@ -5,6 +5,10 @@ class StoreServiceClass {
     return store.getState() || {};
   }
 
+  dispatchAction(actionObj) {
+    store.dispatch(actionObj);
+  }
+
   getSelectedBodyParts() {
     const { selectedBodyPart, selectedBodyCategory, selectedBodySpecific } = this.getState();
     return { selectedBodyPart, selectedBodyCategory, selectedBodySpecific };
