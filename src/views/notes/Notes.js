@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  CContainer,
-  CNav,
-  CNavItem,
-  CNavLink,
-  CTabContent,
-  CTabPane,
-  CButton,
-} from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-import { cilNotes } from '@coreui/icons';
+import { CContainer, CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react';
 
-import { TOGGLE_OFFCANVAS_VISIBILITY } from 'src/constants/actions';
 import { NotesHeader, NotesSidebar } from './components/index';
 import OffScreen from './components/OffScreen';
 import Restrictions from './components/sections/restrictions';
@@ -23,89 +11,72 @@ import CueAndResultSection from './components/sections/cueAndResult';
 import './styles.scss';
 
 const Notes = () => {
-  const dispatch = useDispatch();
   const [activeTabKey, setActiveTabKey] = useState(1);
-
-  const toggleOffCanvasVisibility = () => {
-    dispatch({ type: TOGGLE_OFFCANVAS_VISIBILITY });
-  };
 
   return (
     <React.Fragment>
-      <div className="notes-tab-nav d-md-flex">
-        <CNav variant="tabs" role="tablist" className="notes-section-nav">
-          <CNavItem role="presentation" className="section-nav-item">
-            <CNavLink
-              active={activeTabKey === 1}
-              component="button"
-              role="tab"
-              aria-controls="restriction-tab-pane"
-              aria-selected={activeTabKey === 1}
-              onClick={() => setActiveTabKey(1)}
-            >
-              Restriction
-            </CNavLink>
-          </CNavItem>
-          <CNavItem role="presentation" className="section-nav-item">
-            <CNavLink
-              active={activeTabKey === 2}
-              component="button"
-              role="tab"
-              aria-controls="manual-tab-pane"
-              aria-selected={activeTabKey === 2}
-              onClick={() => setActiveTabKey(2)}
-            >
-              Manual Actions
-            </CNavLink>
-          </CNavItem>
-          <CNavItem role="presentation" className="section-nav-item">
-            <CNavLink
-              active={activeTabKey === 3}
-              component="button"
-              role="tab"
-              aria-controls="therex-tab-pane"
-              aria-selected={activeTabKey === 3}
-              onClick={() => setActiveTabKey(3)}
-            >
-              Therex Purpose
-            </CNavLink>
-          </CNavItem>
-          <CNavItem role="presentation" className="section-nav-item">
-            <CNavLink
-              active={activeTabKey === 4}
-              component="button"
-              role="tab"
-              aria-controls="movement-tab-pane"
-              aria-selected={activeTabKey === 4}
-              onClick={() => setActiveTabKey(4)}
-            >
-              Movement
-            </CNavLink>
-          </CNavItem>
-          <CNavItem role="presentation" className="section-nav-item">
-            <CNavLink
-              active={activeTabKey === 5}
-              component="button"
-              role="tab"
-              aria-controls="cue-result-tab-pane"
-              aria-selected={activeTabKey === 5}
-              onClick={() => setActiveTabKey(5)}
-            >
-              Cue & Result
-            </CNavLink>
-          </CNavItem>
-        </CNav>
-
-        <CButton
-          color="primary"
-          className="off-canvas-button d-flex align-items-center gap-2"
-          onClick={toggleOffCanvasVisibility}
-        >
-          <strong>Editor</strong>
-          <CIcon icon={cilNotes} size="lg" />
-        </CButton>
-      </div>
-
+      <CNav variant="tabs" role="tablist" className="notes-section-nav">
+        <CNavItem role="presentation" className="section-nav-item">
+          <CNavLink
+            active={activeTabKey === 1}
+            component="button"
+            role="tab"
+            aria-controls="restriction-tab-pane"
+            aria-selected={activeTabKey === 1}
+            onClick={() => setActiveTabKey(1)}
+          >
+            Restriction
+          </CNavLink>
+        </CNavItem>
+        <CNavItem role="presentation" className="section-nav-item">
+          <CNavLink
+            active={activeTabKey === 2}
+            component="button"
+            role="tab"
+            aria-controls="manual-tab-pane"
+            aria-selected={activeTabKey === 2}
+            onClick={() => setActiveTabKey(2)}
+          >
+            Manual Actions
+          </CNavLink>
+        </CNavItem>
+        <CNavItem role="presentation" className="section-nav-item">
+          <CNavLink
+            active={activeTabKey === 3}
+            component="button"
+            role="tab"
+            aria-controls="therex-tab-pane"
+            aria-selected={activeTabKey === 3}
+            onClick={() => setActiveTabKey(3)}
+          >
+            Therex Purpose
+          </CNavLink>
+        </CNavItem>
+        <CNavItem role="presentation" className="section-nav-item">
+          <CNavLink
+            active={activeTabKey === 4}
+            component="button"
+            role="tab"
+            aria-controls="movement-tab-pane"
+            aria-selected={activeTabKey === 4}
+            onClick={() => setActiveTabKey(4)}
+          >
+            Movement
+          </CNavLink>
+        </CNavItem>
+        <CNavItem role="presentation" className="section-nav-item">
+          <CNavLink
+            active={activeTabKey === 5}
+            component="button"
+            role="tab"
+            aria-controls="cue-result-tab-pane"
+            aria-selected={activeTabKey === 5}
+            onClick={() => setActiveTabKey(5)}
+          >
+            Cue & Result
+          </CNavLink>
+        </CNavItem>
+      </CNav>
       <CTabContent className="notes-content-wrapper">
         {/* RESTRICTION SECTION */}
         <CTabPane

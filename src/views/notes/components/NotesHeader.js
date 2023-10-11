@@ -14,12 +14,12 @@ import {
   CImage,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilMenu, cilLoop, cilNotes } from '@coreui/icons';
+import { cilMenu, cilLoop, cilNotes, cilPenAlt } from '@coreui/icons';
 
 import NotesService from 'src/services/notesService';
 import { NotesSecondaryHeader } from './index';
 import logoPath from 'src/assets/images/mocean_logo.png';
-import * as ACTIONS from '../../../constants/actions';
+import * as ACTIONS from 'src/constants/actions';
 import './NotesHeader.scss';
 
 const NotesHeader = () => {
@@ -30,6 +30,12 @@ const NotesHeader = () => {
 
   const resetBodySelection = () => {
     dispatch({ type: ACTIONS.RESET_BODY_SELECTION });
+  };
+
+  const toggleOffScreenCanvasVisibility = () => {
+    dispatch({
+      type: ACTIONS.TOGGLE_OFFCANVAS_VISIBILITY,
+    });
   };
 
   const testNotesService = () => {
@@ -66,24 +72,37 @@ const NotesHeader = () => {
             </CProgress>
           </CNavItem>
         </CHeaderNav>
-        <CHeaderNav className="gap-2">
+        <CHeaderNav className="app-header-button-group gap-2">
           <CNavItem>
             <CButton
               color="warning"
-              className="d-flex align-items-center gap-2"
+              variant="outline"
+              className="app-filter-reset-btn d-flex align-items-center gap-2"
               onClick={resetBodySelection}
             >
-              <strong>Reset</strong>
+              <strong>Reset Selections</strong>
               <CIcon icon={cilLoop} size="lg" />
             </CButton>
           </CNavItem>
           <CNavItem>
             <CButton
-              onClick={testNotesService}
+              onClick={toggleOffScreenCanvasVisibility}
               color="primary"
-              className="d-flex align-items-center gap-2"
+              variant="outline"
+              className="app-editor-btn d-flex align-items-center gap-2"
             >
-              <strong>Generate</strong>
+              <strong>Note Editor</strong>
+              <CIcon icon={cilPenAlt} size="lg" />
+            </CButton>
+          </CNavItem>
+          <CNavItem>
+            <CButton
+              onClick={testNotesService}
+              variant="outline"
+              color="primary"
+              className="app-note-generate-btn d-flex align-items-center gap-2"
+            >
+              <strong>Generate Note</strong>
               <CIcon icon={cilNotes} size="lg" />
             </CButton>
           </CNavItem>
