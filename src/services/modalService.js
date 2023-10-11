@@ -1,16 +1,11 @@
-import BodyConfigService from './bodyConfigService';
 import StoreService from './storeService';
-import {
-  getRandomInteger,
-  joinWordsWithFinalChar,
-} from 'src/views/notes/components/sections/utils';
-import { NOTES_HAVE_BEEN_GENERATED, UPDATE_MODAL_STATE } from 'src/constants/actions';
+import { UPDATE_MODAL_STATE } from 'src/constants/actions';
 
 const defaultModalOptions = {
   isVisible: true,
   title: 'Default title',
   bodyText: 'Body Text',
-  primaryBtnText: 'Ok',
+  primaryBtnText: 'OK',
   primaryBtnCb: undefined,
   secondaryBtnText: undefined,
   secondaryBtnCb: undefined,

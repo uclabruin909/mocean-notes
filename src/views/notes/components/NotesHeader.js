@@ -8,13 +8,11 @@ import {
   CHeaderToggler,
   CNavLink,
   CNavItem,
-  CProgress,
-  CProgressBar,
   CButton,
   CImage,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilMenu, cilLoop, cilNotes, cilPenAlt } from '@coreui/icons';
+import { cilMenu, cilNotes, cilPenAlt } from '@coreui/icons';
 
 import NotesService from 'src/services/notesService';
 import { NotesSecondaryHeader } from './index';
@@ -26,7 +24,6 @@ const NotesHeader = () => {
   const dispatch = useDispatch();
 
   const sidebarShow = useSelector((state) => state.sidebarShow);
-  const completionPercentage = useSelector((state) => state.completionPercentage);
 
   const resetBodySelection = () => {
     dispatch({ type: ACTIONS.RESET_BODY_SELECTION });
@@ -65,13 +62,7 @@ const NotesHeader = () => {
             </CNavLink>
           </CNavItem>
         </CHeaderNav>
-        <CHeaderNav style={{ width: '260px', marginRight: '20px' }}>
-          <CNavItem className="flex-grow-1">
-            <CProgress color="success" value={completionPercentage} variant="striped" animated>
-              <CProgressBar>{`${completionPercentage}%`}</CProgressBar>
-            </CProgress>
-          </CNavItem>
-        </CHeaderNav>
+
         <CHeaderNav className="app-header-button-group gap-2">
           <CNavItem>
             <CButton
@@ -81,7 +72,6 @@ const NotesHeader = () => {
               onClick={resetBodySelection}
             >
               <strong>Reset Selections</strong>
-              <CIcon icon={cilLoop} size="lg" />
             </CButton>
           </CNavItem>
           <CNavItem>
