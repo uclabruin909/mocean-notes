@@ -1,5 +1,6 @@
 import BodyConfigService from './bodyConfigService';
 import StoreService from './storeService';
+import ModalService from './modalService';
 import {
   getRandomInteger,
   joinWordsWithFinalChar,
@@ -51,6 +52,19 @@ class NotesServiceClass {
       StoreService.dispatchAction({
         type: NOTES_HAVE_BEEN_GENERATED,
         timestamp: Date.now(),
+      });
+
+      ModalService.showModal({
+        title: 'Note succesfully generated',
+        bodyText: 'Not has been successfully generated and copied to clipboard',
+        primaryBtnText: 'Ok',
+        primaryBtnCb: () => {
+          alert('primary btn clicked');
+        },
+        secondaryBtnText: '2nd button',
+        secondaryBtnCb: () => {
+          alert('secondary btn clicked');
+        },
       });
 
       if (window.document) {
