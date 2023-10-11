@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  CButton,
+  CBadge,
+  CCallout,
   CCard,
   CCardBody,
   CCardHeader,
@@ -12,8 +13,6 @@ import {
   CListGroupItem,
   CFormCheck,
 } from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-import { cilCheckCircle, cilChevronBottom } from '@coreui/icons';
 
 import { UPDATE_THEREX_PURPOSE_SELECTION } from '../../../../constants/actions';
 import { getTherexPuposeConfig, getTherexPuposeSelectionRange, standardizeWord } from './utils';
@@ -102,39 +101,41 @@ const TherexPuposeSection = () => {
     );
   };
 
+  const renderCalloutCard = () => {
+    return (
+      <CCallout color="danger">
+        <strong>Body part has not been selected.</strong> A body part needs to be selected from the
+        main dropdown in order to fetch the correct set of therex purposes.
+      </CCallout>
+    );
+  };
+
   return (
     <React.Fragment>
       <CRow className="root-section-row">
         <CCol xs={12}>
           <CCard className="mb-4">
-            <CCardHeader
-              className="section-card-header d-flex justify-content-between align-items-center"
-              onClick={() => setVisible(!isVisible)}
-            >
+            <CCardHeader className="section-card-header d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center gap-2">
                 <span>
-                  <CIcon
-                    customClassName={`note-card-icon ${isCompleted ? 'completed' : ''}`}
-                    icon={cilCheckCircle}
-                    size="xl"
-                    height={25}
-                  ></CIcon>
+                  Select at least <strong>{therexMinSelection}</strong> therex purpose (up to{' '}
+                  <strong>{therexMaxSelection}</strong>). These options are dependent on which body
+                  part that was selected from the dropdown.
                 </span>
-                <strong>{`Therex Purpose: ${
-                  selectedBodyPart ? standardizeWord(selectedBodyPart) : ''
-                }`}</strong>
               </div>
 
-              <CButton onClick={() => setVisible(!isVisible)} variant="ghost">
-                <CIcon icon={cilChevronBottom} height={24}></CIcon>
-              </CButton>
+              {isCompleted ? (
+                <CBadge color="success">COMPLETED</CBadge>
+              ) : (
+                <CBadge color="warning">INCOMPLETE</CBadge>
+              )}
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={isVisible}>
                 <CCard className="mt-1">
                   <CCardBody className="d-md-flex gap-2" style={{ flexWrap: 'wrap' }}>
                     {/* RENDER THEREX PURPOSE CARD */}
-                    {renderTherexPurposeCard()}
+                    {!!selectedBodyPart ? renderTherexPurposeCard() : renderCalloutCard()}
                   </CCardBody>
                 </CCard>
               </CCollapse>

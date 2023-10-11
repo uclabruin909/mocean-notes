@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  CButton,
+  CBadge,
   CCard,
+  CCallout,
   CCardBody,
   CCardHeader,
   CCol,
@@ -12,8 +13,6 @@ import {
   CListGroupItem,
   CFormCheck,
 } from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-import { cilCheckCircle, cilChevronBottom } from '@coreui/icons';
 
 import { UPDATE_MOVEMENT_SELECTION } from '../../../../constants/actions';
 import { getMovementConfig, getSelectionRangeByMovementCategory, standardizeWord } from './utils';
@@ -207,39 +206,46 @@ const MovementSection = () => {
     );
   };
 
+  const renderCalloutCard = () => {
+    return (
+      <CCallout color="danger">
+        <strong>Body part has not been selected.</strong> A body part needs to be selected from the
+        main dropdown in order to fetch the correct set of movement options.
+      </CCallout>
+    );
+  };
+
   return (
     <React.Fragment>
       <CRow className="root-section-row">
         <CCol xs={12}>
           <CCard className="mb-4">
-            <CCardHeader
-              className="section-card-header d-flex justify-content-between align-items-center"
-              onClick={() => setVisible(!isVisible)}
-            >
+            <CCardHeader className="section-card-header d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center gap-2">
                 <span>
-                  <CIcon
-                    customClassName={`note-card-icon ${isCompleted ? 'completed' : ''}`}
-                    icon={cilCheckCircle}
-                    size="xl"
-                    height={25}
-                  ></CIcon>
+                  Select <strong>{movementQualityMinSelection}</strong> movement quality,{' '}
+                  <strong>{movementTypeMinSelection}</strong> movement type and at least{' '}
+                  <strong>{movementTasksMinSelection}</strong> movement tasks (up to{' '}
+                  <strong>{movementTasksMaxSelection}</strong>).
                 </span>
-                <strong>Movement</strong>
               </div>
 
-              <CButton onClick={() => setVisible(!isVisible)} variant="ghost">
-                <CIcon icon={cilChevronBottom} height={24}></CIcon>
-              </CButton>
+              {isCompleted ? (
+                <CBadge color="success">COMPLETED</CBadge>
+              ) : (
+                <CBadge color="warning">INCOMPLETE</CBadge>
+              )}
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={isVisible}>
                 <CCard className="mt-1">
                   <CCardBody className="d-md-flex gap-2" style={{ flexWrap: 'wrap' }}>
                     {/* RENDER MOVEMENT CARDS */}
-                    {[QualityKey, TypesKey, TasksKey].map((movementKey) => {
-                      return renderMovementCardByKey(movementKey);
-                    })}
+                    {!!selectedBodyPart
+                      ? [QualityKey, TypesKey, TasksKey].map((movementKey) => {
+                          return renderMovementCardByKey(movementKey);
+                        })
+                      : renderCalloutCard()}
                   </CCardBody>
                 </CCard>
               </CCollapse>

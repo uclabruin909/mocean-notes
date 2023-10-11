@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  CButton,
+  CBadge,
   CCard,
   CCardBody,
   CCardHeader,
@@ -12,8 +12,6 @@ import {
   CListGroupItem,
   CFormCheck,
 } from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-import { cilCheckCircle, cilChevronBottom } from '@coreui/icons';
 
 import { UPDATE_CUES_SELECTION, UPDATE_RESULTS_SELECTION } from '../../../../constants/actions';
 import {
@@ -178,25 +176,19 @@ const CueAndResultSection = () => {
       <CRow className="root-section-row">
         <CCol xs={12}>
           <CCard className="mb-4">
-            <CCardHeader
-              className="section-card-header d-flex justify-content-between align-items-center"
-              onClick={() => setVisible(!isVisible)}
-            >
+            <CCardHeader className="section-card-header d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center gap-2">
                 <span>
-                  <CIcon
-                    customClassName={`note-card-icon ${isCompleted ? 'completed' : ''}`}
-                    icon={cilCheckCircle}
-                    size="xl"
-                    height={25}
-                  ></CIcon>
+                  Select <strong>{cueMinSelection}</strong> cue and{' '}
+                  <strong>{resultMinSelection}</strong> result option.
                 </span>
-                <strong>Cue & Result</strong>
               </div>
 
-              <CButton onClick={() => setVisible(!isVisible)} variant="ghost">
-                <CIcon icon={cilChevronBottom} height={24}></CIcon>
-              </CButton>
+              {isCompleted ? (
+                <CBadge color="success">COMPLETED</CBadge>
+              ) : (
+                <CBadge color="warning">INCOMPLETE</CBadge>
+              )}
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={isVisible}>

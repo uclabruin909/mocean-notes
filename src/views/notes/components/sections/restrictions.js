@@ -5,6 +5,7 @@ import {
   CCard,
   CCardBody,
   CCardHeader,
+  CBadge,
   CCol,
   CCollapse,
   CRow,
@@ -80,13 +81,18 @@ const Restrictions = () => {
 
     return (
       <CListGroup className="flex-grow-1 restriction-item-container" key={categoryKey}>
-        <CListGroupItem active>{standardizeWord(categoryKey)}</CListGroupItem>
+        <CListGroupItem active className={`header-item ${isDifferentCategory ? 'disabled' : ''}`}>
+          {standardizeWord(categoryKey)}
+        </CListGroupItem>
         {restrictions.map((restrictionItem, index) => {
           const isSelected = selectedRestriction.includes(restrictionItem) && !isDifferentCategory;
           const isDisabled = isDifferentCategory || (atMaxSelection && !isSelected);
 
           return (
-            <CListGroupItem key={index} className="restriction-item">
+            <CListGroupItem
+              key={index}
+              className={`restriction-item ${isDisabled ? 'disabled' : ''}`}
+            >
               <CFormCheck
                 disabled={!!isDisabled}
                 checked={isSelected}
@@ -108,25 +114,20 @@ const Restrictions = () => {
       <CRow className="root-section-row">
         <CCol xs={12}>
           <CCard className="mb-4">
-            <CCardHeader
-              className="section-card-header d-flex justify-content-between align-items-center"
-              onClick={() => setVisible(!isVisible)}
-            >
+            <CCardHeader className="section-card-header d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center gap-2">
                 <span>
-                  <CIcon
-                    customClassName={`note-card-icon ${isCompleted ? 'completed' : ''}`}
-                    icon={cilCheckCircle}
-                    size="xl"
-                    height={25}
-                  ></CIcon>
+                  Select <strong>{minSelection}</strong> restriction from the body category selected
+                  in the above dropdown (joint, muscle, nerve, etc). All other categories will be
+                  disabled.
                 </span>
-                <strong>Restriction</strong>
               </div>
 
-              <CButton onClick={() => setVisible(!isVisible)} variant="ghost">
-                <CIcon icon={cilChevronBottom} height={24}></CIcon>
-              </CButton>
+              {isCompleted ? (
+                <CBadge color="success">COMPLETED</CBadge>
+              ) : (
+                <CBadge color="warning">INCOMPLETE</CBadge>
+              )}
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={isVisible}>
