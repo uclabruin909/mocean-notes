@@ -58,7 +58,7 @@ const NotesHeader = () => {
           <CNavItem>
             <CImage className="brand-image" align="center" src={logoPath} fluid width={140} />
             <CNavLink className="brand-text" style={{ fontWeight: '700' }}>
-              Daily Notes App
+              Notes App
             </CNavLink>
           </CNavItem>
         </CHeaderNav>
