@@ -2,6 +2,7 @@ import {
   getRandomInteger,
   joinWordsWithFinalChar,
 } from 'src/views/notes/components/sections/utils';
+import { AUTO_SELECTION_COMPLETE } from 'src/constants/actions';
 
 import StoreService from './storeService';
 import BodyConfigService from './bodyConfigService';
@@ -25,20 +26,43 @@ const selectionKeyMap = {
 class SelectionServiceClass {
   constructor() {
     this._selectionOrder = [
-      'bodyPart',
-      'bodyCategory',
-      'bodySpecific',
-      'restrictions',
-      'manualJoint',
-      'manualMuscle',
-      'manualNerve',
-      'therex',
-      'movementQuality',
-      'movementTypes',
-      'movementTasks',
-      'cues',
-      'result',
+      this.autoSelectBodyPart.bind(this),
+      this.autoSelectBodyCategory.bind(this),
+      this.autoSelectBodySpecific.bind(this),
+      this.autoSelectRestrictions.bind(this),
+      this.autoSelectManualJointActions.bind(this),
+      this.autoSelectManualMuscleActions.bind(this),
+      this.autoSelectManualNerveActions.bind(this),
+      this.autoSelectTherexPurpose.bind(this),
+      this.autoSelectMovementQuality.bind(this),
+      this.autoSelectMovementTypes.bind(this),
+      this.autoSelectMovementTasks.bind(this),
+      this.autoSelectCues.bind(this),
+      this.autoSelectResults.bind(this),
     ];
+  }
+
+  // function to auto-select any non-completed selections
+  autoSelectMain(dispatchAction = false) {
+    try {
+      let newSelectionState = {};
+
+      this._selectionOrder.forEach((autoSelectFunc) => {
+        const newChunkState = autoSelectFunc(newSelectionState);
+        newSelectionState = { ...newSelectionState, ...newChunkState };
+      });
+
+      if (dispatchAction) {
+        StoreService.dispatchAction({
+          type: AUTO_SELECTION_COMPLETE,
+          ...newSelectionState,
+        });
+      }
+
+      return newSelectionState;
+    } catch (error) {
+      console.log('Error while auto selecting');
+    }
   }
 
   autoSelectBodyPart() {
@@ -659,7 +683,7 @@ class SelectionServiceClass {
   }
 
   constructCompletionStatusMap() {
-    const completionStatusMap = this._selectionOrder.reduce((map, itemKey) => {
+    const completionStatusMap = Object.keys(selectionKeyMap).reduce((map, itemKey) => {
       const { completed } = this.getCompletionStatusByKey(itemKey);
       map[itemKey] = completed;
 

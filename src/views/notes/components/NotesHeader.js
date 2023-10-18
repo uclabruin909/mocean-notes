@@ -37,20 +37,20 @@ const NotesHeader = () => {
   };
 
   const testNotesService = () => {
-    const bodyPart = SelectionService.autoSelectBodyPart();
-    const bodyCategory = SelectionService.autoSelectBodyCategory(bodyPart);
-    const bodySpecific = SelectionService.autoSelectBodySpecific(bodyCategory);
-    const restrictions = SelectionService.autoSelectRestrictions(bodySpecific);
-    const manualJoint = SelectionService.autoSelectManualJointActions(restrictions);
-    const manualMuscle = SelectionService.autoSelectManualMuscleActions(manualJoint);
-    const manualNerve = SelectionService.autoSelectManualNerveActions(manualMuscle);
-    const therexPurpose = SelectionService.autoSelectTherexPurpose(manualNerve);
-    const movementQuality = SelectionService.autoSelectMovementQuality(therexPurpose);
-    const movementTypes = SelectionService.autoSelectMovementTypes(movementQuality);
-    const movementTasks = SelectionService.autoSelectMovementTasks(movementTypes);
-    const cues = SelectionService.autoSelectCues(movementTasks);
-    const results = SelectionService.autoSelectResults(cues);
-
+    // const bodyPart = SelectionService.autoSelectBodyPart();
+    // const bodyCategory = SelectionService.autoSelectBodyCategory(bodyPart);
+    // const bodySpecific = SelectionService.autoSelectBodySpecific(bodyCategory);
+    // const restrictions = SelectionService.autoSelectRestrictions(bodySpecific);
+    // const manualJoint = SelectionService.autoSelectManualJointActions(restrictions);
+    // const manualMuscle = SelectionService.autoSelectManualMuscleActions(manualJoint);
+    // const manualNerve = SelectionService.autoSelectManualNerveActions(manualMuscle);
+    // const therexPurpose = SelectionService.autoSelectTherexPurpose(manualNerve);
+    // const movementQuality = SelectionService.autoSelectMovementQuality(therexPurpose);
+    // const movementTypes = SelectionService.autoSelectMovementTypes(movementQuality);
+    // const movementTasks = SelectionService.autoSelectMovementTasks(movementTypes);
+    // const cues = SelectionService.autoSelectCues(movementTasks);
+    // const results = SelectionService.autoSelectResults(cues);
+    const results = SelectionService.autoSelectMain();
     const total = { ...results };
 
     dispatch({
