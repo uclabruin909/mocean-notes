@@ -34,7 +34,6 @@ const NotesSecondaryHeader = () => {
   const selectedBodyPart = useSelector((state) => state.selectedBodyPart);
   const selectedBodyCategory = useSelector((state) => state.selectedBodyCategory);
   const selectedBodySpecific = useSelector((state) => state.selectedBodySpecific);
-  const isBodyPartSelectionComplete = useSelector((state) => state.isBodyPartSelectionComplete);
 
   // Event Handlers
   const onBodyPartSelect = (evt) => {
@@ -118,7 +117,6 @@ const NotesSecondaryHeader = () => {
   console.log('selectedBodyPart:', selectedBodyPart);
   console.log('selectedBodyCategory:', selectedBodyCategory);
   console.log('selectedBodySpecific:', selectedBodySpecific);
-  console.log('isBodyPartSelectionComplete:', isBodyPartSelectionComplete);
 
   // Render helper methods
   const getSelectClassName = (active = false) => {
@@ -128,19 +126,7 @@ const NotesSecondaryHeader = () => {
   return (
     <div className="notes-secondary-header flex-grow-1">
       <CRow className="justify-content-between align-items-center d-sm-flex">
-        <CCol sm={4} className="d-sm-flex align-items-center gap-2">
-          {/* <span>
-            <CIcon
-              className={isBodyPartSelectionComplete ? 'text-success' : 'text-failure'}
-              icon={cilCheckCircle}
-              aria-hidden
-              height={14}
-            ></CIcon>
-          </span> */}
-          {/* <CBadge color={isBodyPartSelectionComplete ? 'success' : 'light'} shape="rounded-pill">
-            OK
-          </CBadge> */}
-
+        <CCol md={4} className="d-sm-flex align-items-center gap-2">
           {/* BodyParts Select Dropdown */}
           <CCard className="flex-grow-1">
             <CInputGroup>
@@ -161,7 +147,7 @@ const NotesSecondaryHeader = () => {
             </CInputGroup>
           </CCard>
         </CCol>
-        <CCol sm={4}>
+        <CCol md={4}>
           {/* Body Category Select Dropdown */}
           <CCard>
             <CInputGroup>
@@ -183,7 +169,7 @@ const NotesSecondaryHeader = () => {
             </CInputGroup>
           </CCard>
         </CCol>
-        <CCol sm={4}>
+        <CCol md={4}>
           {/* Body Specific Select Dropdown */}
           <CCard>
             <CInputGroup>

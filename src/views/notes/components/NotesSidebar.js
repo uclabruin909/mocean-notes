@@ -10,11 +10,11 @@ import {
   CImage,
   CNavTitle,
   CNavItem,
-  CNavGroup,
+  CTooltip,
   CBadge,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilSpeedometer, cilMediaRecord } from '@coreui/icons';
+import { cilPlus } from '@coreui/icons';
 import { deepEqual } from 'src/views/notes/components/sections/utils';
 import { UPDATE_COMPLETION_STATUS } from 'src/constants/actions';
 import SelectionService from 'src/services/selectionService';
@@ -99,7 +99,12 @@ const NotesSidebar = () => {
     return !!isComplete ? (
       <CBadge color="success ms-auto">Done</CBadge>
     ) : (
-      <CBadge color="warning ms-auto">!</CBadge>
+      <CTooltip
+        content="All of the required selections have not been completed in this section."
+        placement="right"
+      >
+        <CBadge color="warning ms-auto">!</CBadge>
+      </CTooltip>
     );
   };
 
@@ -133,48 +138,48 @@ const NotesSidebar = () => {
         <CImage align="center" src={logoPath} fluid width={200} />
       </CSidebarBrand>
       <CSidebarNav>
-        <CNavTitle>Progress </CNavTitle>
+        <CNavTitle>Selection Progress </CNavTitle>
         <CNavItem href="#">
-          {<CIcon customClassName="nav-icon" size="sm" icon={cilMediaRecord} />}
+          {<CIcon customClassName="nav-icon" size="sm" icon={cilPlus} />}
           Body Part
           {renderStatusBadge(isBodyPartComplete)}
         </CNavItem>
         <CNavItem href="#">
-          {<CIcon customClassName="nav-icon" size="sm" icon={cilMediaRecord} />}
+          {<CIcon customClassName="nav-icon" size="sm" icon={cilPlus} />}
           Body Category
           {renderStatusBadge(isBodyCategoryComplete)}
         </CNavItem>
         <CNavItem href="#">
-          {<CIcon customClassName="nav-icon" size="sm" icon={cilMediaRecord} />}
+          {<CIcon customClassName="nav-icon" size="sm" icon={cilPlus} />}
           Body Specific
           {renderStatusBadge(isBodySpecificComplete)}
         </CNavItem>
         <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 1)}>
-          {<CIcon customClassName="nav-icon" size="sm" icon={cilMediaRecord} />}
+          {<CIcon customClassName="nav-icon" size="sm" icon={cilPlus} />}
           Restriction
           {renderStatusBadge(isRestrictionsComplete)}
         </CNavItem>
         <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 2)}>
-          <CIcon customClassName="nav-icon" icon={cilMediaRecord} />
+          <CIcon customClassName="nav-icon" icon={cilPlus} />
           Manual Actions
           {renderStatusBadge(
             isManualJointComplete && isManualMuscleComplete && isManualNerveComplete,
           )}
         </CNavItem>
         <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 3)}>
-          <CIcon customClassName="nav-icon" icon={cilMediaRecord} />
+          <CIcon customClassName="nav-icon" icon={cilPlus} />
           Therex
           {renderStatusBadge(isTherexComplete)}
         </CNavItem>
         <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 4)}>
-          <CIcon customClassName="nav-icon" icon={cilMediaRecord} />
+          <CIcon customClassName="nav-icon" icon={cilPlus} />
           Movement
           {renderStatusBadge(
             isMovementQualityComplete && isMovementTypesComplete && isMovementTasksComplete,
           )}
         </CNavItem>
         <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 5)}>
-          <CIcon customClassName="nav-icon" icon={cilMediaRecord} />
+          <CIcon customClassName="nav-icon" icon={cilPlus} />
           Cue & Result
           {renderStatusBadge(isCuesComplete && isResultComplete)}
         </CNavItem>

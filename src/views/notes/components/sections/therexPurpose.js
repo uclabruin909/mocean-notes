@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  CBadge,
   CCallout,
   CCard,
   CCardBody,
@@ -15,7 +14,7 @@ import {
 } from '@coreui/react';
 
 import { UPDATE_THEREX_PURPOSE_SELECTION } from 'src/constants/actions';
-import { getTherexPuposeConfig, getTherexPuposeSelectionRange, standardizeWord } from './utils';
+import { getTherexPuposeConfig, getTherexPuposeSelectionRange } from './utils';
 import './therexPurpose.scss';
 
 // therex purpose configs values

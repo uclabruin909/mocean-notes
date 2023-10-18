@@ -6,16 +6,24 @@ import {
   CHeaderDivider,
   CHeaderNav,
   CHeaderToggler,
-  CNavLink,
+  CTooltip,
   CNavItem,
   CButton,
   CImage,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilMenu, cilNotes, cilPenAlt } from '@coreui/icons';
+import {
+  cilMenu,
+  cilNotes,
+  cilPenAlt,
+  cilDescription,
+  cilSync,
+  cilPlaylistAdd,
+} from '@coreui/icons';
 
 import NotesService from 'src/services/notesService';
 import SelectionService from 'src/services/selectionService';
+import ModalService from 'src/services/modalService';
 import { NotesSecondaryHeader } from './index';
 import logoPath from 'src/assets/images/mocean_logo.png';
 import * as ACTIONS from 'src/constants/actions';
@@ -34,6 +42,23 @@ const NotesHeader = () => {
     dispatch({
       type: ACTIONS.TOGGLE_OFFCANVAS_VISIBILITY,
     });
+  };
+
+  const triggerAutoSelectModal = () => {
+    const modalOptions = {
+      isVisible: true,
+      title: 'Auto-select confirmation',
+      bodyText:
+        'You have selected to auto-select the rest of the selections. This means the app will complete the remaining sections using random selection based on your current selections. \n\n Are you sure you want to continue?',
+      primaryBtnText: 'Continue',
+      primaryBtnCb: () => {
+        SelectionService.autoSelectMain(true);
+      },
+      secondaryBtnText: 'Cancel',
+      secondaryBtnCb: undefined,
+    };
+
+    ModalService.showModal(modalOptions);
   };
 
   const testNotesService = () => {
@@ -94,25 +119,47 @@ const NotesHeader = () => {
 
         <CHeaderNav className="app-header-button-group gap-2">
           <CNavItem>
-            <CButton
-              color="warning"
-              variant="outline"
-              className="app-filter-reset-btn d-flex align-items-center gap-2"
-              onClick={resetBodySelection}
-            >
-              <strong>Reset Selections</strong>
-            </CButton>
+            <CTooltip content="Reset all of the current selections" placement="bottom">
+              <CButton
+                variant="outline"
+                color="primary"
+                className="app-filter-reset-btn d-flex align-items-center"
+                onClick={resetBodySelection}
+              >
+                <CIcon icon={cilSync} size="lg" />
+              </CButton>
+            </CTooltip>
           </CNavItem>
           <CNavItem>
-            <CButton
-              onClick={toggleOffScreenCanvasVisibility}
-              color="primary"
-              variant="outline"
-              className="app-editor-btn d-flex align-items-center gap-2"
+            <CTooltip
+              content="Will open the notes editor section.  Newly generated notes will be applied to the text area."
+              placement="bottom"
             >
-              <strong>Note Editor</strong>
-              <CIcon icon={cilPenAlt} size="lg" />
-            </CButton>
+              <CButton
+                onClick={toggleOffScreenCanvasVisibility}
+                color="primary"
+                variant="outline"
+                className="app-editor-btn d-flex align-items-center"
+              >
+                <CIcon icon={cilPenAlt} size="lg" />
+              </CButton>
+            </CTooltip>
+          </CNavItem>
+          <CNavItem>
+            <CTooltip
+              content="Auto-select the any remaining/incomplete sections based on your current selections.  "
+              placement="bottom"
+            >
+              <CButton
+                onClick={triggerAutoSelectModal}
+                color="primary"
+                variant="outline"
+                className="app-auto-select-btn d-flex align-items-center gap-2"
+              >
+                <strong>Auto-Select</strong>
+                <CIcon icon={cilPlaylistAdd} size="lg" />
+              </CButton>
+            </CTooltip>
           </CNavItem>
           <CNavItem>
             <CButton
@@ -122,7 +169,7 @@ const NotesHeader = () => {
               className="app-note-generate-btn d-flex align-items-center gap-2"
             >
               <strong>Generate Note</strong>
-              <CIcon icon={cilNotes} size="lg" />
+              <CIcon icon={cilDescription} size="lg" />
             </CButton>
           </CNavItem>
         </CHeaderNav>

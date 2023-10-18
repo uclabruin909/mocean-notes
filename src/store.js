@@ -23,6 +23,24 @@ const collateralStateUpdate = (oldState, newState) => {
   return collateralState;
 };
 
+const getSelectionCompletedFromCompletionStatus = (completionStatusObj) => {
+  return !!(
+    completionStatusObj.bodyPart &&
+    completionStatusObj.bodyCategory &&
+    completionStatusObj.bodySpecific &&
+    completionStatusObj.restrictions &&
+    completionStatusObj.manualJoint &&
+    completionStatusObj.manualMuscle &&
+    completionStatusObj.manualNerve &&
+    completionStatusObj.therex &&
+    completionStatusObj.movementQuality &&
+    completionStatusObj.movementTypes &&
+    completionStatusObj.movementTasks &&
+    completionStatusObj.cues &&
+    completionStatusObj.result
+  );
+};
+
 const defaultModalState = {
   isVisible: false,
   title: '',
@@ -50,6 +68,7 @@ export const defaultCompletionStatus = {
 };
 
 const initialState = {
+  isSelectionCompleted: false,
   isOffCanvasVisible: false,
   lastGeneratedNoteTimestamp: undefined,
   sidebarShow: true,
@@ -87,6 +106,88 @@ const changeState = (state = initialState, { type, ...rest }) => {
   switch (type) {
     case 'set': {
       return { ...state, ...rest };
+    }
+    case ACTIONS.AUTO_SELECTION_COMPLETE: {
+      const {
+        selectedBodyPart,
+        selectedBodyCategory,
+        selectedBodySpecific,
+        selectedRestriction,
+        selectedManualJoint,
+        selectedManualMuscle,
+        selectedManualNerve,
+        selectedMovementQuality,
+        selectedMovementType,
+        selectedMovementTasks,
+        selectedTherexPurposes,
+        selectedCues,
+        selectedResults,
+      } = rest;
+
+      const newState = {
+        ...state,
+        ...(!!selectedBodyPart ? { selectedBodyPart } : {}),
+        ...(!!selectedBodyCategory ? { selectedBodyCategory } : {}),
+        ...(!!selectedBodySpecific ? { selectedBodySpecific } : {}),
+        ...(!!selectedRestriction ? { selectedRestriction } : {}),
+        ...(!!selectedManualJoint ? { selectedManualJoint } : {}),
+        ...(!!selectedManualMuscle ? { selectedManualMuscle } : {}),
+        ...(!!selectedManualNerve ? { selectedManualNerve } : {}),
+        ...(!!selectedMovementQuality ? { selectedMovementQuality } : {}),
+        ...(!!selectedMovementType ? { selectedMovementType } : {}),
+        ...(!!selectedMovementTasks ? { selectedMovementTasks } : {}),
+        ...(!!selectedTherexPurposes ? { selectedTherexPurposes } : {}),
+        ...(!!selectedCues ? { selectedCues } : {}),
+        ...(!!selectedResults ? { selectedResults } : {}),
+      };
+
+      return newState;
+    }
+    case ACTIONS.UPDATE_COMPLETION_STATUS: {
+      const {
+        bodyPart,
+        bodyCategory,
+        bodySpecific,
+        restrictions,
+        manualJoint,
+        manualMuscle,
+        manualNerve,
+        therex,
+        movementQuality,
+        movementTypes,
+        movementTasks,
+        cues,
+        result,
+      } = rest;
+
+      const newCompletionStatus = {
+        ...state.completionStatus,
+        ...(!!bodyPart ? { bodyPart } : {}),
+        ...(!!bodyCategory ? { bodyCategory } : {}),
+        ...(!!bodySpecific ? { bodySpecific } : {}),
+        ...(!!restrictions ? { restrictions } : {}),
+        ...(!!manualJoint ? { manualJoint } : {}),
+        ...(!!manualMuscle ? { manualMuscle } : {}),
+        ...(!!manualNerve ? { manualNerve } : {}),
+        ...(!!therex ? { therex } : {}),
+        ...(!!movementQuality ? { movementQuality } : {}),
+        ...(!!movementTypes ? { movementTypes } : {}),
+        ...(!!movementTasks ? { movementTasks } : {}),
+        ...(!!cues ? { cues } : {}),
+        ...(!!result ? { result } : {}),
+      };
+
+      const isSelectionCompleted = getSelectionCompletedFromCompletionStatus(newCompletionStatus);
+
+      const newState = {
+        ...state,
+        completionStatus: {
+          ...newCompletionStatus,
+        },
+        ...(isSelectionCompleted ? { isSelectionCompleted } : {}),
+      };
+
+      return newState;
     }
     case ACTIONS.NOTES_HAVE_BEEN_GENERATED: {
       const { timestamp } = rest;

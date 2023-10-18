@@ -6,34 +6,48 @@
 
 .app-header-button-group  {
   .app-filter-reset-btn {
-    background: #ffffff;
-    border-color: #625f5f;
-    color: #625f5f;
+    border-width: 1.5px;
+    // background: #ffffff;
+    // border-color: #625f5f;
+    // color: #625f5f;
 
-    &:hover {
-      background: #625f5f;
-      color: #ffffff;
-    }
+    // &:hover {
+    //   background: #625f5f;
+    //   color: #ffffff;
+    // }
   }
 
-  .app-editor-btn {
-    background: #529eea;
-    border-color: #529eea;
+  .app-auto-select-btn {
+    background: #2b88e5;
+    border-color: #2b88e5;
     color: white;
     &:hover {
-      background: #2b88e5;
+      background: #1e7ede;
       border-color: #2b88e5;
     }
   }
 
   .app-note-generate-btn {
-    background: #57c7bd;
-    border-color: #57c7bd;
+    background: #44aaa0;
+    border-color: #44aaa0;
     color: white;
 
     &:hover {
       background: #2bb6aa;
       border-color: #2bb6aa;
     }
+  }
+
+  .app-editor-btn {
+    border-width: 1.5px;
+    margin-right: 1.2rem;
+    // background: #beb385;
+    // border-color: #beb385;
+    // color: white;
+    
+    // &:hover {
+    //   background: #b5a66b;
+    //   border-color: #b5a66b;      
+    // }
   }
 }

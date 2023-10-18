@@ -10,15 +10,22 @@ import {
 } from '@coreui/react';
 
 import { UPDATE_MODAL_VISIBILITY } from 'src/constants/actions';
+import './AppModal.scss';
 
 const AppModal = () => {
   const dispatch = useDispatch();
 
   const updateModalVisibility = (visibility) => {
-    dispatch({
-      type: UPDATE_MODAL_VISIBILITY,
-      visibility,
-    });
+    if (visibility === isVisible) {
+      return;
+    }
+
+    setTimeout(() => {
+      dispatch({
+        type: UPDATE_MODAL_VISIBILITY,
+        visibility,
+      });
+    }, 1000);
   };
 
   const hideModal = () => {
@@ -33,17 +40,35 @@ const AppModal = () => {
   const secondaryBtnText = useSelector((state) => state.modalState.secondaryBtnText);
   const secondaryBtnCb = useSelector((state) => state.modalState.secondaryBtnCb);
 
-  const primaryBtnOnClick = primaryBtnCb || hideModal;
-  const secondaryBtnOnClick = secondaryBtnCb || hideModal;
   const shouldRenderSecondaryBtn = secondaryBtnText && !!secondaryBtnText.length;
 
+  const primaryBtnOnClick = () => {
+    if (primaryBtnCb) {
+      primaryBtnCb();
+    }
+
+    hideModal();
+  };
+  const secondaryBtnOnClick = () => {
+    if (secondaryBtnCb) {
+      secondaryBtnCb();
+    }
+
+    hideModal();
+  };
+
   return (
-    <CModal alignment="center" visible={isVisible} onClose={hideModal}>
-      <CModalHeader>
-        <CModalTitle>{title}</CModalTitle>
+    <CModal
+      alignment="center"
+      visible={isVisible}
+      onClose={hideModal}
+      className="app-modal-wrapper"
+    >
+      <CModalHeader className="modal-header">
+        <CModalTitle className="modal-title">{title}</CModalTitle>
       </CModalHeader>
-      <CModalBody>{bodyText}</CModalBody>
-      <CModalFooter>
+      <CModalBody className="modal-body">{bodyText}</CModalBody>
+      <CModalFooter className="modal-footer">
         {shouldRenderSecondaryBtn && (
           <CButton color="secondary" onClick={secondaryBtnOnClick}>
             {secondaryBtnText}
