@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  CBadge,
   CCard,
   CCardBody,
   CCardHeader,
@@ -39,9 +38,6 @@ const CueAndResultSection = () => {
   const selectedResults = useSelector((state) => state.selectedResults);
 
   const [isVisible, setVisible] = useState(true);
-  const [isCompleted, setCompleted] = useState(false);
-  const [isCuesCompleted, setCuesCompleted] = useState(false);
-  const [isResultsCompleted, setResultsCompleted] = useState(false);
 
   const updateSelectedCuesActions = useCallback(
     (newSelectedCues = []) => {
@@ -92,26 +88,6 @@ const CueAndResultSection = () => {
 
     updateSelectedResultsActions(selectedResultItems);
   };
-
-  // Cues Selection logic
-  useEffect(() => {
-    console.log('selectedCues has updated:', selectedCues);
-    const isCompleted = selectedCues.length >= cueMinSelection;
-
-    setCuesCompleted(isCompleted);
-  }, [selectedCues]);
-
-  useEffect(() => {
-    console.log('selectedResults has updated:', selectedResults);
-    const isCompleted = selectedResults.length >= resultMinSelection;
-
-    setResultsCompleted(isCompleted);
-  }, [selectedResults]);
-
-  useEffect(() => {
-    const isSelectionCompleted = !!isCuesCompleted && !!isResultsCompleted;
-    setCompleted(isSelectionCompleted);
-  }, [isCuesCompleted, isResultsCompleted]);
 
   // helper function to render cue card
   const renderCueCard = () => {
@@ -183,12 +159,6 @@ const CueAndResultSection = () => {
                   <strong>{resultMinSelection}</strong> result option.
                 </span>
               </div>
-
-              {isCompleted ? (
-                <CBadge color="success">COMPLETED</CBadge>
-              ) : (
-                <CBadge color="warning">INCOMPLETE</CBadge>
-              )}
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={isVisible}>

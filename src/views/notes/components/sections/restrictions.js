@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  CButton,
   CCard,
   CCardBody,
   CCardHeader,
-  CBadge,
   CCol,
   CCollapse,
   CRow,
@@ -13,8 +11,6 @@ import {
   CListGroupItem,
   CFormCheck,
 } from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-import { cilCheckCircle, cilChevronBottom } from '@coreui/icons';
 
 import { UPDATE_RESTRICTION_SELECTION } from '../../../../constants/actions';
 import {
