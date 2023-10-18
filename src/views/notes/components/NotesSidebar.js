@@ -1,16 +1,23 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler, CImage } from '@coreui/react';
+import {
+  CSidebar,
+  CSidebarBrand,
+  CSidebarNav,
+  CSidebarToggler,
+  CImage,
+  CNavTitle,
+  CNavItem,
+  CNavGroup,
+  CBadge,
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import { cilSpeedometer, cilCircle } from '@coreui/icons';
 
-import { NotesSidebarNav } from './NotesSidebarNav';
 import logoPath from 'src/assets/images/mocean_logo.png';
 
-import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
-
 // sidebar nav config
-import navigation from './_nav';
 
 const NotesSidebar = () => {
   const dispatch = useDispatch();
@@ -30,9 +37,16 @@ const NotesSidebar = () => {
         <CImage align="center" src={logoPath} fluid width={200} />
       </CSidebarBrand>
       <CSidebarNav>
-        <SimpleBar>
-          <NotesSidebarNav items={navigation} />
-        </SimpleBar>
+        <CNavTitle>Progress</CNavTitle>
+        <CNavItem href="#">
+          <CIcon customClassName="nav-icon" icon={cilCircle} />
+          Nav item
+        </CNavItem>
+        <CNavItem href="#">
+          <CIcon customClassName="nav-icon" icon={cilSpeedometer} />
+          With badge
+          <CBadge color="success ms-auto">NEW</CBadge>
+        </CNavItem>
       </CSidebarNav>
       <CSidebarToggler
         className="d-none d-lg-flex"
