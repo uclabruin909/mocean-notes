@@ -7,7 +7,8 @@
     .body-select-dropdown {
         font-weight: 500;
 
-        &.active {
+        &.active, &:hover {
+            cursor: pointer;
             border-color: #998fed;
             outline: 0;
             box-shadow: 0 0 0 0.2rem rgba(50, 31, 219, 0.25);

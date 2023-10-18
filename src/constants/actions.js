@@ -33,3 +33,6 @@ export const UPDATE_MODAL_STATE = 'UPDATE_MODAL_STATE';
 
 // auto-complete actions
 export const AUTO_SELECTION_COMPLETE = 'AUTO_SELECTION_COMPLETE';
+
+// completion status actions
+export const UPDATE_COMPLETION_STATUS = 'UPDATE_COMPLETION_STATUS';

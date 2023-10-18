@@ -14,7 +14,7 @@ import {
   CFormCheck,
 } from '@coreui/react';
 
-import { UPDATE_THEREX_PURPOSE_SELECTION } from '../../../../constants/actions';
+import { UPDATE_THEREX_PURPOSE_SELECTION } from 'src/constants/actions';
 import { getTherexPuposeConfig, getTherexPuposeSelectionRange, standardizeWord } from './utils';
 import './therexPurpose.scss';
 

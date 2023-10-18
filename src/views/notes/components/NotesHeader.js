@@ -83,14 +83,14 @@ const NotesHeader = () => {
         >
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
-        <CHeaderNav className="header-brand-block d-none d-md-flex me-auto">
+        {/* <CHeaderNav className="header-brand-block d-none d-md-flex me-auto">
           <CNavItem>
             <CImage className="brand-image" align="center" src={logoPath} fluid width={140} />
             <CNavLink className="brand-text" style={{ fontWeight: '700' }}>
               Notes App
             </CNavLink>
           </CNavItem>
-        </CHeaderNav>
+        </CHeaderNav> */}
 
         <CHeaderNav className="app-header-button-group gap-2">
           <CNavItem>

@@ -33,7 +33,7 @@ const defaultModalState = {
   secondaryBtnCb: undefined,
 };
 
-const defaultCompletionStatus = {
+export const defaultCompletionStatus = {
   bodyPart: false,
   bodyCategory: false,
   bodySpecific: false,
@@ -52,9 +52,8 @@ const defaultCompletionStatus = {
 const initialState = {
   isOffCanvasVisible: false,
   lastGeneratedNoteTimestamp: undefined,
-  sidebarShow: false,
-  completionPercentage: 0,
-  isBodyPartSelectionComplete: false,
+  sidebarShow: true,
+  activeTabIndex: false,
 
   // body selection begins
   selectedBodyPart: undefined,
