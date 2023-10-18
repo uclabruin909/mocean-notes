@@ -36,3 +36,6 @@ export const AUTO_SELECTION_COMPLETE = 'AUTO_SELECTION_COMPLETE';
 
 // completion status actions
 export const UPDATE_COMPLETION_STATUS = 'UPDATE_COMPLETION_STATUS';
+
+// tab nav actions
+export const UPDATE_ACTIVE_NOTES_TAB = 'UPDATE_ACTIVE_NOTES_TAB';

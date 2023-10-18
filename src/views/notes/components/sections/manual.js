@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  CBadge,
   CCard,
   CCardBody,
   CCardHeader,
@@ -43,10 +42,6 @@ const ManualSection = () => {
   const selectedManualNerve = useSelector((state) => state.selectedManualNerve);
 
   const [isVisible, setVisible] = useState(true);
-  const [isCompleted, setManualSelectionCompleted] = useState(false);
-  const [isManualJointCompleted, setManualJointCompleted] = useState(false);
-  const [isManualMuscleCompleted, setManualMuscleCompleted] = useState(false);
-  const [isManualNerveCompleted, setManualNerveCompleted] = useState(false);
 
   const updateSelectedManualActions = useCallback(
     (newSelectedManualActions = [], statePropName) => {
@@ -112,34 +107,6 @@ const ManualSection = () => {
     updateSelectedManualActions(selectedManualActions, stateProp);
   };
 
-  // Manual Selection logic
-  useEffect(() => {
-    console.log('selectedManualJoint has updated:', selectedManualJoint);
-    const isCompleted = selectedManualJoint.length >= manualJointMinSelection;
-
-    setManualJointCompleted(isCompleted);
-  }, [selectedManualJoint]);
-
-  useEffect(() => {
-    console.log('selectedManualMuscle has updated:', selectedManualMuscle);
-    const isCompleted = selectedManualMuscle.length >= manualMuscleMinSelection;
-
-    setManualMuscleCompleted(isCompleted);
-  }, [selectedManualMuscle]);
-
-  useEffect(() => {
-    console.log('selectedManualNerve has updated:', selectedManualNerve);
-    const isCompleted = selectedManualNerve.length >= manualNerveMinSelection;
-
-    setManualNerveCompleted(isCompleted);
-  }, [selectedManualNerve]);
-
-  useEffect(() => {
-    const isSelectionCompleted =
-      !!isManualJointCompleted && !!isManualMuscleCompleted && !!isManualNerveCompleted;
-    setManualSelectionCompleted(isSelectionCompleted);
-  }, [isManualJointCompleted, isManualMuscleCompleted, isManualNerveCompleted]);
-
   // helper render function to render manual actions based on type
   const renderManualActions = (manualType) => {
     // default to manualJoint
@@ -196,17 +163,11 @@ const ManualSection = () => {
             <CCardHeader className="section-card-header d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center gap-2">
                 <span>
-                  Select <strong>{manualJointMinSelection}</strong> joint,{' '}
-                  <strong>{manualMuscleMinSelection}</strong> muscle and{' '}
+                  Select <strong>{manualJointMinSelection}</strong> joint manual action,{' '}
+                  <strong>{manualMuscleMinSelection}</strong> muscle manual action and{' '}
                   <strong>{manualNerveMinSelection}</strong> nerve manual action.
                 </span>
               </div>
-
-              {isCompleted ? (
-                <CBadge color="success">COMPLETED</CBadge>
-              ) : (
-                <CBadge color="warning">INCOMPLETE</CBadge>
-              )}
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={isVisible}>

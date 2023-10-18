@@ -45,10 +45,6 @@ const MovementSection = () => {
 
   const [isVisible, setVisible] = useState(true);
   const [currentMovementConfig, setCurrentMovementConfig] = useState({});
-  const [isMovementQualityCompleted, setMovementQualityCompleted] = useState(false);
-  const [isMovementTypeCompleted, setMovementTypeCompleted] = useState(false);
-  const [isMovementTasksCompleted, setMovementTasksCompleted] = useState(false);
-  const [isCompleted, setMovementSelectionCompleted] = useState(false);
 
   const updateMovementSelections = useCallback(
     (newMovementSelections = [], statePropName) => {
@@ -67,34 +63,6 @@ const MovementSection = () => {
     console.log('updating to movement config:', newMovementConfig);
     setCurrentMovementConfig(newMovementConfig);
   }, [selectedBodyPart]);
-
-  // Movement Selection logic
-  useEffect(() => {
-    console.log('selectedMovementQuality has updated:', selectedMovementQuality);
-    const isCompleted = selectedMovementQuality.length >= movementQualityMinSelection;
-
-    setMovementQualityCompleted(isCompleted);
-  }, [selectedMovementQuality]);
-
-  useEffect(() => {
-    console.log('selectedMovementType has updated:', selectedMovementType);
-    const isCompleted = selectedMovementType.length >= movementTypeMinSelection;
-
-    setMovementTypeCompleted(isCompleted);
-  }, [selectedMovementType]);
-
-  useEffect(() => {
-    console.log('selectedMovementTasks has updated:', selectedMovementTasks);
-    const isCompleted = selectedMovementTasks.length >= movementTasksMinSelection;
-
-    setMovementTasksCompleted(isCompleted);
-  }, [selectedMovementTasks]);
-
-  useEffect(() => {
-    const isSelectionCompleted =
-      !!isMovementQualityCompleted && !!isMovementTypeCompleted && !!isMovementTasksCompleted;
-    setMovementSelectionCompleted(isSelectionCompleted);
-  }, [isMovementQualityCompleted, isMovementTypeCompleted, isMovementTasksCompleted]);
 
   const onMovementSelectHandler = (evt) => {
     let selectedMovementItems = [];
@@ -233,15 +201,11 @@ const MovementSection = () => {
                   Select <strong>{movementQualityMinSelection}</strong> movement quality,{' '}
                   <strong>{movementTypeMinSelection}</strong> movement type and at least{' '}
                   <strong>{movementTasksMinSelection}</strong> movement tasks (up to{' '}
-                  <strong>{movementTasksMaxSelection}</strong>).
+                  <strong>{movementTasksMaxSelection}</strong>). The available options will be
+                  dependent on which <strong>body part</strong> that was selected om in the above
+                  dropdown.
                 </span>
               </div>
-
-              {isCompleted ? (
-                <CBadge color="success">COMPLETED</CBadge>
-              ) : (
-                <CBadge color="warning">INCOMPLETE</CBadge>
-              )}
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={isVisible}>

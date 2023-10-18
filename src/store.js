@@ -53,7 +53,7 @@ const initialState = {
   isOffCanvasVisible: false,
   lastGeneratedNoteTimestamp: undefined,
   sidebarShow: true,
-  activeTabIndex: false,
+  activeTab: 1,
 
   // body selection begins
   selectedBodyPart: undefined,
@@ -155,12 +155,13 @@ const changeState = (state = initialState, { type, ...rest }) => {
       return { ...newState, ...collateralState };
     }
     case ACTIONS.RESET_BODY_SELECTION: {
-      const { isOffCanvasVisible, lastGeneratedNoteTimestamp, sidebarShow } = state;
+      const { isOffCanvasVisible, lastGeneratedNoteTimestamp, sidebarShow, activeTab } = state;
       const newState = {
         ...initialState,
         isOffCanvasVisible,
         lastGeneratedNoteTimestamp,
         sidebarShow,
+        activeTab,
       };
 
       return newState;
@@ -224,6 +225,16 @@ const changeState = (state = initialState, { type, ...rest }) => {
       const newState = {
         ...state,
         ...(!!selectedResults ? { selectedResults } : {}),
+      };
+
+      return newState;
+    }
+    // change active tab
+    case ACTIONS.UPDATE_ACTIVE_NOTES_TAB: {
+      const { activeTab } = rest;
+      const newState = {
+        ...state,
+        activeTab: activeTab,
       };
 
       return newState;

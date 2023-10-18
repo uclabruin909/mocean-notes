@@ -1,4 +1,5 @@
 import store from 'src/store';
+import { UPDATE_ACTIVE_NOTES_TAB } from 'src/constants/actions';
 
 class StoreServiceClass {
   getState() {
@@ -7,6 +8,10 @@ class StoreServiceClass {
 
   dispatchAction(actionObj) {
     store.dispatch(actionObj);
+  }
+
+  updateActiveNotesTab(tabNum) {
+    this.dispatchAction({ type: UPDATE_ACTIVE_NOTES_TAB, activeTab: tabNum });
   }
 
   getSelectedBodyParts() {

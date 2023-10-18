@@ -36,7 +36,6 @@ const Restrictions = () => {
   const selectedRestriction = useSelector((state) => state.selectedRestriction);
 
   const [isVisible, setVisible] = useState(true);
-  const [isCompleted, setCompleted] = useState(selectedRestriction.length >= minSelection);
 
   const updateSelectedRestriction = useCallback(
     (newSelectedRestriction = []) => {
@@ -61,12 +60,6 @@ const Restrictions = () => {
 
     updateSelectedRestriction(selectionList);
   };
-
-  useEffect(() => {
-    console.log('selectedRestriction has updated:', selectedRestriction);
-    const isCompleted = selectedRestriction.length >= minSelection;
-    setCompleted(isCompleted);
-  }, [selectedRestriction]);
 
   // useEffect(() => {
   //   updateSelectedRestriction([]);
@@ -117,17 +110,11 @@ const Restrictions = () => {
             <CCardHeader className="section-card-header d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center gap-2">
                 <span>
-                  Select <strong>{minSelection}</strong> restriction from the body category selected
-                  in the above dropdown (joint, muscle, nerve, etc). All other categories will be
-                  disabled.
+                  Select <strong>{minSelection}</strong> restriction from the{' '}
+                  <strong>body category</strong> that was selected above. The reset of the
+                  categories will be disabled.
                 </span>
               </div>
-
-              {isCompleted ? (
-                <CBadge color="success">COMPLETED</CBadge>
-              ) : (
-                <CBadge color="warning">INCOMPLETE</CBadge>
-              )}
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={isVisible}>

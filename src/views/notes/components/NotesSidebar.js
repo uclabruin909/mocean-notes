@@ -17,10 +17,11 @@ import CIcon from '@coreui/icons-react';
 import { cilSpeedometer, cilMediaRecord } from '@coreui/icons';
 import { deepEqual } from 'src/views/notes/components/sections/utils';
 import { UPDATE_COMPLETION_STATUS } from 'src/constants/actions';
+import SelectionService from 'src/services/selectionService';
+import StoreService from 'src/services/storeService';
 
 import logoPath from 'src/assets/images/mocean_logo.png';
 import './NotesSidebar.scss';
-import SelectionService from 'src/services/selectionService';
 
 // sidebar nav config
 
@@ -87,6 +88,13 @@ const NotesSidebar = () => {
     }
   }, []);
 
+  const setActiveNotesTab = useCallback((evt, newTabNum) => {
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    StoreService.updateActiveNotesTab(newTabNum);
+  }, []);
+
   const renderStatusBadge = (isComplete) => {
     return !!isComplete ? (
       <CBadge color="success ms-auto">Done</CBadge>
@@ -141,31 +149,31 @@ const NotesSidebar = () => {
           Body Specific
           {renderStatusBadge(isBodySpecificComplete)}
         </CNavItem>
-        <CNavItem href="#">
+        <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 1)}>
           {<CIcon customClassName="nav-icon" size="sm" icon={cilMediaRecord} />}
           Restriction
           {renderStatusBadge(isRestrictionsComplete)}
         </CNavItem>
-        <CNavItem href="#">
+        <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 2)}>
           <CIcon customClassName="nav-icon" icon={cilMediaRecord} />
           Manual Actions
           {renderStatusBadge(
             isManualJointComplete && isManualMuscleComplete && isManualNerveComplete,
           )}
         </CNavItem>
-        <CNavItem href="#">
+        <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 3)}>
           <CIcon customClassName="nav-icon" icon={cilMediaRecord} />
           Therex
           {renderStatusBadge(isTherexComplete)}
         </CNavItem>
-        <CNavItem href="#">
+        <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 4)}>
           <CIcon customClassName="nav-icon" icon={cilMediaRecord} />
           Movement
           {renderStatusBadge(
             isMovementQualityComplete && isMovementTypesComplete && isMovementTasksComplete,
           )}
         </CNavItem>
-        <CNavItem href="#">
+        <CNavItem href="#" onClick={(evt) => setActiveNotesTab(evt, 5)}>
           <CIcon customClassName="nav-icon" icon={cilMediaRecord} />
           Cue & Result
           {renderStatusBadge(isCuesComplete && isResultComplete)}

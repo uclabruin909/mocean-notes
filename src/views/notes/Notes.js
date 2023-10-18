@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { CContainer, CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react';
-
+import StoreService from 'src/services/storeService';
 import { NotesHeader, NotesSidebar } from './components/index';
 import OffScreen from './components/OffScreen';
 import AppModal from './components/AppModal';
@@ -12,67 +13,71 @@ import CueAndResultSection from './components/sections/cueAndResult';
 import './styles.scss';
 
 const Notes = () => {
-  const [activeTabKey, setActiveTabKey] = useState(1);
+  const activeTab = useSelector((state) => state.activeTab);
+
+  const setActiveTab = useCallback((newTabNum) => {
+    StoreService.updateActiveNotesTab(newTabNum);
+  }, []);
 
   return (
     <React.Fragment>
       <CNav variant="tabs" role="tablist" className="notes-section-nav">
         <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
-            active={activeTabKey === 1}
+            active={activeTab === 1}
             component="button"
             role="tab"
             aria-controls="restriction-tab-pane"
-            aria-selected={activeTabKey === 1}
-            onClick={() => setActiveTabKey(1)}
+            aria-selected={activeTab === 1}
+            onClick={() => setActiveTab(1)}
           >
             Restriction
           </CNavLink>
         </CNavItem>
         <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
-            active={activeTabKey === 2}
+            active={activeTab === 2}
             component="button"
             role="tab"
             aria-controls="manual-tab-pane"
-            aria-selected={activeTabKey === 2}
-            onClick={() => setActiveTabKey(2)}
+            aria-selected={activeTab === 2}
+            onClick={() => setActiveTab(2)}
           >
             Manual Actions
           </CNavLink>
         </CNavItem>
         <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
-            active={activeTabKey === 3}
+            active={activeTab === 3}
             component="button"
             role="tab"
             aria-controls="therex-tab-pane"
-            aria-selected={activeTabKey === 3}
-            onClick={() => setActiveTabKey(3)}
+            aria-selected={activeTab === 3}
+            onClick={() => setActiveTab(3)}
           >
             Therex Purpose
           </CNavLink>
         </CNavItem>
         <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
-            active={activeTabKey === 4}
+            active={activeTab === 4}
             component="button"
             role="tab"
             aria-controls="movement-tab-pane"
-            aria-selected={activeTabKey === 4}
-            onClick={() => setActiveTabKey(4)}
+            aria-selected={activeTab === 4}
+            onClick={() => setActiveTab(4)}
           >
             Movement
           </CNavLink>
         </CNavItem>
         <CNavItem role="presentation" className="section-nav-item">
           <CNavLink
-            active={activeTabKey === 5}
+            active={activeTab === 5}
             component="button"
             role="tab"
             aria-controls="cue-result-tab-pane"
-            aria-selected={activeTabKey === 5}
-            onClick={() => setActiveTabKey(5)}
+            aria-selected={activeTab === 5}
+            onClick={() => setActiveTab(5)}
           >
             Cue & Result
           </CNavLink>
@@ -80,31 +85,23 @@ const Notes = () => {
       </CNav>
       <CTabContent className="notes-content-wrapper">
         {/* RESTRICTION SECTION */}
-        <CTabPane
-          role="tabpanel"
-          aria-labelledby="restriction-tab-pane"
-          visible={activeTabKey === 1}
-        >
+        <CTabPane role="tabpanel" aria-labelledby="restriction-tab-pane" visible={activeTab === 1}>
           <Restrictions />
         </CTabPane>
         {/* MANUAL SECTION */}
-        <CTabPane role="tabpanel" aria-labelledby="manual-tab-pane" visible={activeTabKey === 2}>
+        <CTabPane role="tabpanel" aria-labelledby="manual-tab-pane" visible={activeTab === 2}>
           <ManualSection />
         </CTabPane>
         {/* THEREX SECTION */}
-        <CTabPane role="tabpanel" aria-labelledby="therex-tab-pane" visible={activeTabKey === 3}>
+        <CTabPane role="tabpanel" aria-labelledby="therex-tab-pane" visible={activeTab === 3}>
           <TherexPuposeSection />
         </CTabPane>
         {/* MOVEMENT SECTION */}
-        <CTabPane role="tabpanel" aria-labelledby="movement-tab-pane" visible={activeTabKey === 4}>
+        <CTabPane role="tabpanel" aria-labelledby="movement-tab-pane" visible={activeTab === 4}>
           <MovementSection />
         </CTabPane>
         {/* CUE & RESULT SECTION */}
-        <CTabPane
-          role="tabpanel"
-          aria-labelledby="cue-result-tab-pane"
-          visible={activeTabKey === 5}
-        >
+        <CTabPane role="tabpanel" aria-labelledby="cue-result-tab-pane" visible={activeTab === 5}>
           <CueAndResultSection />
         </CTabPane>
       </CTabContent>

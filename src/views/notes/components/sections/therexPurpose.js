@@ -31,7 +31,6 @@ const TherexPuposeSection = () => {
 
   const [isVisible, setVisible] = useState(true);
   const [therexPurposeOptions, setTherexPurposeOptions] = useState([]);
-  const [isCompleted, setTherexSelectionCompleted] = useState(false);
 
   const updateTherexPurposeSelections = useCallback(
     (newTherexPurposeSelections = []) => {
@@ -48,14 +47,6 @@ const TherexPuposeSection = () => {
     const therexPurposesByBodyPart = TherexConfig[selectedBodyPart] || [];
     setTherexPurposeOptions(therexPurposesByBodyPart);
   }, [selectedBodyPart]);
-
-  // Therex purpose selection logic
-  useEffect(() => {
-    console.log('selectedTherexPurposes has updated:', selectedTherexPurposes);
-    const isCompleted = selectedTherexPurposes.length >= therexMinSelection;
-
-    setTherexSelectionCompleted(isCompleted);
-  }, [selectedTherexPurposes]);
 
   const onTherexSelectHandler = (evt) => {
     let selectedTherexItems = [...selectedTherexPurposes];
@@ -118,17 +109,11 @@ const TherexPuposeSection = () => {
             <CCardHeader className="section-card-header d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center gap-2">
                 <span>
-                  Select at least <strong>{therexMinSelection}</strong> therex purpose (up to{' '}
-                  <strong>{therexMaxSelection}</strong>). These options are dependent on which body
-                  part that was selected from the dropdown.
+                  Select at least <strong>{therexMinSelection}</strong> therex purposes (up to{' '}
+                  <strong>{therexMaxSelection}</strong>). The available options will be dependent on
+                  which <strong>body part</strong> that was selected above.
                 </span>
               </div>
-
-              {isCompleted ? (
-                <CBadge color="success">COMPLETED</CBadge>
-              ) : (
-                <CBadge color="warning">INCOMPLETE</CBadge>
-              )}
             </CCardHeader>
             <CCardBody>
               <CCollapse visible={isVisible}>
