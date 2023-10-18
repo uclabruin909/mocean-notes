@@ -37,18 +37,6 @@ const NotesHeader = () => {
   };
 
   const testNotesService = () => {
-    // NotesService.getBodyPartText();
-    // NotesService.getManualText();
-    // NotesService.getTherexPurposeText();
-    // NotesService.getMovementText();
-    // NotesService.getCuesText();
-    // NotesService.getResultsText();
-    // console.log(NotesService.generateDailyNotesText());
-    console.log(
-      'SelectionService.constructCompletionStatusMap()',
-      SelectionService.constructCompletionStatusMap(),
-    );
-
     const bodyPart = SelectionService.autoSelectBodyPart();
     const bodyCategory = SelectionService.autoSelectBodyCategory(bodyPart);
     const bodySpecific = SelectionService.autoSelectBodySpecific(bodyCategory);
@@ -57,14 +45,33 @@ const NotesHeader = () => {
     const manualMuscle = SelectionService.autoSelectManualMuscleActions(manualJoint);
     const manualNerve = SelectionService.autoSelectManualNerveActions(manualMuscle);
     const therexPurpose = SelectionService.autoSelectTherexPurpose(manualNerve);
+    const movementQuality = SelectionService.autoSelectMovementQuality(therexPurpose);
+    const movementTypes = SelectionService.autoSelectMovementTypes(movementQuality);
+    const movementTasks = SelectionService.autoSelectMovementTasks(movementTypes);
+    const cues = SelectionService.autoSelectCues(movementTasks);
+    const results = SelectionService.autoSelectResults(cues);
 
-    const total = { ...therexPurpose };
+    const total = { ...results };
 
     dispatch({
       type: 'set',
       ...total,
     });
     console.log('total:', total);
+
+    setTimeout(() => {
+      console.log(
+        'SelectionService.constructCompletionStatusMap()',
+        SelectionService.constructCompletionStatusMap(),
+      );
+      NotesService.getBodyPartText();
+      NotesService.getManualText();
+      NotesService.getTherexPurposeText();
+      NotesService.getMovementText();
+      NotesService.getCuesText();
+      NotesService.getResultsText();
+      console.log(NotesService.generateDailyNotesText());
+    }, 1000);
   };
 
   return (

@@ -18,7 +18,7 @@ const selectionKeyMap = {
   movementQuality: 'selectedMovementQuality',
   movementTypes: 'selectedMovementType',
   movementTasks: 'selectedMovementTasks',
-  cue: 'selectedCues',
+  cues: 'selectedCues',
   result: 'selectedResults',
 };
 
@@ -36,7 +36,7 @@ class SelectionServiceClass {
       'movementQuality',
       'movementTypes',
       'movementTasks',
-      'cue',
+      'cues',
       'result',
     ];
   }
@@ -367,6 +367,262 @@ class SelectionServiceClass {
 
     const autoSelections = randomIndexes.map((index) => {
       return therexList[index];
+    });
+
+    baseSelectionState[selectionKey] = autoSelections;
+
+    return baseSelectionState;
+  }
+
+  autoSelectMovementQuality(stateOverride) {
+    const key = 'movementQuality';
+    const {
+      completed,
+      selection: selectionArray,
+      selectionKey,
+      remaining,
+    } = this.getCompletionStatusByKey(key);
+    const baseSelectionState = {
+      ...(!!stateOverride ? { ...stateOverride } : {}),
+    };
+
+    if (completed) {
+      baseSelectionState[selectionKey] = [...selectionArray];
+
+      return baseSelectionState;
+    }
+
+    // if not completed, get list of options.  based on current selected body part
+    const { selectedBodyPart } = {
+      ...StoreService.getSelectedBodyParts(),
+      ...baseSelectionState,
+    };
+    if (!selectedBodyPart) {
+      console.error('selectedBodyCategory needs to be completed');
+      return {};
+    }
+
+    const configKey = 'movement';
+    const subType = 'quality';
+    const movementConfig = BodyConfigService.getConfigByKey(configKey);
+    // filter out selections that may already be selected
+    const movementQualityList = movementConfig[selectedBodyPart][subType].filter((item) => {
+      return !selectionArray.includes(item);
+    });
+    const randomIndexes = [];
+
+    while (randomIndexes.length < remaining) {
+      const randomIndex = getRandomInteger(0, movementQualityList.length - 1);
+      // if already selected, then re-try
+      if (!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
+      } else {
+        continue;
+      }
+    }
+
+    const autoSelections = randomIndexes.map((index) => {
+      return movementQualityList[index];
+    });
+
+    baseSelectionState[selectionKey] = autoSelections;
+
+    return baseSelectionState;
+  }
+
+  autoSelectMovementTypes(stateOverride) {
+    const key = 'movementTypes';
+    const {
+      completed,
+      selection: selectionArray,
+      selectionKey,
+      remaining,
+    } = this.getCompletionStatusByKey(key);
+    const baseSelectionState = {
+      ...(!!stateOverride ? { ...stateOverride } : {}),
+    };
+
+    if (completed) {
+      baseSelectionState[selectionKey] = [...selectionArray];
+
+      return baseSelectionState;
+    }
+
+    // if not completed, get list of options.  based on current selected body part
+    const { selectedBodyPart } = {
+      ...StoreService.getSelectedBodyParts(),
+      ...baseSelectionState,
+    };
+    if (!selectedBodyPart) {
+      console.error('selectedBodyCategory needs to be completed');
+      return {};
+    }
+
+    const configKey = 'movement';
+    const subType = 'types';
+    const movementConfig = BodyConfigService.getConfigByKey(configKey);
+    // filter out selections that may already be selected
+    const movementTypesList = movementConfig[selectedBodyPart][subType].filter((item) => {
+      return !selectionArray.includes(item);
+    });
+    const randomIndexes = [];
+
+    while (randomIndexes.length < remaining) {
+      const randomIndex = getRandomInteger(0, movementTypesList.length - 1);
+      // if already selected, then re-try
+      if (!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
+      } else {
+        continue;
+      }
+    }
+
+    const autoSelections = randomIndexes.map((index) => {
+      return movementTypesList[index];
+    });
+
+    baseSelectionState[selectionKey] = autoSelections;
+
+    return baseSelectionState;
+  }
+
+  autoSelectMovementTasks(stateOverride) {
+    const key = 'movementTasks';
+    const {
+      completed,
+      selection: selectionArray,
+      selectionKey,
+      remaining,
+    } = this.getCompletionStatusByKey(key);
+    const baseSelectionState = {
+      ...(!!stateOverride ? { ...stateOverride } : {}),
+    };
+
+    if (completed) {
+      baseSelectionState[selectionKey] = [...selectionArray];
+
+      return baseSelectionState;
+    }
+
+    // if not completed, get list of options.  based on current selected body part
+    const { selectedBodyPart } = {
+      ...StoreService.getSelectedBodyParts(),
+      ...baseSelectionState,
+    };
+    if (!selectedBodyPart) {
+      console.error('selectedBodyCategory needs to be completed');
+      return {};
+    }
+
+    const configKey = 'movement';
+    const subType = 'tasks';
+    const movementConfig = BodyConfigService.getConfigByKey(configKey);
+    // filter out selections that may already be selected
+    const movementTasksList = movementConfig[selectedBodyPart][subType].filter((item) => {
+      return !selectionArray.includes(item);
+    });
+    const randomIndexes = [];
+
+    while (randomIndexes.length < remaining) {
+      const randomIndex = getRandomInteger(0, movementTasksList.length - 1);
+      // if already selected, then re-try
+      if (!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
+      } else {
+        continue;
+      }
+    }
+
+    const autoSelections = randomIndexes.map((index) => {
+      return movementTasksList[index];
+    });
+
+    baseSelectionState[selectionKey] = autoSelections;
+
+    return baseSelectionState;
+  }
+
+  autoSelectCues(stateOverride) {
+    const key = 'cues';
+    const {
+      completed,
+      selection: selectionArray,
+      selectionKey,
+      remaining,
+    } = this.getCompletionStatusByKey(key);
+    const baseSelectionState = {
+      ...(!!stateOverride ? { ...stateOverride } : {}),
+    };
+
+    if (completed) {
+      baseSelectionState[selectionKey] = [...selectionArray];
+
+      return baseSelectionState;
+    }
+
+    const cuesList = BodyConfigService.getConfigByKey(key);
+    // filter out selections that may already be selected
+    const filteredCues = cuesList.filter((item) => {
+      return !selectionArray.includes(item);
+    });
+    const randomIndexes = [];
+
+    while (randomIndexes.length < remaining) {
+      const randomIndex = getRandomInteger(0, filteredCues.length - 1);
+      // if already selected, then re-try
+      if (!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
+      } else {
+        continue;
+      }
+    }
+
+    const autoSelections = randomIndexes.map((index) => {
+      return filteredCues[index];
+    });
+
+    baseSelectionState[selectionKey] = autoSelections;
+
+    return baseSelectionState;
+  }
+
+  autoSelectResults(stateOverride) {
+    const key = 'result';
+    const {
+      completed,
+      selection: selectionArray,
+      selectionKey,
+      remaining,
+    } = this.getCompletionStatusByKey(key);
+    const baseSelectionState = {
+      ...(!!stateOverride ? { ...stateOverride } : {}),
+    };
+
+    if (completed) {
+      baseSelectionState[selectionKey] = [...selectionArray];
+
+      return baseSelectionState;
+    }
+
+    const resultList = BodyConfigService.getConfigByKey(key).map((item) => item.name);
+    // filter out selections that may already be selected
+    const filteredResults = resultList.filter((item) => {
+      return !selectionArray.includes(item);
+    });
+    const randomIndexes = [];
+
+    while (randomIndexes.length < remaining) {
+      const randomIndex = getRandomInteger(0, filteredResults.length - 1);
+      // if already selected, then re-try
+      if (!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
+      } else {
+        continue;
+      }
+    }
+
+    const autoSelections = randomIndexes.map((index) => {
+      return filteredResults[index];
     });
 
     baseSelectionState[selectionKey] = autoSelections;
