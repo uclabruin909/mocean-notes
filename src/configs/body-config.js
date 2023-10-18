@@ -256,7 +256,7 @@ const RestrictionsConfig = {
     'facial restriction',
     'tightness',
     'weakness',
-    'decreased strength and endurance	',
+    'decreased strength and endurance',
   ],
   nerve: [
     'hyper-tonicity',
@@ -686,6 +686,18 @@ const CuesConfig = [
 ];
 
 const SelectionConfig = {
+  bodyPart: {
+    maxSelection: 1,
+    minSelection: 1,
+  },
+  bodyCategory: {
+    maxSelection: 1,
+    minSelection: 1,
+  },
+  bodySpecific: {
+    maxSelection: 1,
+    minSelection: 1,
+  },
   restrictions: {
     maxSelection: 1,
     minSelection: 1,
@@ -706,20 +718,17 @@ const SelectionConfig = {
     maxSelection: 3,
     minSelection: 2,
   },
-  movement: {
-    isNested: true,
-    quality: {
-      maxSelection: 1,
-      minSelection: 1,
-    },
-    types: {
-      maxSelection: 1,
-      minSelection: 1,
-    },
-    tasks: {
-      maxSelection: 3,
-      minSelection: 2,
-    },
+  movementQuality: {
+    maxSelection: 1,
+    minSelection: 1,
+  },
+  movementTypes: {
+    maxSelection: 1,
+    minSelection: 1,
+  },
+  movementTasks: {
+    maxSelection: 3,
+    minSelection: 2,
   },
   result: {
     maxSelection: 1,

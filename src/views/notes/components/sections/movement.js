@@ -15,22 +15,22 @@ import {
 } from '@coreui/react';
 
 import { UPDATE_MOVEMENT_SELECTION } from '../../../../constants/actions';
-import { getMovementConfig, getSelectionRangeByMovementCategory, standardizeWord } from './utils';
+import { getMovementConfig, getSelectionRangeByKey, standardizeWord } from './utils';
 import './movement.scss';
 
 // movement configs values
 const MovementConfig = getMovementConfig();
-const QualityKey = 'quality';
-const TypesKey = 'types';
-const TasksKey = 'tasks';
+const QualityKey = 'movementQuality';
+const TypesKey = 'movementTypes';
+const TasksKey = 'movementTasks';
 const {
   minSelection: movementQualityMinSelection = 1,
   maxSelection: movementQualityMaxSelection = 1,
-} = getSelectionRangeByMovementCategory(QualityKey);
+} = getSelectionRangeByKey(QualityKey);
 const { minSelection: movementTypeMinSelection = 1, maxSelection: movementTypeMaxSelection = 1 } =
-  getSelectionRangeByMovementCategory(TypesKey);
+  getSelectionRangeByKey(TypesKey);
 const { minSelection: movementTasksMinSelection = 1, maxSelection: movementTasksMaxSelection = 1 } =
-  getSelectionRangeByMovementCategory(TasksKey);
+  getSelectionRangeByKey(TasksKey);
 
 console.log('movementTasksMinSelection', movementTasksMinSelection);
 console.log('movementTasksMaxSelection', movementTasksMaxSelection);
@@ -104,21 +104,21 @@ const MovementSection = () => {
     const movementGroup = evt.target.getAttribute('data-movement-group');
     console.log('evt.target:', evt.target);
     switch (movementGroup) {
-      case QualityKey: {
+      case 'quality': {
         selectedMovementItems = [...selectedMovementQuality];
         maxSelection = movementQualityMaxSelection;
         stateProp = 'selectedMovementQuality';
 
         break;
       }
-      case TypesKey: {
+      case 'types': {
         selectedMovementItems = [...selectedMovementType];
         maxSelection = movementTypeMaxSelection;
         stateProp = 'selectedMovementType';
 
         break;
       }
-      case TasksKey: {
+      case 'tasks': {
         selectedMovementItems = [...selectedMovementTasks];
         maxSelection = movementTasksMaxSelection;
         stateProp = 'selectedMovementTasks';
@@ -151,17 +151,24 @@ const MovementSection = () => {
   };
 
   // helper render function to render movement cards
-  const renderMovementCardByKey = (movementKey) => {
+  const renderMovementCardByKey = (key) => {
+    let movementKey = 'quality';
+    if (key === TypesKey) {
+      movementKey = 'types';
+    } else if (key === TasksKey) {
+      movementKey = 'tasks';
+    }
+
     const movementSelections = currentMovementConfig[movementKey] || [];
     const title = `Movement ${standardizeWord(movementKey)}`;
 
     // default to 'quality' related values
     let selectedItems = [...selectedMovementQuality];
     let maxSelection = movementQualityMaxSelection;
-    if (movementKey === TypesKey) {
+    if (movementKey === 'types') {
       selectedItems = [...selectedMovementType];
       maxSelection = movementTypeMaxSelection;
-    } else if (movementKey === TasksKey) {
+    } else if (movementKey === 'tasks') {
       selectedItems = [...selectedMovementTasks];
       maxSelection = movementTasksMaxSelection;
     }
@@ -173,11 +180,11 @@ const MovementSection = () => {
         <CListGroupItem active>{title}</CListGroupItem>
         {movementSelections.map((movementSelectionItem, index) => {
           const disablePainWhenRestrictedQuality =
-            movementKey === QualityKey &&
+            movementKey === 'quality' &&
             movementSelectionItem === 'restricted' &&
             selectedMovementType.includes('pain level');
           const disableRestrictedWhenPainType =
-            movementKey === TypesKey &&
+            movementKey === 'types' &&
             movementSelectionItem === 'pain level' &&
             selectedMovementQuality.includes('restricted');
 

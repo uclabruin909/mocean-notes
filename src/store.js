@@ -1,18 +1,26 @@
 import { createStore } from 'redux';
 import * as ACTIONS from './constants/actions';
 
-const getPercentageComplete = (state) => {
-  const propsToCheck = ['selectedBodyPart', 'selectedBodyCategory', 'selectedBodySpecific'];
+const collateralStateUpdate = (oldState, newState) => {
+  let collateralState = {};
 
-  let countDone = 0;
-  propsToCheck.forEach((prop) => {
-    if (state[prop]) {
-      countDone++;
-    }
-  });
+  if (oldState.selectedBodyPart !== newState.selectedBodyPart) {
+    collateralState = {
+      ...collateralState,
+      selectedTherexPurposes: [],
+      selectedMovementQuality: [],
+      selectedMovementType: [],
+      selectedMovementTasks: [],
+    };
+  }
+  if (oldState.selectedBodyCategory !== newState.selectedBodyCategory) {
+    collateralState = {
+      ...collateralState,
+      selectedRestriction: [],
+    };
+  }
 
-  if (countDone === 0) return 0;
-  return Math.floor((countDone / propsToCheck.length) * 100);
+  return collateralState;
 };
 
 const defaultModalState = {
@@ -25,12 +33,30 @@ const defaultModalState = {
   secondaryBtnCb: undefined,
 };
 
+const defaultCompletionStatus = {
+  bodyPart: false,
+  bodyCategory: false,
+  bodySpecific: false,
+  restrictions: false,
+  manualJoint: false,
+  manualMuscle: false,
+  manualNerve: false,
+  therex: false,
+  movementQuality: false,
+  movementTypes: false,
+  movementTasks: false,
+  cues: false,
+  result: false,
+};
+
 const initialState = {
   isOffCanvasVisible: false,
   lastGeneratedNoteTimestamp: undefined,
   sidebarShow: false,
   completionPercentage: 0,
   isBodyPartSelectionComplete: false,
+
+  // body selection begins
   selectedBodyPart: undefined,
   selectedBodyCategory: undefined,
   selectedBodySpecific: undefined,
@@ -52,6 +78,9 @@ const initialState = {
   selectedResults: [],
   modalState: {
     ...defaultModalState,
+  },
+  completionStatus: {
+    ...defaultCompletionStatus,
   },
 };
 
@@ -114,27 +143,25 @@ const changeState = (state = initialState, { type, ...rest }) => {
     }
     // BASE BODY SELECTION ACTIONS
     case ACTIONS.SET_BODY_SELECTION: {
-      const newState = { ...state, ...rest };
-      const { selectedBodyPart, selectedBodyCategory, selectedBodySpecific } = newState;
-      const isBodyPartSelectionComplete =
-        !!selectedBodyPart && !!selectedBodyCategory && !!selectedBodySpecific;
-      const completionPercentage = getPercentageComplete(newState);
-
-      return {
-        ...newState,
-        isBodyPartSelectionComplete,
-        completionPercentage,
+      const { selectedBodyPart, selectedBodyCategory, selectedBodySpecific } = rest;
+      const newState = {
+        ...state,
+        ...(!!selectedBodyPart ? { selectedBodyPart } : {}),
+        ...(!!selectedBodyCategory ? { selectedBodyCategory } : {}),
+        ...(!!selectedBodySpecific ? { selectedBodySpecific } : {}),
       };
+
+      const collateralState = collateralStateUpdate(state, newState);
+
+      return { ...newState, ...collateralState };
     }
     case ACTIONS.RESET_BODY_SELECTION: {
-      const { isOffCanvasVisible, lastGeneratedNoteTimestamp, sidebarShow, completionPercentage } =
-        state;
+      const { isOffCanvasVisible, lastGeneratedNoteTimestamp, sidebarShow } = state;
       const newState = {
         ...initialState,
         isOffCanvasVisible,
         lastGeneratedNoteTimestamp,
         sidebarShow,
-        completionPercentage,
       };
 
       return newState;

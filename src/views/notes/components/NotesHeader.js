@@ -15,6 +15,7 @@ import CIcon from '@coreui/icons-react';
 import { cilMenu, cilNotes, cilPenAlt } from '@coreui/icons';
 
 import NotesService from 'src/services/notesService';
+import SelectionService from 'src/services/selectionService';
 import { NotesSecondaryHeader } from './index';
 import logoPath from 'src/assets/images/mocean_logo.png';
 import * as ACTIONS from 'src/constants/actions';
@@ -36,13 +37,34 @@ const NotesHeader = () => {
   };
 
   const testNotesService = () => {
-    NotesService.getBodyPartText();
-    NotesService.getManualText();
-    NotesService.getTherexPurposeText();
-    NotesService.getMovementText();
-    NotesService.getCuesText();
-    NotesService.getResultsText();
-    console.log(NotesService.generateDailyNotesText());
+    // NotesService.getBodyPartText();
+    // NotesService.getManualText();
+    // NotesService.getTherexPurposeText();
+    // NotesService.getMovementText();
+    // NotesService.getCuesText();
+    // NotesService.getResultsText();
+    // console.log(NotesService.generateDailyNotesText());
+    console.log(
+      'SelectionService.constructCompletionStatusMap()',
+      SelectionService.constructCompletionStatusMap(),
+    );
+
+    const bodyPart = SelectionService.autoSelectBodyPart();
+    const bodyCategory = SelectionService.autoSelectBodyCategory(bodyPart);
+    const bodySpecific = SelectionService.autoSelectBodySpecific(bodyCategory);
+    const restrictions = SelectionService.autoSelectRestrictions(bodySpecific);
+    const manualJoint = SelectionService.autoSelectManualJointActions(restrictions);
+    const manualMuscle = SelectionService.autoSelectManualMuscleActions(manualJoint);
+    const manualNerve = SelectionService.autoSelectManualNerveActions(manualMuscle);
+    const therexPurpose = SelectionService.autoSelectTherexPurpose(manualNerve);
+
+    const total = { ...therexPurpose };
+
+    dispatch({
+      type: 'set',
+      ...total,
+    });
+    console.log('total:', total);
   };
 
   return (

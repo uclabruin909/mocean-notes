@@ -68,9 +68,9 @@ const Restrictions = () => {
     setCompleted(isCompleted);
   }, [selectedRestriction]);
 
-  useEffect(() => {
-    updateSelectedRestriction([]);
-  }, [selectedBodyCategory, updateSelectedRestriction]);
+  // useEffect(() => {
+  //   updateSelectedRestriction([]);
+  // }, [selectedBodyCategory, updateSelectedRestriction]);
 
   // helper render function to render restrictions for a particular category key i.e. joints
   const renderRestrictionsByKey = (restrictionsObject, categoryKey, selectedCategory) => {
