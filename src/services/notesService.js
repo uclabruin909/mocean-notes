@@ -56,15 +56,15 @@ class NotesServiceClass {
 
       ModalService.showModal({
         title: 'Note succesfully generated',
-        bodyText: 'Not has been successfully generated and copied to clipboard',
-        primaryBtnText: 'Ok',
+        bodyText: 'Note has been successfully generated and copied to clipboard',
+        primaryBtnText: 'OK',
         primaryBtnCb: () => {
-          alert('primary btn clicked');
+          // alert('primary btn clicked');
         },
-        secondaryBtnText: '2nd button',
-        secondaryBtnCb: () => {
-          alert('secondary btn clicked');
-        },
+        // secondaryBtnText: '2nd button',
+        // secondaryBtnCb: () => {
+        //   alert('secondary btn clicked');
+        // },
       });
 
       if (window.document) {
