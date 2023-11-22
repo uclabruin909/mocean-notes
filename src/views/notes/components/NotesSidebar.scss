@@ -1,5 +1,17 @@
 .notes-sidebar-container {
+  background: #323a49;
+  
+  .nav-title {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .sidebar-brand {
+    background: rgba(0, 0, 21, 0.2);
+    flex: 0 0 4rem;
+    align-items: center;
+    justify-content: center;    
+  }
   .nav-icon {
+    color: white;
     padding-left: 0.1rem;
     height: 1rem;
   }
