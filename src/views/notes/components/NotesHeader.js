@@ -33,6 +33,7 @@ const NotesHeader = () => {
   const dispatch = useDispatch();
 
   const sidebarShow = useSelector((state) => state.sidebarShow);
+  const isSelectionCompleted = useSelector((state) => state.isSelectionCompleted);
 
   const resetBodySelection = () => {
     dispatch({ type: ACTIONS.RESET_BODY_SELECTION });
@@ -61,7 +62,23 @@ const NotesHeader = () => {
     ModalService.showModal(modalOptions);
   };
 
+  const triggerSelectionNotCompletedModal = () => {
+    const modalOptions = {
+      isVisible: true,
+      title: 'Notes cannot be generated: Required selections missing',
+      bodyText:
+        'All selections must be made before notes can be generated. Please complete the missing selections.',
+      primaryBtnText: 'OK',
+    };
+
+    ModalService.showModal(modalOptions);
+  };
+
   const testNotesService = () => {
+    if (!isSelectionCompleted) {
+      triggerSelectionNotCompletedModal();
+      return;
+    }
     // const bodyPart = SelectionService.autoSelectBodyPart();
     // const bodyCategory = SelectionService.autoSelectBodyCategory(bodyPart);
     // const bodySpecific = SelectionService.autoSelectBodySpecific(bodyCategory);
@@ -82,7 +99,6 @@ const NotesHeader = () => {
       type: 'set',
       ...total,
     });
-    console.log('total:', total);
 
     setTimeout(() => {
       console.log(
@@ -147,7 +163,7 @@ const NotesHeader = () => {
           </CNavItem>
           <CNavItem>
             <CTooltip
-              content="Auto-select the any remaining/incomplete sections based on your current selections.  "
+              content="Auto-select the any remaining/incomplete sections based on your current selections."
               placement="bottom"
             >
               <CButton
@@ -166,7 +182,9 @@ const NotesHeader = () => {
               onClick={testNotesService}
               variant="outline"
               color="primary"
-              className="app-note-generate-btn d-flex align-items-center gap-2"
+              className={`app-note-generate-btn d-flex align-items-center gap-2 ${
+                !isSelectionCompleted ? 'disabled' : ''
+              }`}
             >
               <strong>Generate Note</strong>
               <CIcon icon={cilDescription} size="lg" />

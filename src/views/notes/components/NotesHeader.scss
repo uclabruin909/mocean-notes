@@ -36,6 +36,10 @@
       background: #2bb6aa;
       border-color: #2bb6aa;
     }
+
+    &.disabled {
+      pointer-events: unset;
+    }
   }
 
   .app-editor-btn {
