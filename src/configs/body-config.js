@@ -711,15 +711,15 @@ const SelectionConfig = {
     minSelection: 1,
   },
   manualJoint: {
-    maxSelection: 1,
+    maxSelection: 99,
     minSelection: 1,
   },
   manualMuscle: {
-    maxSelection: 1,
+    maxSelection: 99,
     minSelection: 1,
   },
   manualNerve: {
-    maxSelection: 1,
+    maxSelection: 99,
     minSelection: 1,
   },
   therex: {
