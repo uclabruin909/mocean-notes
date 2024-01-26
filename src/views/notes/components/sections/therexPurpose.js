@@ -108,9 +108,8 @@ const TherexPuposeSection = () => {
             <CCardHeader className="section-card-header d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center gap-2">
                 <span>
-                  Select at least <strong>{therexMinSelection}</strong> therex purposes (up to{' '}
-                  <strong>{therexMaxSelection}</strong>). The available options will be dependent on
-                  which <strong>body part</strong> that was selected above.
+                  The available options will be dependent on which <strong>body part</strong> that
+                  was selected above.
                 </span>
               </div>
             </CCardHeader>

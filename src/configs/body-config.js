@@ -312,18 +312,6 @@ const ManualMuscleConfig = [
     name: 'E-Stim',
     text: 'PT applied electrical muscle stimulation to stimulate nerves, restore function and strength, prevent muscle atrophy, and reduce muscle spasm',
   },
-];
-
-const ManualNerveConfig = [
-  { name: 'Nerve Stimulation', text: 'to decrease muscle tone and increase joint ROM' },
-  {
-    name: 'Nerve Glide',
-    text: 'to decrease neural tension and to normalize muscle tone & ROM',
-  },
-  {
-    name: 'Fascial release',
-    text: 'PT performed fascial release using Graston to release neurological muscle tension',
-  },
   {
     name: 'Air compression Therapy',
     text: 'to enhance circulation and stimulate parasympatheic activity',
@@ -334,8 +322,36 @@ const ManualNerveConfig = [
   },
 ];
 
+const ManualNerveConfig = [
+  { name: 'Nerve Stimulation', text: 'to decrease muscle tone and increase joint ROM' },
+  {
+    name: 'Nerve Glide',
+    text: 'to decrease neural tension and to normalize muscle tone & ROM',
+  },
+  // {
+  //   name: 'Fascial release',
+  //   text: 'PT performed fascial release using Graston to release neurological muscle tension',
+  // },
+];
+
 const TherexConfig = {
-  TMJ: ['mandibular trusion', 'suboccipital muscle facilitation', 'OA & AA mobility and stability'],
+  TMJ: [
+    'mandibular protrusion',
+    'suboccipital muscle facilitation',
+    'OA mobility and stability',
+    'AA mobility and stability',
+    'suboccipital muscle inhibition',
+    'vestibular occular reflex facilitation',
+    'mandibular retrusion',
+    'mandibular lateral translation',
+    'mandibular depression',
+    'upper cervical mobility',
+    'upper cervical flexion',
+    'upper cervical extension',
+    'upper cervical rotation',
+    'right temporal bone rotation',
+    'left temporal bone rotation',
+  ],
   shoulder: [
     'GH, ST, AC joint stability',
     'shoulder strength and stability',
@@ -481,7 +497,7 @@ const TherexConfig = {
     'GH, ST, AC joint stability',
     'humero-radial joint mobility & stability',
     'radio-ulnar joint mobility & stability',
-    'forarm, wrist strength',
+    'forearm, wrist strength',
     'flexion, extension',
     'internal, external rotation',
     'abduction, adduction',
@@ -723,20 +739,20 @@ const SelectionConfig = {
     minSelection: 1,
   },
   therex: {
-    maxSelection: 3,
-    minSelection: 2,
+    maxSelection: 99,
+    minSelection: 1,
   },
   movementQuality: {
-    maxSelection: 1,
+    maxSelection: 99,
     minSelection: 1,
   },
   movementTypes: {
-    maxSelection: 1,
+    maxSelection: 99,
     minSelection: 1,
   },
   movementTasks: {
-    maxSelection: 3,
-    minSelection: 2,
+    maxSelection: 99,
+    minSelection: 1,
   },
   result: {
     maxSelection: 1,

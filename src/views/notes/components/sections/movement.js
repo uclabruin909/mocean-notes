@@ -146,20 +146,19 @@ const MovementSection = () => {
       <CListGroup className="flex-grow-1 movement-item-container" key={movementKey}>
         <CListGroupItem active>{title}</CListGroupItem>
         {movementSelections.map((movementSelectionItem, index) => {
-          const disablePainWhenRestrictedQuality =
-            movementKey === 'quality' &&
-            movementSelectionItem === 'restricted' &&
-            selectedMovementType.includes('pain level');
-          const disableRestrictedWhenPainType =
-            movementKey === 'types' &&
-            movementSelectionItem === 'pain level' &&
-            selectedMovementQuality.includes('restricted');
+          // const disablePainWhenRestrictedQuality =
+          //   movementKey === 'quality' &&
+          //   movementSelectionItem === 'restricted' &&
+          //   selectedMovementType.includes('pain level');
+          // const disableRestrictedWhenPainType =
+          //   movementKey === 'types' &&
+          //   movementSelectionItem === 'pain level' &&
+          //   selectedMovementQuality.includes('restricted');
 
           const isSelected = selectedItems.includes(movementSelectionItem);
-          let isDisabled =
-            (atMaxSelection && !isSelected) ||
-            disablePainWhenRestrictedQuality ||
-            disableRestrictedWhenPainType;
+          let isDisabled = atMaxSelection && !isSelected;
+          // disablePainWhenRestrictedQuality ||
+          // disableRestrictedWhenPainType;
 
           return (
             <CListGroupItem key={index} className="movement-action-item">
@@ -197,12 +196,8 @@ const MovementSection = () => {
             <CCardHeader className="section-card-header d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center gap-2">
                 <span>
-                  Select <strong>{movementQualityMinSelection}</strong> movement quality,{' '}
-                  <strong>{movementTypeMinSelection}</strong> movement type and at least{' '}
-                  <strong>{movementTasksMinSelection}</strong> movement tasks (up to{' '}
-                  <strong>{movementTasksMaxSelection}</strong>). The available options will be
-                  dependent on which <strong>body part</strong> that was selected om in the above
-                  dropdown.
+                  The available options will be dependent on which <strong>body part</strong> that
+                  was selected om in the above dropdown.
                 </span>
               </div>
             </CCardHeader>
