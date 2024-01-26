@@ -53,7 +53,7 @@ const BodyPartConfig = {
   },
   elbow: {
     joint: ['radio-ulnar joint', 'humero-ulnar joint'],
-    muscle: ['extensor carpi unlaris', 'flexor carpi ulnaris'],
+    muscle: ['extensor carpi ulnaris', 'flexor carpi ulnaris'],
     nerve: ['radial nerve', 'median nerve'],
     ligament_tendon: ['ulnar collateral ligament', 'radial collateral ligament'],
   },
@@ -129,7 +129,7 @@ const BodyPartConfig = {
   ankle: {
     joint: ['subtalar joint', 'talocrural joint', '1st MTP', '5th MTP', 'MTP'],
     muscle: [
-      'gastroc',
+      'gastrocnemius',
       'soleus',
       'anterior tibialis',
       'posterior tibialis',
@@ -178,7 +178,7 @@ const BodyPartConfig = {
   wrist: {
     joint: ['proximal radio-ulnar joint', 'distal radio-ulnar joint', 'TFCC'],
     muscle: [
-      'extensor carpi unlaris',
+      'extensor carpi ulnaris',
       'extensor carpi radialis',
       'flexor carpi ulnaris',
       'flexor carpi radialis',
@@ -241,6 +241,7 @@ const BodyPartConfig = {
 
 const RestrictionsConfig = {
   joint: [
+    'capsular restriction',
     'hyper-mobility',
     'hypo-mobility',
     'instability',
@@ -253,7 +254,7 @@ const RestrictionsConfig = {
     'hyper-tonicity',
     'hypo-tonicity',
     'strain',
-    'facial restriction',
+    'fascial restriction',
     'tightness',
     'weakness',
     'decreased strength and endurance',
@@ -304,7 +305,7 @@ const ManualMuscleConfig = [
     text: 'to decrease muscle tension and to increase the joint ROM and stability',
   },
   {
-    name: 'PAILs & RAILs',
+    name: 'PNF contract and relax',
     text: 'to increase the load capacity to decrease neural tension',
   },
 ];
@@ -536,7 +537,7 @@ const defaultMovementTypes = [
   'movement coordination',
   'muscle recruitment',
   'range of motion',
-  'intrinsic muscle facilatation',
+  'intrinsic muscle facilitation',
   'extrinsic muscle activation',
   'stability',
   'mechanoreceptor facilitation ',
@@ -673,7 +674,7 @@ const ResultsConfig = [
   { name: 'Strength', text: 'Pt demonstrated improved muscular strength and endurance' },
   { name: 'Motor Control', text: 'Pt demonstrated improved motor control' },
   { name: 'Stability', text: 'Pt demonstrated improved joints stability and controled mobility' },
-  { name: 'Motor Planning', text: 'Pt demonstrated improved motor planning and excution' },
+  { name: 'Motor Planning', text: 'Pt demonstrated improved motor planning and execution' },
   { name: 'Balance', text: 'Pt demonstrated enhanced balance and proprioceptive sense' },
 ];
 
